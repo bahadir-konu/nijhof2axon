@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
-    String accountName;
+    String accountName; //Merdogan test.
     String accountNumber;
     BigDecimal balance;
 
