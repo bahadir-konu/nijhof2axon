@@ -9,10 +9,12 @@ import java.math.BigDecimal;
  */
 public class ReceiveMoneyTransferCommand {
 
+    private String activeAccountId;
     private BigDecimal amount;
     private String accountNumber;
 
-    public ReceiveMoneyTransferCommand(BigDecimal amount, String accountNumber) {
+    public ReceiveMoneyTransferCommand(String activeAccountId, BigDecimal amount, String accountNumber) {
+        this.activeAccountId = activeAccountId;
         this.amount = amount;
         this.accountNumber = accountNumber;
     }
@@ -23,5 +25,9 @@ public class ReceiveMoneyTransferCommand {
 
     public String getAccountNumber() {
         return accountNumber;
+    }
+
+    public String getActiveAccountId() {
+        return activeAccountId;
     }
 }

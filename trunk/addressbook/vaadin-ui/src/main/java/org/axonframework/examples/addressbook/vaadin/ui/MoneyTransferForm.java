@@ -6,6 +6,7 @@ import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.*;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ContactFormBean;
+import org.axonframework.examples.addressbook.vaadin.data.MoneyTransferFormBean;
 import org.axonframework.sample.app.api.fohjin.ReceiveMoneyTransferCommand;
 
 import java.io.Serializable;
@@ -59,7 +60,7 @@ public class MoneyTransferForm extends Form implements Button.ClickListener {
 
 
     public void initialize() {
-        setItemDataSource(new BeanItem<ContactFormBean>(new ContactFormBean()));
+        setItemDataSource(new BeanItem<MoneyTransferFormBean>(new MoneyTransferFormBean()));
 
         setReadOnly(false);
     }

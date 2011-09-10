@@ -118,6 +118,7 @@ public class AddressbookApplication extends Application
             contactList.addListener((Property.ValueChangeListener) this);
             contactForm = new ContactForm(commandBus);
             contactForm.addListener((ContactForm.CommitListener) this);
+            moneyTransferForm = new MoneyTransferForm(commandBus);
             listView = new ListView(contactList, contactForm);
         }
         contactForm.setItemDataSource(null);
@@ -148,7 +149,12 @@ public class AddressbookApplication extends Application
     }
 
     private void transferMoney() {
+        showMoneyTransferView();
         moneyTransferForm.initialize();
+    }
+
+    private void showMoneyTransferView() {
+        setMainComponent(moneyTransferForm);
     }
 
     private void showSearchView() {
