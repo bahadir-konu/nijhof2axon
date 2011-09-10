@@ -106,5 +106,7 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
         apply(new MoneyTransferReceivedEvent(newBalance, amount, sourceAccountNumber, accountNumber));
     }
 
+    //TODO: clean
+
 }
 
