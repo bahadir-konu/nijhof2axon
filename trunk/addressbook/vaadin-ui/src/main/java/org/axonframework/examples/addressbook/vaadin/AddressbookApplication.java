@@ -148,7 +148,7 @@ public class AddressbookApplication extends Application
     }
 
     private void transferMoney() {
-        moneyTransferForm.transferMoney();
+        moneyTransferForm.initialize();
     }
 
     private void showSearchView() {

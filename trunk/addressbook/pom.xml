@@ -30,10 +30,7 @@
     <name>Axon Address Book Sample Project</name>
     <modules>
         <module>app</module>
-        <module>web-ui</module>
-        <module>vaadin-ui</module>
-        <module>flex-ui</module>
-        <module>rest-ui</module>
+        <module>vaadin-ui</module>        
     </modules>
 
     <dependencyManagement>
