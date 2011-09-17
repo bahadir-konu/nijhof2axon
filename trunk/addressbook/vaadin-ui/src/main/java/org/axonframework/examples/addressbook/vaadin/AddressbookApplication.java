@@ -164,7 +164,7 @@ public class AddressbookApplication extends Application
 
     private void createClient() {
 
-        CreateC
+        //BKONU: not implemented
 
     }
 
