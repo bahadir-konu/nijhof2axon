@@ -1,4 +1,6 @@
-package org.axonframework.sample.app.api.fohjin;
+package org.axonframework.sample.app.api.fohjin.command;
+
+import org.axonframework.domain.AggregateIdentifier;
 
 import java.math.BigDecimal;
 
@@ -9,11 +11,11 @@ import java.math.BigDecimal;
  */
 public class ReceiveMoneyTransferCommand {
 
-    private String activeAccountId;
+    private AggregateIdentifier activeAccountId;
     private BigDecimal amount;
     private String accountNumber;
 
-    public ReceiveMoneyTransferCommand(String activeAccountId, BigDecimal amount, String accountNumber) {
+    public ReceiveMoneyTransferCommand(AggregateIdentifier activeAccountId, BigDecimal amount, String accountNumber) {
         this.activeAccountId = activeAccountId;
         this.amount = amount;
         this.accountNumber = accountNumber;
@@ -27,7 +29,8 @@ public class ReceiveMoneyTransferCommand {
         return accountNumber;
     }
 
-    public String getActiveAccountId() {
+    public AggregateIdentifier getActiveAccountId() {
         return activeAccountId;
     }
+
 }

@@ -5,9 +5,10 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.*;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.examples.addressbook.vaadin.data.ContactFormBean;
 import org.axonframework.examples.addressbook.vaadin.data.MoneyTransferFormBean;
-import org.axonframework.sample.app.api.fohjin.ReceiveMoneyTransferCommand;
+import org.axonframework.sample.app.api.fohjin.command.ReceiveMoneyTransferCommand;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -67,8 +68,13 @@ public class MoneyTransferForm extends Form implements Button.ClickListener {
 
     private void handleSave() {
 
+        // BKONU: Active account creation UI needed.
+        // User should select an ActiveAccount
+        // This command will include the selected ActiveAccount
+        StringAggregateIdentifier id = new StringAggregateIdentifier("12sdf34sdf5");
+
         ReceiveMoneyTransferCommand command =
-                new ReceiveMoneyTransferCommand(BigDecimal.valueOf(10.), "12345");
+                new ReceiveMoneyTransferCommand(id, BigDecimal.valueOf(10.), "12345");
 
         commandBus.dispatch(command);
 

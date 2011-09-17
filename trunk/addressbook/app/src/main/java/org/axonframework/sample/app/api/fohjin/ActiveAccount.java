@@ -4,6 +4,8 @@ import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.sample.app.api.*;
+import org.axonframework.sample.app.api.fohjin.event.ActiveAccountOpenedEvent;
+import org.axonframework.sample.app.api.fohjin.event.MoneyTransferReceivedEvent;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -17,7 +19,7 @@ import java.util.Map;
  */
 public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
-    String accountName; //Merdogan test.
+    String accountName;
     String accountNumber;
     BigDecimal balance;
 
@@ -25,9 +27,9 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
     private Map<AddressType, Address> addresses = new HashMap<AddressType, Address>();
 
-    public ActiveAccount(AggregateIdentifier identifier, String name) {
-        super(identifier);
-        apply(new ContactCreatedEvent(name));
+    public ActiveAccount(AggregateIdentifier clientId, String accountName) {
+        super(clientId);
+        apply(new ActiveAccountOpenedEvent(clientId, accountName));
     }
 
     public ActiveAccount(AggregateIdentifier identifier) {
@@ -105,8 +107,6 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
         apply(new MoneyTransferReceivedEvent(newBalance, amount, sourceAccountNumber, accountNumber));
     }
-
-    //TODO: clean
 
 }
 

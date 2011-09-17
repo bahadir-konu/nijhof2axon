@@ -104,6 +104,18 @@
         <axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>
     </axon:event-sourcing-repository>
 
+    <axon:event-sourcing-repository id="activeAccountRepository"
+                                    aggregate-type="org.axonframework.sample.app.api.fohjin.ActiveAccount"
+                                    event-bus="eventBus" event-store="eventStore">
+        <axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>
+    </axon:event-sourcing-repository>
+
+    <axon:event-sourcing-repository id="clientRepository"
+                                    aggregate-type="org.axonframework.sample.app.api.fohjin.Client"
+                                    event-bus="eventBus" event-store="eventStore">
+        <axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>
+    </axon:event-sourcing-repository>
+
     <!--
     <bean id="snapshotter"
           class="org.axonframework.eventsourcing.SpringAggregateSnapshotter">
@@ -121,6 +133,16 @@
         <property name="repository" ref="contactRepository"/>
         <property name="contactRepository" ref="queryContactRepository"/>
         <property name="contactNameRepository" ref="contactNameRepository"/>
+    </bean>
+
+    <bean id="receiveMoneyTransferCommandHandler"
+          class="org.axonframework.sample.app.api.fohjin.commandHandler.ReceiveMoneyTransferCommandHandler">
+        <property name="repository" ref="activeAccountRepository"/>
+    </bean>
+
+    <bean id="openNewAccountForClientCommandHandler" class="org.axonframework.sample.app.api.fohjin.commandHandler.OpenNewAccountForClientCommandHandler">
+        <property name="activeAccountRepository" ref="activeAccountRepository"/>
+        <property name="clientRepository" ref="clientRepository"/>
     </bean>
 
     <bean id="contactNameRepository" class="org.axonframework.sample.app.command.JpaContactNameRepository"/>

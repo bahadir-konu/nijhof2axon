@@ -24,9 +24,12 @@ import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.domain.AggregateIdentifier;
+import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactFormBean;
 import org.axonframework.examples.addressbook.vaadin.ui.*;
+import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
 import org.axonframework.sample.app.query.ContactEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,6 +44,9 @@ public class AddressbookApplication extends Application
     private Button help = new Button("Help");
 
     private Button moneyTransfer = new Button("Transfer Money!");
+    private Button openActiveAccount = new Button("Open Active Account!");
+    private Button createClient = new Button("Create a Client!");
+
 
     private HorizontalSplitPanel horizontalSplit = new HorizontalSplitPanel();
     private NavigationTree tree = new NavigationTree();
@@ -97,6 +103,8 @@ public class AddressbookApplication extends Application
         search.addListener((Button.ClickListener) this);
         newContact.addListener((Button.ClickListener) this);
         moneyTransfer.addListener((Button.ClickListener) this);
+        openActiveAccount.addListener((Button.ClickListener) this);
+        createClient.addListener((Button.ClickListener) this);
         help.addListener((Button.ClickListener) this);
 
         HorizontalLayout toolbar = new HorizontalLayout();
@@ -104,6 +112,8 @@ public class AddressbookApplication extends Application
         toolbar.addComponent(search);
         toolbar.addComponent(help);
         toolbar.addComponent(moneyTransfer);
+        toolbar.addComponent(openActiveAccount);
+        toolbar.addComponent(createClient);
         return toolbar;
     }
 
@@ -142,10 +152,30 @@ public class AddressbookApplication extends Application
             getMainWindow().addWindow(getHelpWindow());
         } else if (source == newContact) {
             addNewContact();
-        }
-        else if (source == moneyTransfer) {
+        } else if (source == moneyTransfer) {
             transferMoney();
+        } else if (source == openActiveAccount) {
+            createAnActiveAccount();
+        } else if (source == createClient) {
+            createClient();
         }
+
+    }
+
+    private void createClient() {
+
+        CreateC
+
+    }
+
+    private void createAnActiveAccount() {
+
+        AggregateIdentifier clientId =
+                new StringAggregateIdentifier("tqwuweqtohjo?j");
+
+        OpenNewAccountForClientCommand openNewAccountForClientCommand
+                = new OpenNewAccountForClientCommand(clientId, "ACCOUNT ABC");
+        commandBus.dispatch(openNewAccountForClientCommand);
     }
 
     private void transferMoney() {
