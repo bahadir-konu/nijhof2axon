@@ -29,6 +29,7 @@ import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactFormBean;
 import org.axonframework.examples.addressbook.vaadin.ui.*;
+import org.axonframework.sample.app.api.fohjin.command.CreateClientCommand;
 import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
 import org.axonframework.sample.app.query.ContactEntry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,11 +165,18 @@ public class AddressbookApplication extends Application
 
     private void createClient() {
 
-        //BKONU: not implemented
+        //BKONU: fetch name from UI
+        CreateClientCommand command = new CreateClientCommand("A client");
+
+        commandBus.dispatch(command);
 
     }
 
     private void createAnActiveAccount() {
+
+        //BKONU: Show client in a list and select a client.
+        // click on "create active account" button
+        // client ID will be passed with the command!
 
         AggregateIdentifier clientId =
                 new StringAggregateIdentifier("tqwuweqtohjo?j");

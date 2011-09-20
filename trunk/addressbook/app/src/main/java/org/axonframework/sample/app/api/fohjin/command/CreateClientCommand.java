@@ -5,6 +5,13 @@ package org.axonframework.sample.app.api.fohjin.command;
  */
 public class CreateClientCommand {
 
-    private String name; 
+    public CreateClientCommand(String name) {
+        this.name = name;
+    }
 
+    private String name;
+
+    public String getName() {
+        return name;
+    }
 }

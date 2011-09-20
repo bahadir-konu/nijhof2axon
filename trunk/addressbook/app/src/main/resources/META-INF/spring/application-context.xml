@@ -140,8 +140,14 @@
         <property name="repository" ref="activeAccountRepository"/>
     </bean>
 
-    <bean id="openNewAccountForClientCommandHandler" class="org.axonframework.sample.app.api.fohjin.commandHandler.OpenNewAccountForClientCommandHandler">
+    <bean id="openNewAccountForClientCommandHandler"
+          class="org.axonframework.sample.app.api.fohjin.commandHandler.OpenNewAccountForClientCommandHandler">
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
+        <property name="clientRepository" ref="clientRepository"/>
+    </bean>
+
+    <bean id="createClientCommandHandler"
+          class="org.axonframework.sample.app.api.fohjin.commandHandler.CreateClientCommandHandler">
         <property name="clientRepository" ref="clientRepository"/>
     </bean>
 
