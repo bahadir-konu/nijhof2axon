@@ -23,4 +23,8 @@
         <constructor-arg ref="commandBus"/>
     </bean>
 
+    <bean class="org.axonframework.sample.app.init.SampleDataGenerator">
+        <constructor-arg ref="commandBus"/>
+    </bean>
+
 </beans>

@@ -9,7 +9,19 @@ import org.axonframework.domain.DomainEvent;
  */
 public class ClientCreatedEvent extends DomainEvent {
 
+    private final String name;
+
     public ClientCreatedEvent(String name) {
-        //To change body of created methods use File | Settings | File Templates.
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getClientIdentifier() {
+        return getAggregateIdentifier().asString();
+    }
+
+
 }

@@ -21,9 +21,9 @@ import com.vaadin.ui.VerticalSplitPanel;
 /**
  * @author Jettro Coenradie
  */
-public class ListView extends VerticalSplitPanel {
+public class ContactListView extends VerticalSplitPanel {
 
-    public ListView(ContactList contactList, ContactForm contactForm) {
+    public ContactListView(ContactList contactList, ContactForm contactForm) {
         setFirstComponent(contactList);
         setSecondComponent(contactForm);
         setSplitPosition(40);
