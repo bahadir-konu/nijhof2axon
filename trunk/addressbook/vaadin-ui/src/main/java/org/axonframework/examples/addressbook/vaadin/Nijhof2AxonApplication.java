@@ -102,12 +102,34 @@ public class Nijhof2AxonApplication extends Application {
 
     private Table getClientsTable() {
 
-        Table clientsTable = new Table("Clients");
+        final Table clientsTable = new Table("Clients");
         clientsTable.setContainerDataSource(clientContainer);
+
+
+        clientsTable.addGeneratedColumn("Edit", new Table.ColumnGenerator() {
+            public Component generateCell(Table source, Object itemId,
+                                          Object columnId) {
+                BeanItem item = (BeanItem) clientsTable.getItem(itemId);
+
+                Button editButton = new Button("Edit");
+
+                editButton.addListener(new Button.ClickListener() {
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+
+                        //BKONU: how to switch to edit mode?
+
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
+                });
+
+                return editButton;
+            }
+        });
 
         clientContainer.refreshContent();
 
-        test
+        
         return clientsTable;
     }
 
