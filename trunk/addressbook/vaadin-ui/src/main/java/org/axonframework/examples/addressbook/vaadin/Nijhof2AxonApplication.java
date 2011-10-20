@@ -107,6 +107,7 @@ public class Nijhof2AxonApplication extends Application {
 
         clientContainer.refreshContent();
 
+        test
         return clientsTable;
     }
 
