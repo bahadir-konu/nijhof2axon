@@ -17,13 +17,13 @@
 package org.axonframework.examples.addressbook.vaadin;
 
 import com.vaadin.Application;
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
-import org.axonframework.sample.app.api.fohjin.command.CreateClientCommand;
-import org.axonframework.sample.app.query.ClientEntry;
+import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -50,88 +50,14 @@ public class Nijhof2AxonApplication extends Application {
         Window mainWindow = new Window("Nijhof2Axon Application");
         setMainWindow(mainWindow);
 
+        mainWindow.getContent().setSizeFull();
+
         VerticalLayout mainVerticalLayout = new VerticalLayout();
 
-        // Client list
-        VerticalLayout clientList = new VerticalLayout();
-
-        Table myTable = getClientsTable();
-
-        clientList.addComponent(myTable);
-
-        mainVerticalLayout.addComponent(clientList);
-
-        //Client form
-
-        VerticalLayout clientFormLayout = new VerticalLayout();
-
-        final Form clientForm = new Form();
-        ClientEntry clientEntry = new ClientEntry();
-        BeanItem item = new BeanItem(clientEntry);
-        item.removeItemProperty("identifier");
-
-        clientForm.setItemDataSource(item);
-
-        clientFormLayout.addComponent(clientForm);
-
-        Button saveButton = new Button("Save");
-        saveButton.addListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-
-                String clientName = clientForm.getItemDataSource().getItemProperty("name").toString();
-                CreateClientCommand createClientCommand = new CreateClientCommand(clientName
-                );
-
-                commandBus.dispatch(createClientCommand);
-
-                clientContainer.refreshContent();
-
-            }
-        });
-
-        clientFormLayout.addComponent(saveButton);
-
-        mainVerticalLayout.addComponent(clientFormLayout);
-
+        mainVerticalLayout.addComponent(new ClientView(commandBus, clientContainer));
 
         mainWindow.setContent(mainVerticalLayout);
 
-
     }
-
-    private Table getClientsTable() {
-
-        final Table clientsTable = new Table("Clients");
-        clientsTable.setContainerDataSource(clientContainer);
-
-
-        clientsTable.addGeneratedColumn("Edit", new Table.ColumnGenerator() {
-            public Component generateCell(Table source, Object itemId,
-                                          Object columnId) {
-                BeanItem item = (BeanItem) clientsTable.getItem(itemId);
-
-                Button editButton = new Button("Edit");
-
-                editButton.addListener(new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-
-                        //BKONU: how to switch to edit mode?
-
-                        //To change body of implemented methods use File | Settings | File Templates.
-                    }
-                });
-
-                return editButton;
-            }
-        });
-
-        clientContainer.refreshContent();
-
-        
-        return clientsTable;
-    }
-
 
 }
