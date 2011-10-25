@@ -5,6 +5,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 
 import java.util.Arrays;
@@ -33,10 +34,12 @@ public class ClientList extends VerticalLayout {
                     @Override
                     public void buttonClick(Button.ClickEvent event) {
 
-                        //BKONU: Switch to Client details mode?
-                        // list accounts
-                        // add new account
+                        //BKONU: How to get selected client entry???
 
+                        //event.getComponent();
+
+                        //((Nijhof2AxonApplication)getApplication()).switchToClientDetailsMode();
+                       
                     }
                 });
 

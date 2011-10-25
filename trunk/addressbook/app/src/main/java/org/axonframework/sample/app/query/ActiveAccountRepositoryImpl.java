@@ -1,11 +1,11 @@
 package org.axonframework.sample.app.query;
 
-import org.axonframework.sample.app.api.fohjin.ActiveAccount;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
@@ -20,10 +20,11 @@ public class ActiveAccountRepositoryImpl implements ActiveAccountRepository {
     private EntityManager entityManager;
 
     @Override
-    public ActiveAccount findById() {
+    public List<ActiveAccountEntry> findAll() {
 
-        //TODO: ???
+        return entityManager.createQuery("SELECT e FROM ActiveAccountEntry e")
+                .setMaxResults(250)
+                .getResultList();
 
-        return null;
     }
 }
