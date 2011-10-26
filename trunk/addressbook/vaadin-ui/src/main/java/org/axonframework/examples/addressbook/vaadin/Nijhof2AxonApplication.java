@@ -21,6 +21,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetails;
@@ -42,6 +43,9 @@ public class Nijhof2AxonApplication extends Application {
 
     @Autowired
     private ClientContainer clientContainer;
+
+    @Autowired
+    private ActiveAccountContainer activeAccountContainer;
 
     @Autowired
     private CommandBus commandBus;
@@ -68,7 +72,7 @@ public class Nijhof2AxonApplication extends Application {
 
     public void switchToClientDetailsMode(ClientEntry clientEntry) {
                                              
-        mainVerticalLayout.replaceComponent(clientView, new ClientDetails(clientEntry, commandBus) );
+        mainVerticalLayout.replaceComponent(clientView, new ClientDetails(clientEntry, commandBus, activeAccountContainer) );
     }
 
 

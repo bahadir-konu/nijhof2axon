@@ -1,14 +1,12 @@
 package org.axonframework.examples.addressbook.vaadin.ui.client;
 
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Component;
+import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
-
-import java.util.Arrays;
+import org.axonframework.sample.app.query.ClientEntry;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
@@ -23,27 +21,16 @@ public class ClientList extends VerticalLayout {
 
         clientsTable.setVisibleColumns(new String[]{"name"});
 
-        clientsTable.addGeneratedColumn("Edit", new Table.ColumnGenerator() {
-            public Component generateCell(Table source, Object itemId,
-                                          Object columnId) {
-                BeanItem item = (BeanItem) clientsTable.getItem(itemId);
+        clientsTable.addListener(new ItemClickEvent.ItemClickListener() {
+            @Override
+            public void itemClick(ItemClickEvent event) {
 
-                Button editButton = new Button("Edit");
+                BeanItem beanItem = (BeanItem) event.getItem();
 
-                editButton.addListener(new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
+                ClientEntry clientEntry = (ClientEntry) beanItem.getBean();
 
-                        //BKONU: How to get selected client entry???
+                ((Nijhof2AxonApplication) getApplication()).switchToClientDetailsMode(clientEntry);
 
-                        //event.getComponent();
-
-                        //((Nijhof2AxonApplication)getApplication()).switchToClientDetailsMode();
-                       
-                    }
-                });
-
-                return editButton;
             }
         });
 

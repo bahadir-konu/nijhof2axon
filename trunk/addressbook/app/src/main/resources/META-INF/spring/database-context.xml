@@ -27,6 +27,8 @@
 
     <bean id="queryClientRepository" class="org.axonframework.sample.app.query.ClientRepositoryImpl"/>
 
+    <bean id="queryActiveAccountRepository" class="org.axonframework.sample.app.query.ActiveAccountRepositoryImpl"/>
+
     <!-- Infrastructure configuration -->
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
