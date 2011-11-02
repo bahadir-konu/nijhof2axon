@@ -20,4 +20,7 @@ public class OpenNewAccountForClientCommand {
         return accountName;
     }
 
+    public void setClientId(AggregateIdentifier clientId) {
+        this.clientId = clientId;
+    }
 }

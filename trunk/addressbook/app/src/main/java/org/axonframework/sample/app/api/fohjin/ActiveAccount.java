@@ -36,63 +36,6 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
         super(identifier);
     }
 
-    /**
-     * Register the provided address with the provided type. If a contact already has an address of the provided type,
-     * that address is changed.
-     *
-     * @param type    AddressType of the address to add or change
-     * @param address Address to add or change
-     */
-    public void registerAddress(AddressType type, Address address) {
-        if (addresses.containsKey(type)) {
-            apply(new AddressChangedEvent(type, address));
-        } else {
-            apply(new AddressAddedEvent(type, address));
-        }
-    }
-
-    /**
-     * Removes the address with the provided type if it exists.
-     *
-     * @param type AddressType of the address that needs to be removed
-     */
-    public void removeAddress(AddressType type) {
-        if (addresses.containsKey(type)) {
-            apply(new AddressRemovedEvent(type));
-        }
-    }
-
-    /**
-     * Change the name of the contact
-     *
-     * @param name String containing the new name
-     */
-    public void changeName(String name) {
-        apply(new ContactNameChangedEvent(name));
-    }
-
-    public void delete() {
-        apply(new ContactDeletedEvent());
-    }
-
-    @EventHandler
-    protected void handleContactCreatedEvent(ContactCreatedEvent event) {
-    }
-
-    @EventHandler
-    protected void handleContactNameChangedEvent(ContactNameChangedEvent event) {
-    }
-
-    @EventHandler
-    protected void handleAddressRegisteredEvent(AddressRegisteredEvent event) {
-        addresses.put(event.getType(), event.getAddress());
-    }
-
-    @EventHandler
-    protected void handleAddressRemovedEvent(AddressRemovedEvent event) {
-        addresses.remove(event.getType());
-    }
-
     @EventHandler
     protected void handleMoneyTransferReceivedEvent(MoneyTransferReceivedEvent event) {
 

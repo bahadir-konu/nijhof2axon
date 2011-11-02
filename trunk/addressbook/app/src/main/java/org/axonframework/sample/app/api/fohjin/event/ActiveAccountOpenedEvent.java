@@ -9,7 +9,27 @@ import org.axonframework.domain.DomainEvent;
  * Time: 3:34:48 PM
  */
 public class ActiveAccountOpenedEvent extends DomainEvent {
-    public ActiveAccountOpenedEvent(AggregateIdentifier clientId, String accountName) {
+    private AggregateIdentifier clientId;
+    private String accountName;
 
+    public ActiveAccountOpenedEvent(AggregateIdentifier clientId, String accountName) {
+        this.clientId = clientId;
+        this.accountName = accountName;
+    }
+
+    public AggregateIdentifier getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(AggregateIdentifier clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 }

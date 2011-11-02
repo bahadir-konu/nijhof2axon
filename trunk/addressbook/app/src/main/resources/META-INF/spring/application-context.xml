@@ -113,7 +113,8 @@
     <axon:event-sourcing-repository id="clientRepository"
                                     aggregate-type="org.axonframework.sample.app.api.fohjin.Client"
                                     event-bus="eventBus" event-store="eventStore">
-        <axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>
+        <!--<axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>-->
+        <axon:snapshotter-trigger event-count-threshold="1" snapshotter-ref="snapshotter"/>
     </axon:event-sourcing-repository>
 
     <!--

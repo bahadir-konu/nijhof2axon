@@ -18,7 +18,7 @@ public class ClientTableUpdater {
     @EventHandler
     public void handleClientCreatedEvent(ClientCreatedEvent event) {
         ClientEntry entry = new ClientEntry();
-        entry.setIdentifier(event.getEventIdentifier());
+        entry.setIdentifier(event.getClientIdentifier());
         entry.setName(event.getName());
         entityManager.persist(entry);
     }

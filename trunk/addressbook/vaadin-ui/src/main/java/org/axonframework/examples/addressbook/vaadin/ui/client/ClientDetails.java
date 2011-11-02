@@ -16,7 +16,7 @@ import java.util.Arrays;
  */
 public class ClientDetails extends VerticalLayout {
 
-    public ClientDetails(final ClientEntry clientEntry, final CommandBus commandBus, ActiveAccountContainer activeAccountContainer) {
+    public ClientDetails(final ClientEntry clientEntry, final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
         final Form clientForm = new Form();
         clientForm.setCaption("Client Details");
@@ -55,6 +55,8 @@ public class ClientDetails extends VerticalLayout {
                         activeAccountName.getValue().toString());
 
                 commandBus.dispatch(command);
+
+                activeAccountContainer.refreshContent();
             }
         });
 //
