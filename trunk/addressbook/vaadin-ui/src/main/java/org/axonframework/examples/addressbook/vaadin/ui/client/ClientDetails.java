@@ -3,8 +3,6 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.*;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.domain.AggregateIdentifier;
-import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
 import org.axonframework.sample.app.query.ClientEntry;
@@ -49,9 +47,7 @@ public class ClientDetails extends VerticalLayout {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
 
-                AggregateIdentifier aggregateIdentifier = new StringAggregateIdentifier(clientEntry.getIdentifier());
-
-                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(aggregateIdentifier,
+                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
                         activeAccountName.getValue().toString());
 
                 commandBus.dispatch(command);

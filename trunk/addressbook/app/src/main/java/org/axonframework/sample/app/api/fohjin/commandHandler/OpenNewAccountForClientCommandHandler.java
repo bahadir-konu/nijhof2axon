@@ -1,6 +1,7 @@
 package org.axonframework.sample.app.api.fohjin.commandHandler;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
+import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
 import org.axonframework.sample.app.api.fohjin.ActiveAccount;
 import org.axonframework.sample.app.api.fohjin.Client;
@@ -8,6 +9,8 @@ import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCo
 import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
+
+import java.util.UUID;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
@@ -34,9 +37,14 @@ public class OpenNewAccountForClientCommandHandler {
         Assert.notNull(command.getAccountName(), "Account Name may not be null");
         Assert.notNull(command.getClientId(), "Client may not be null");
 
-        Client client = clientRepository.load(command.getClientId());
+        Client client = clientRepository.load(new StringAggregateIdentifier(command.getClientId()));
 
-        ActiveAccount activeAccount = client.createNewActiveAccount(command.getAccountName());
+        String accountId = command.getAccountId();
+        if (accountId == null) {
+            accountId = UUID.randomUUID().toString();
+        }
+
+        ActiveAccount activeAccount = client.createNewActiveAccount(new StringAggregateIdentifier(accountId), command.getAccountName());
 
         activeAccountRepository.add(activeAccount);
     }

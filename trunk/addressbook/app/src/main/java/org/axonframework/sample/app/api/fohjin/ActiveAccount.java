@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
+    AggregateIdentifier clientId;
     String accountName;
     String accountNumber;
     BigDecimal balance;
@@ -27,8 +28,8 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
     private Map<AddressType, Address> addresses = new HashMap<AddressType, Address>();
 
-    public ActiveAccount(AggregateIdentifier clientId, String accountName) {
-        super(clientId);
+    public ActiveAccount(AggregateIdentifier identifier, AggregateIdentifier clientId, String accountName) {
+        super(identifier);
         apply(new ActiveAccountOpenedEvent(clientId, accountName));
     }
 

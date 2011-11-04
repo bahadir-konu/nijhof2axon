@@ -31,9 +31,9 @@ public class Client extends AbstractAnnotatedAggregateRoot {
         return name;
     }
 
-    public ActiveAccount createNewActiveAccount(String accountName) {
+    public ActiveAccount createNewActiveAccount(AggregateIdentifier accountIdentifier, String accountName) {
 
-        ActiveAccount activeAccount = new ActiveAccount(getIdentifier(), accountName);
+        ActiveAccount activeAccount = new ActiveAccount(accountIdentifier, getIdentifier(), accountName);
 
         return activeAccount;
     }

@@ -3,7 +3,6 @@ package org.axonframework.sample.app.init;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.sample.app.api.fohjin.command.CreateClientCommand;
-import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -34,9 +33,10 @@ public class SampleDataGenerator implements ApplicationListener {
             commandBus.dispatch(new CreateClientCommand("Sample Client 2"));
 
             //BKONU: How to create this kind of sample data?
+            // (We dont have client id yet..)
             AggregateIdentifier clientId = null;
-            OpenNewAccountForClientCommand accountForClientCommand = new OpenNewAccountForClientCommand
-                    (clientId, "account name");
+//            OpenNewAccountForClientCommand accountForClientCommand = new OpenNewAccountForClientCommand
+//                    (clientId, "account name");
         }
     }
 }
