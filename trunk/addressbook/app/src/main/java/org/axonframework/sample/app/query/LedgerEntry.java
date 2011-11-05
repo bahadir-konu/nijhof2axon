@@ -9,9 +9,14 @@ import java.math.BigDecimal;
  */
 public class LedgerEntry {
 
+    public LedgerEntry(BigDecimal amount, String action) {
+        this.amount = amount;
+        this.action = action;
+    }
+
     private BigDecimal amount;
 
-    public String accountNumber;
+    public String action;
 
     public BigDecimal getAmount() {
         return amount;
@@ -21,11 +26,11 @@ public class LedgerEntry {
         this.amount = amount;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
+    public String getAction() {
+        return action;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAction(String action) {
+        this.action = action;
     }
 }

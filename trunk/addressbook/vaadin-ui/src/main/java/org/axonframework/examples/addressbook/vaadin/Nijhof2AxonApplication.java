@@ -61,6 +61,7 @@ public class Nijhof2AxonApplication extends Application {
     private ClientView clientView;
     private ClientDetails clientDetails;
     private ActiveAccountDetails activeAccountDetails;
+    private CashDepositView cashDepositView;
 
     @Override
     public void init() {
@@ -92,6 +93,11 @@ public class Nijhof2AxonApplication extends Application {
     }
 
     public void switchToCashDepositeMode(ActiveAccountEntry activeAccountEntry) {
-        mainVerticalLayout.replaceComponent(activeAccountDetails, new CashDepositView(activeAccountEntry));
+        cashDepositView = new CashDepositView(activeAccountEntry, commandBus);
+        mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
+    }
+
+    public void switchBackToAccountDetailsMode(ActiveAccountEntry activeAccountEntry) {
+        mainVerticalLayout.replaceComponent(cashDepositView, activeAccountDetails);
     }
 }

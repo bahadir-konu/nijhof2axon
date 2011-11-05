@@ -19,6 +19,7 @@ public class ActiveAccountTableUpdater {
     public void handleActiveAccountOpenedEvent(ActiveAccountOpenedEvent event) {
         ActiveAccountEntry activeAccountEntry = new ActiveAccountEntry();
         activeAccountEntry.setAccountName(event.getAccountName());
+        activeAccountEntry.setIdentifier(event.getAggregateIdentifier().asString());
 
         entityManager.persist(activeAccountEntry);
     }

@@ -17,6 +17,9 @@ public class ActiveAccountEntry {
     private Long db_identifier;
 
     @Basic
+    private String identifier;
+
+    @Basic
     String accountName;
 
     @Basic
@@ -47,5 +50,13 @@ public class ActiveAccountEntry {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 }
