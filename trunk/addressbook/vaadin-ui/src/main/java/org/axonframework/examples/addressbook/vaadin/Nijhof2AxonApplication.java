@@ -24,8 +24,12 @@ import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
+import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
+import org.axonframework.sample.app.query.ActiveAccountEntry;
 import org.axonframework.sample.app.query.ClientEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,10 +52,15 @@ public class Nijhof2AxonApplication extends Application {
     private ActiveAccountContainer activeAccountContainer;
 
     @Autowired
+    private LedgerContainer ledgerContainer;
+
+    @Autowired
     private CommandBus commandBus;
 
     private VerticalLayout mainVerticalLayout;
     private ClientView clientView;
+    private ClientDetails clientDetails;
+    private ActiveAccountDetails activeAccountDetails;
 
     @Override
     public void init() {
@@ -71,10 +80,18 @@ public class Nijhof2AxonApplication extends Application {
     }
 
     public void switchToClientDetailsMode(ClientEntry clientEntry) {
-                                             
-        mainVerticalLayout.replaceComponent(clientView, new ClientDetails(clientEntry, commandBus, activeAccountContainer) );
+
+        clientDetails = new ClientDetails(clientEntry, commandBus, activeAccountContainer);
+        mainVerticalLayout.replaceComponent(clientView, clientDetails);
     }
 
 
+    public void switchToActiveAccountDetailsMode(ActiveAccountEntry activeAccountEntry) {
+        activeAccountDetails = new ActiveAccountDetails(activeAccountEntry, commandBus, ledgerContainer);
+        mainVerticalLayout.replaceComponent(clientDetails, activeAccountDetails);
+    }
 
+    public void switchToCashDepositeMode(ActiveAccountEntry activeAccountEntry) {
+        mainVerticalLayout.replaceComponent(activeAccountDetails, new CashDepositView(activeAccountEntry));
+    }
 }

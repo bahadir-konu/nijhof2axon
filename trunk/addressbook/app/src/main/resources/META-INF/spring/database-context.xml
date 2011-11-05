@@ -31,6 +31,8 @@
 
     <bean id="queryActiveAccountRepository" class="org.axonframework.sample.app.query.ActiveAccountRepositoryImpl"/>
 
+    <bean id="queryLedgerRepository" class="org.axonframework.sample.app.query.LedgerRepositoryImpl"/>
+
     <!-- Infrastructure configuration -->
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

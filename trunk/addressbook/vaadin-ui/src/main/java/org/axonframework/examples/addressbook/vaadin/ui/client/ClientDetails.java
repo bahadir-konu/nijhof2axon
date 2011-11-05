@@ -1,10 +1,13 @@
 package org.axonframework.examples.addressbook.vaadin.ui.client;
 
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.*;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
+import org.axonframework.sample.app.query.ActiveAccountEntry;
 import org.axonframework.sample.app.query.ClientEntry;
 
 import java.util.Arrays;
@@ -34,6 +37,19 @@ public class ClientDetails extends VerticalLayout {
 
         final Table activeAccountsTable = new Table("Active Accounts");
         activeAccountsTable.setContainerDataSource(activeAccountContainer);
+
+        activeAccountsTable.addListener(new ItemClickEvent.ItemClickListener() {
+            @Override
+            public void itemClick(ItemClickEvent event) {
+
+                BeanItem beanItem = (BeanItem) event.getItem();
+
+                ActiveAccountEntry activeAccountEntry = (ActiveAccountEntry) beanItem.getBean();
+
+                ((Nijhof2AxonApplication) getApplication()).switchToActiveAccountDetailsMode(activeAccountEntry);
+
+            }
+        });
 
 
 //        addComponent(new Label("Client: " + clientEntry.getName()));
