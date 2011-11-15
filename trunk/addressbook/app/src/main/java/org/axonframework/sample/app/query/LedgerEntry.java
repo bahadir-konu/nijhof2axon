@@ -1,5 +1,9 @@
 package org.axonframework.sample.app.query;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
 /**
@@ -7,6 +11,7 @@ import java.math.BigDecimal;
  * Date: 2011-11-04
  * Time: 11:28:37 AM
  */
+@Entity
 public class LedgerEntry {
 
     public LedgerEntry(BigDecimal amount, String action) {
@@ -14,8 +19,14 @@ public class LedgerEntry {
         this.action = action;
     }
 
+    @Id
+    @GeneratedValue
+    private Long db_identifier;
+
+    @Basic
     private BigDecimal amount;
 
+    @Basic
     public String action;
 
     public BigDecimal getAmount() {

@@ -17,7 +17,6 @@
 package org.axonframework.examples.addressbook.vaadin;
 
 import com.vaadin.Application;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import org.axonframework.commandhandling.CommandBus;
@@ -37,10 +36,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class Nijhof2AxonApplication extends Application {
-
-    private Button moneyTransfer = new Button("Transfer Money!");
-    private Button openActiveAccount = new Button("Open Active Account!");
-    private Button createClient = new Button("Create a Client");
 
     @Autowired
     private ContactContainer contactContainer;
@@ -93,7 +88,7 @@ public class Nijhof2AxonApplication extends Application {
     }
 
     public void switchToCashDepositeMode(ActiveAccountEntry activeAccountEntry) {
-        cashDepositView = new CashDepositView(activeAccountEntry, commandBus);
+        cashDepositView = new CashDepositView(activeAccountEntry, commandBus, ledgerContainer);
         mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
     }
 

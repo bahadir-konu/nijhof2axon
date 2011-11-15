@@ -5,6 +5,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
+import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.sample.app.api.fohjin.command.DepositCashCommand;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 
@@ -17,7 +18,7 @@ import java.math.BigDecimal;
  */
 public class CashDepositView extends VerticalLayout {
 
-    public CashDepositView(final ActiveAccountEntry activeAccountEntry, final CommandBus commandBus) {
+    public CashDepositView(final ActiveAccountEntry activeAccountEntry, final CommandBus commandBus, final LedgerContainer ledgerContainer) {
 
         final TextField depositAmount = new TextField("Specify the amount to be deposit");
 
@@ -35,6 +36,8 @@ public class CashDepositView extends VerticalLayout {
                         new DepositCashCommand(activeAccountEntry.getIdentifier(), amount);
 
                 commandBus.dispatch(depositCashCommand);
+
+                ledgerContainer.refreshContent();
 
                 ((Nijhof2AxonApplication) getApplication()).switchBackToAccountDetailsMode(activeAccountEntry);
             }
