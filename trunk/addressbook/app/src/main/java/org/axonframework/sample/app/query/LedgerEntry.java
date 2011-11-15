@@ -14,6 +14,9 @@ import java.math.BigDecimal;
 @Entity
 public class LedgerEntry {
 
+    LedgerEntry() {
+    }
+
     public LedgerEntry(BigDecimal amount, String action) {
         this.amount = amount;
         this.action = action;

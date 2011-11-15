@@ -1,6 +1,5 @@
 package org.axonframework.sample.app.api.fohjin.event;
 
-import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.domain.DomainEvent;
 
 import java.math.BigDecimal;
@@ -12,11 +11,7 @@ import java.math.BigDecimal;
  */
 public class CashDepositedEvent extends DomainEvent {
 
-    public CashDepositedEvent(AggregateIdentifier identifier, BigDecimal newBalance, BigDecimal amount) {
-
-        //BKONU: is this ok? I m not sure..
-        super(1, identifier);
-
+    public CashDepositedEvent(BigDecimal newBalance, BigDecimal amount) {
         this.newBalance = newBalance;
         this.amount = amount;
     }

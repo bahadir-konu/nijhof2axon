@@ -1,7 +1,5 @@
 package org.axonframework.sample.app.query;
 
-import org.axonframework.sample.app.api.fohjin.ActiveAccount;
-
 import java.util.List;
 
 /**
@@ -12,6 +10,5 @@ import java.util.List;
 public interface ActiveAccountRepository {
 
     List<ActiveAccountEntry> findAll();
-
-
+    List<ActiveAccountEntry> findByClient(String clientIdentifier);
 }

@@ -68,7 +68,7 @@ public class ClientDetails extends VerticalLayout {
 
                 commandBus.dispatch(command);
 
-                activeAccountContainer.refreshContent();
+                activeAccountContainer.refreshContent(clientEntry.getIdentifier());
             }
         });
 //

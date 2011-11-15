@@ -18,14 +18,14 @@ import java.util.List;
 public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry> implements Serializable {
 
     @Autowired
-    private ActiveAccountRepository clientRepository;
+    private ActiveAccountRepository activeAccountRepository;
 
     public ActiveAccountContainer() throws IllegalArgumentException {
         super(ActiveAccountEntry.class);
     }
 
-    public void refreshContent() {
-        List<ActiveAccountEntry> activeAccountEntries = clientRepository.findAll();
+    public void refreshContent(String clientIdentifier) {
+        List<ActiveAccountEntry> activeAccountEntries = activeAccountRepository.findByClient(clientIdentifier);
         removeAllItems();
         addAll(activeAccountEntries);
     }

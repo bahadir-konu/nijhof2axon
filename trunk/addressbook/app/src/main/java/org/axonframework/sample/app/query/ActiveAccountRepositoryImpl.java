@@ -27,4 +27,14 @@ public class ActiveAccountRepositoryImpl implements ActiveAccountRepository {
                 .getResultList();
 
     }
+
+    @Override
+    public List<ActiveAccountEntry> findByClient(String clientIdentifier) {
+
+        return entityManager.createQuery("SELECT e FROM ActiveAccountEntry e WHERE e.clientIdentifier = :clientIdentifier")
+                .setParameter("clientIdentifier", clientIdentifier)
+                .setMaxResults(250)
+                .getResultList();
+
+    }
 }

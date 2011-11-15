@@ -20,6 +20,9 @@ public class ActiveAccountEntry {
     private String identifier;
 
     @Basic
+    private String clientIdentifier;
+
+    @Basic
     String accountName;
 
     @Basic
@@ -58,5 +61,13 @@ public class ActiveAccountEntry {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
+    }
+
+    public String getClientIdentifier() {
+        return clientIdentifier;
+    }
+
+    public void setClientIdentifier(String clientIdentifier) {
+        this.clientIdentifier = clientIdentifier;
     }
 }
