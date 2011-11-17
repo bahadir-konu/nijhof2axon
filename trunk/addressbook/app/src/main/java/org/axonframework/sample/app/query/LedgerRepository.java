@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface LedgerRepository {
     List<LedgerEntry> findAllLedgers();
+
+    List<LedgerEntry> findByAccountId(String activeAccountId);
 }

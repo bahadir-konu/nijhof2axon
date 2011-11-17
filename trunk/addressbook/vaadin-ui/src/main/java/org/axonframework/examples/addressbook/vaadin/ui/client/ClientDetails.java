@@ -36,6 +36,7 @@ public class ClientDetails extends VerticalLayout {
         addComponent(clientForm);
 
         final Table activeAccountsTable = new Table("Active Accounts");
+        activeAccountContainer.refreshContent(clientEntry.getIdentifier());
         activeAccountsTable.setContainerDataSource(activeAccountContainer);
 
         activeAccountsTable.addListener(new ItemClickEvent.ItemClickListener() {

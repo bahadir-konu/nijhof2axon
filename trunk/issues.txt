@@ -1,5 +1,5 @@
 1) Remove "addressbook" names and unnecessary stuff
 2) Navigation to main page is not possible (and navigation between screens)
-3) In tables, all entities are shown. (using repo.getAll())
+(OK)3) In tables, all entities are shown. (using repo.getAll())
 4) ActiveAccountOpenedEvent is not handled by domain! ActiveAccount - Client relationship does not exist in UI too
 

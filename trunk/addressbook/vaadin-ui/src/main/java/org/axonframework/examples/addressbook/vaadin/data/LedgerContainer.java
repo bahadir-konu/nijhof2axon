@@ -24,8 +24,8 @@ public class LedgerContainer extends BeanItemContainer<LedgerEntry> implements S
         super(LedgerEntry.class);
     }
 
-    public void refreshContent() {
-        List<LedgerEntry> allLedgers = ledgerRepository.findAllLedgers();
+    public void refreshContent(String activeAccountId) {
+        List<LedgerEntry> allLedgers = ledgerRepository.findByAccountId(activeAccountId);
         removeAllItems();
         addAll(allLedgers);
     }

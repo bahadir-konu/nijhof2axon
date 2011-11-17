@@ -17,7 +17,8 @@ public class LedgerEntry {
     LedgerEntry() {
     }
 
-    public LedgerEntry(BigDecimal amount, String action) {
+    public LedgerEntry(String activeAccountId, BigDecimal amount, String action) {
+        this.activeAccountId = activeAccountId;
         this.amount = amount;
         this.action = action;
     }
@@ -25,6 +26,9 @@ public class LedgerEntry {
     @Id
     @GeneratedValue
     private Long db_identifier;
+
+    @Basic
+    private String activeAccountId;
 
     @Basic
     private BigDecimal amount;
@@ -46,5 +50,13 @@ public class LedgerEntry {
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public String getActiveAccountId() {
+        return activeAccountId;
+    }
+
+    public void setActiveAccountId(String activeAccountId) {
+        this.activeAccountId = activeAccountId;
     }
 }

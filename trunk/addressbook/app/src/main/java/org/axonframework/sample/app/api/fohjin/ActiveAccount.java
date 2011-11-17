@@ -64,7 +64,7 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
     public void depositCash(BigDecimal amount) {
         BigDecimal newBalance = balance.add(amount);
 
-        apply(new CashDepositedEvent(newBalance, amount));
+        apply(new CashDepositedEvent(getIdentifier().asString(), newBalance, amount));
 
     }
 

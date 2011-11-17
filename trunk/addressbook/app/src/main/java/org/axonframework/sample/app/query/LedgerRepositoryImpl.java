@@ -24,4 +24,14 @@ public class LedgerRepositoryImpl implements LedgerRepository {
                 .setMaxResults(250)
                 .getResultList();
     }
+
+    @Override
+    public List<LedgerEntry> findByAccountId(String activeAccountId) {
+
+        return entityManager.createQuery("SELECT e FROM LedgerEntry e WHERE e.activeAccountId = :activeAccountId")
+                .setParameter("activeAccountId", activeAccountId)
+                .setMaxResults(250)
+                .getResultList();
+
+    }
 }

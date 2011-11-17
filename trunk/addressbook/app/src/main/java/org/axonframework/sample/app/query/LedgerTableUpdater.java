@@ -17,7 +17,7 @@ public class LedgerTableUpdater {
 
     @EventHandler
     public void handleCashDepositedEvent(CashDepositedEvent event) {
-        LedgerEntry ledgerEntry = new LedgerEntry(event.getAmount(), "Deposit");
+        LedgerEntry ledgerEntry = new LedgerEntry(event.getActiveAccountId(), event.getAmount(), "Deposit");
 
         entityManager.persist(ledgerEntry);
     }

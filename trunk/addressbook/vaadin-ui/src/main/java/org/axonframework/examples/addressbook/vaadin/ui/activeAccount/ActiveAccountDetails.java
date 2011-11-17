@@ -50,6 +50,7 @@ public class ActiveAccountDetails extends VerticalLayout {
         addComponent(activeAccountForm);
 
         final Table ledgersTable = new Table("Ledgers");
+        ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
         ledgersTable.setContainerDataSource(ledgerContainer);
 
         addComponent(ledgersTable);

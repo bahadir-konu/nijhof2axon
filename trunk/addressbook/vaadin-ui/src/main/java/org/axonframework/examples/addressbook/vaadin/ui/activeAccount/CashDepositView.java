@@ -37,7 +37,7 @@ public class CashDepositView extends VerticalLayout {
 
                 commandBus.dispatch(depositCashCommand);
 
-                ledgerContainer.refreshContent();
+                ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
 
                 ((Nijhof2AxonApplication) getApplication()).switchBackToAccountDetailsMode(activeAccountEntry);
             }

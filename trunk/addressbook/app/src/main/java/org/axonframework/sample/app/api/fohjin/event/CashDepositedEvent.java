@@ -11,13 +11,16 @@ import java.math.BigDecimal;
  */
 public class CashDepositedEvent extends DomainEvent {
 
-    public CashDepositedEvent(BigDecimal newBalance, BigDecimal amount) {
+    private String activeAccountId;
+    private BigDecimal newBalance;
+    private BigDecimal amount;
+
+    public CashDepositedEvent(String activeAccountId, BigDecimal newBalance, BigDecimal amount) {
+        this.activeAccountId = activeAccountId;
         this.newBalance = newBalance;
         this.amount = amount;
     }
 
-    private BigDecimal newBalance;
-    private BigDecimal amount;
 
     public BigDecimal getNewBalance() {
         return newBalance;
@@ -33,5 +36,13 @@ public class CashDepositedEvent extends DomainEvent {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public String getActiveAccountId() {
+        return activeAccountId;
+    }
+
+    public void setActiveAccountId(String activeAccountId) {
+        this.activeAccountId = activeAccountId;
     }
 }
