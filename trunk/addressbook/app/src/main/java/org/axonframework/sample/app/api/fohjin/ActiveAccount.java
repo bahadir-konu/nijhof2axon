@@ -7,6 +7,7 @@ import org.axonframework.sample.app.api.Address;
 import org.axonframework.sample.app.api.AddressType;
 import org.axonframework.sample.app.api.fohjin.event.ActiveAccountOpenedEvent;
 import org.axonframework.sample.app.api.fohjin.event.CashDepositedEvent;
+import org.axonframework.sample.app.api.fohjin.event.CashWithdrawnEvent;
 import org.axonframework.sample.app.api.fohjin.event.MoneyTransferReceivedEvent;
 
 import java.math.BigDecimal;
@@ -54,6 +55,14 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
         ledgers.add(new CreditMutation(event.getAmount(), null));
     }
 
+    @EventHandler
+    protected void handleCashWithdrawnEvent(CashWithdrawnEvent event) {
+
+        balance = event.getNewBalance();
+        ledgers.add(new DebitMutation(event.getAmount(), null));
+    }
+
+
     public void receiveTransferFrom(String sourceAccountNumber, BigDecimal amount) {
 
         BigDecimal newBalance = balance.subtract(amount);
@@ -68,5 +77,9 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
     }
 
+    public void withdrawCash(BigDecimal amount) {
+        BigDecimal newBalance = balance.subtract(amount);
+        apply(new CashWithdrawnEvent(getIdentifier().asString(), newBalance, amount));
+    }
 }
 

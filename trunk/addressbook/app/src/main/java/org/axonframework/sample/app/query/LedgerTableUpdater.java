@@ -2,6 +2,8 @@ package org.axonframework.sample.app.query;
 
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.sample.app.api.fohjin.event.CashDepositedEvent;
+import org.axonframework.sample.app.api.fohjin.event.CashWithdrawnEvent;
+import org.axonframework.sample.app.api.fohjin.event.MoneyTransferReceivedEvent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,5 +23,23 @@ public class LedgerTableUpdater {
 
         entityManager.persist(ledgerEntry);
     }
+
+    @EventHandler
+    public void handleCashWithdrawnEvent(CashWithdrawnEvent event) {
+        LedgerEntry ledgerEntry = new LedgerEntry(event.getActiveAccountId(), event.getAmount(), "Withdrawal");
+
+        entityManager.persist(ledgerEntry);
+    }
+
+    @EventHandler
+    public void handleMoneyTransferReceivedEvent(MoneyTransferReceivedEvent event) {
+        LedgerEntry ledgerEntry = new LedgerEntry(event.getAggregateIdentifier().asString()
+                , event.getAmount(),
+                String.format("Transfer from {0} to {1}", event.getSourceAccountNumber(), event.getTargetAccountNumber()));
+
+        entityManager.persist(ledgerEntry);
+    }
+
+
 }
 

@@ -35,6 +35,17 @@ public class ActiveAccountRepositoryImpl implements ActiveAccountRepository {
                 .setParameter("clientIdentifier", clientIdentifier)
                 .setMaxResults(250)
                 .getResultList();
+    }
 
+    @Override
+    public void save(ActiveAccountEntry activeAccountEntry) {
+        entityManager.persist(activeAccountEntry);
+    }
+
+    @Override
+    public ActiveAccountEntry findById(String identifier) {
+        return (ActiveAccountEntry) entityManager.createQuery("SELECT e FROM ActiveAccountEntry e WHERE e.identifier = :identifier")
+                .setParameter("identifier", identifier)
+                .getSingleResult();
     }
 }

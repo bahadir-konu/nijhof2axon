@@ -11,4 +11,7 @@ public interface ActiveAccountRepository {
 
     List<ActiveAccountEntry> findAll();
     List<ActiveAccountEntry> findByClient(String clientIdentifier);
+    void save(ActiveAccountEntry activeAccountEntry);
+    ActiveAccountEntry findById(String id);
+
 }

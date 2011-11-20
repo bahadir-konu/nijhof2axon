@@ -2,4 +2,6 @@
 2) Navigation to main page is not possible (and navigation between screens)
 (OK)3) In tables, all entities are shown. (using repo.getAll())
 4) ActiveAccountOpenedEvent is not handled by domain! ActiveAccount - Client relationship does not exist in UI too
+*5)Observer pattern for UI components. How to refresh balance of AccountDetails screen?
+6)Transfer money use case
 

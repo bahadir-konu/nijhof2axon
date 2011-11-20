@@ -23,11 +23,17 @@ public class ActiveAccountDetails extends VerticalLayout {
 
         com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
 
-        MenuBar.MenuItem menuItemFileTransformations = menuBar.addItem("Transfer", null);
+        MenuBar.MenuItem menuItemTransfer = menuBar.addItem("Transfer", null);
 
-        menuItemFileTransformations.addItem("Make cash deposite", new MenuBar.Command() {
+        menuItemTransfer.addItem("Make cash deposite", new MenuBar.Command() {
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 ((Nijhof2AxonApplication) getApplication()).switchToCashDepositeMode(activeAccountEntry);
+            }
+        });
+
+        menuItemTransfer.addItem("Withdraw cash", new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                ((Nijhof2AxonApplication) getApplication()).switchToCashWithdrawalMode(activeAccountEntry);
             }
         });
 

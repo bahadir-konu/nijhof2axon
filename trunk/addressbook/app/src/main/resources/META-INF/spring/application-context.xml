@@ -157,5 +157,10 @@
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
     </bean>
 
+    <bean id="withdrawCashCommandHandler" class="org.axonframework.sample.app.api.fohjin.commandHandler.WithdrawCashCommandHandler">
+        <property name="activeAccountRepository" ref="activeAccountRepository"/>
+    </bean>
+
+
     <bean id="contactNameRepository" class="org.axonframework.sample.app.command.JpaContactNameRepository"/>
 </beans>
