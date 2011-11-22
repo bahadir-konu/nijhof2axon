@@ -19,6 +19,18 @@ public class ClientDetails extends VerticalLayout {
 
     public ClientDetails(final ClientEntry clientEntry, final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
+        com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
+
+        MenuBar.MenuItem menuItemTransfer = menuBar.addItem("Client", null);
+
+        menuItemTransfer.addItem("Change name", new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                ((Nijhof2AxonApplication) getApplication()).switchToChangeNameMode(clientEntry);
+            }
+        });
+
+        addComponent(menuBar);
+
         final Form clientForm = new Form();
         clientForm.setCaption("Client Details");
         clientForm.setSizeFull();

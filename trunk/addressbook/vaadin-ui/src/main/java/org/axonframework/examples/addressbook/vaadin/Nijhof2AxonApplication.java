@@ -27,6 +27,7 @@ import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawView;
+import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeNameView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
@@ -101,5 +102,11 @@ public class Nijhof2AxonApplication extends Application {
     public void switchToCashWithdrawalMode(ActiveAccountEntry activeAccountEntry) {
         cashWithdrawalView = new CashWithdrawView(activeAccountEntry, commandBus, ledgerContainer);
         mainVerticalLayout.replaceComponent(activeAccountDetails, cashWithdrawalView);
+    }
+
+    public void switchToChangeNameMode(ClientEntry clientEntry) {
+        ChangeNameView changeNameView = new ChangeNameView(clientEntry, commandBus);
+        mainVerticalLayout.replaceComponent(clientDetails, changeNameView);
+
     }
 }

@@ -152,12 +152,18 @@
         <property name="clientRepository" ref="clientRepository"/>
     </bean>
 
+    <bean id="changeClientNameCommandHandler"
+          class="org.axonframework.sample.app.api.fohjin.commandHandler.ChangeClientNameCommandHandler">
+        <property name="clientRepository" ref="clientRepository"/>
+    </bean>
+
     <bean id="depositCashCommandHandler"
           class="org.axonframework.sample.app.api.fohjin.commandHandler.DepositCashCommandHandler">
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
     </bean>
 
-    <bean id="withdrawCashCommandHandler" class="org.axonframework.sample.app.api.fohjin.commandHandler.WithdrawCashCommandHandler">
+    <bean id="withdrawCashCommandHandler"
+          class="org.axonframework.sample.app.api.fohjin.commandHandler.WithdrawCashCommandHandler">
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
     </bean>
 
