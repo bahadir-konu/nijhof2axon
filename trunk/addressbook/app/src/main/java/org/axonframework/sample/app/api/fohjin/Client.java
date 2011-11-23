@@ -4,6 +4,7 @@ import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.sample.app.api.fohjin.event.ClientCreatedEvent;
+import org.axonframework.sample.app.api.fohjin.event.ClientNameChangedEvent;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
@@ -12,7 +13,7 @@ import org.axonframework.sample.app.api.fohjin.event.ClientCreatedEvent;
  */
 public class Client extends AbstractAnnotatedAggregateRoot {
 
-    String name;
+    private String name;
 
     public Client(AggregateIdentifier identifier, String name) {
         super(identifier);
@@ -37,6 +38,15 @@ public class Client extends AbstractAnnotatedAggregateRoot {
 
         return activeAccount;
     }
+
+    public void changeNameAs(String newName) {
+        apply(new ClientNameChangedEvent(getIdentifier().asString(), newName));
+    }
+
+    @EventHandler
+    private void handleClientNameChangedEvent(ClientNameChangedEvent event) {
+        name = event.getNewName();
+    } 
 }
 
 

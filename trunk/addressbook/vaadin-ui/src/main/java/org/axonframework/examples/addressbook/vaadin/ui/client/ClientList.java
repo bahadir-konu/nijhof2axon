@@ -4,8 +4,11 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
+import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
 import org.axonframework.sample.app.query.ClientEntry;
 
 /**
@@ -13,7 +16,7 @@ import org.axonframework.sample.app.query.ClientEntry;
  * Date: 2011-10-24
  * Time: 7:53:01 PM
  */
-public class ClientList extends VerticalLayout {
+public class ClientList extends VerticalLayout implements MediatorListener {
     public ClientList(ClientContainer clientContainer) {
 
         final Table clientsTable = new Table("Clients");
@@ -29,7 +32,10 @@ public class ClientList extends VerticalLayout {
 
                 ClientEntry clientEntry = (ClientEntry) beanItem.getBean();
 
-                ((Nijhof2AxonApplication) getApplication()).switchToClientDetailsMode(clientEntry);
+                ((Nijhof2AxonApplication) getApplication()).fireEvent(
+                        new ClientSelectedEvent(clientEntry));
+
+                //((Nijhof2AxonApplication) getApplication()).switchToClientDetailsMode(clientEntry);
 
             }
         });
@@ -39,4 +45,8 @@ public class ClientList extends VerticalLayout {
         addComponent(clientsTable);
     }
 
+    @Override
+    public void handleEvent(MediatorEvent event) {
+        
+    }
 }

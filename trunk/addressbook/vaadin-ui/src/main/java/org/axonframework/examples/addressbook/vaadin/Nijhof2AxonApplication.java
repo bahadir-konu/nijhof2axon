@@ -16,7 +16,6 @@
 
 package org.axonframework.examples.addressbook.vaadin;
 
-import com.vaadin.Application;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import org.axonframework.commandhandling.CommandBus;
@@ -24,6 +23,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
+import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawView;
@@ -37,7 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class Nijhof2AxonApplication extends Application {
+public class Nijhof2AxonApplication extends MediatorApplication implements MediatorListener {
 
     @Autowired
     private ContactContainer contactContainer;
@@ -76,13 +76,17 @@ public class Nijhof2AxonApplication extends Application {
 
         mainWindow.setContent(mainVerticalLayout);
 
+        addCollaborator(this);
+
     }
 
-    public void switchToClientDetailsMode(ClientEntry clientEntry) {
-
-        clientDetails = new ClientDetails(clientEntry, commandBus, activeAccountContainer);
-        mainVerticalLayout.replaceComponent(clientView, clientDetails);
-    }
+//    //BKONU: replace with mediator pattern
+//
+//    public void switchToClientDetailsMode(ClientEntry clientEntry) {
+//
+//        clientDetails = new ClientDetails(clientEntry, commandBus, activeAccountContainer);
+//        mainVerticalLayout.replaceComponent(clientView, clientDetails);
+//    }
 
 
     public void switchToActiveAccountDetailsMode(ActiveAccountEntry activeAccountEntry) {
@@ -108,5 +112,13 @@ public class Nijhof2AxonApplication extends Application {
         ChangeNameView changeNameView = new ChangeNameView(clientEntry, commandBus);
         mainVerticalLayout.replaceComponent(clientDetails, changeNameView);
 
+    }
+
+    @Override
+    public void handleEvent(MediatorEvent event) {
+        if (event instanceof ClientSelectedEvent) {
+            clientDetails = new ClientDetails(((ClientSelectedEvent) event).getSelectedClient(), commandBus, activeAccountContainer);
+            mainVerticalLayout.replaceComponent(clientView, clientDetails);
+        }
     }
 }

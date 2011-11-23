@@ -16,6 +16,7 @@ import java.util.Arrays;
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ClientDetails extends VerticalLayout {
+    private Form clientForm = new Form();
 
     public ClientDetails(final ClientEntry clientEntry, final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
@@ -31,19 +32,8 @@ public class ClientDetails extends VerticalLayout {
 
         addComponent(menuBar);
 
-        final Form clientForm = new Form();
         clientForm.setCaption("Client Details");
         clientForm.setSizeFull();
-
-        BeanItem item = new BeanItem(clientEntry);
-        item.removeItemProperty("identifier");
-
-        clientForm.setVisibleItemProperties(Arrays.asList(new String[]{
-                "name"}));
-
-        clientForm.setReadOnly(true);
-
-        clientForm.setItemDataSource(item);
 
         addComponent(clientForm);
 
@@ -89,6 +79,21 @@ public class ClientDetails extends VerticalLayout {
         addComponent(addActiveAccount);
         addComponent(activeAccountsTable);
 
+
+    }
+
+
+    public void refreshFor(ClientEntry clientEntry) {
+
+        BeanItem item = new BeanItem(clientEntry);
+        item.removeItemProperty("identifier");
+
+        clientForm.setVisibleItemProperties(Arrays.asList(new String[]{
+                "name"}));
+
+        clientForm.setReadOnly(true);
+
+        clientForm.setItemDataSource(item);
 
     }
 
