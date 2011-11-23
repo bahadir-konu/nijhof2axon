@@ -4,9 +4,11 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.*;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
-import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
+import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 import org.axonframework.sample.app.query.ClientEntry;
 
@@ -15,20 +17,20 @@ import java.util.Arrays;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ClientDetails extends VerticalLayout {
+public class ClientDetails extends VerticalLayout implements MediatorListener {
     private Form clientForm = new Form();
 
-    public ClientDetails(final ClientEntry clientEntry, final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
+    public ClientDetails(final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
         com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
 
         MenuBar.MenuItem menuItemTransfer = menuBar.addItem("Client", null);
 
-        menuItemTransfer.addItem("Change name", new MenuBar.Command() {
-            public void menuSelected(MenuBar.MenuItem selectedItem) {
-                ((Nijhof2AxonApplication) getApplication()).switchToChangeNameMode(clientEntry);
-            }
-        });
+//        menuItemTransfer.addItem("Change name", new MenuBar.Command() {
+//            public void menuSelected(MenuBar.MenuItem selectedItem) {
+//                ((Nijhof2AxonApplication) getApplication()).switchToChangeNameMode(clientEntry);
+//            }
+//        });
 
         addComponent(menuBar);
 
@@ -38,7 +40,7 @@ public class ClientDetails extends VerticalLayout {
         addComponent(clientForm);
 
         final Table activeAccountsTable = new Table("Active Accounts");
-        activeAccountContainer.refreshContent(clientEntry.getIdentifier());
+        //activeAccountContainer.refreshContent(clientEntry.getIdentifier());
         activeAccountsTable.setContainerDataSource(activeAccountContainer);
 
         activeAccountsTable.addListener(new ItemClickEvent.ItemClickListener() {
@@ -55,26 +57,23 @@ public class ClientDetails extends VerticalLayout {
         });
 
 
-//        addComponent(new Label("Client: " + clientEntry.getName()));
-//
-
         final TextField activeAccountName = new TextField("Account Name");
 
         Button addActiveAccount = new Button("Add active account");
 
-        addActiveAccount.addListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-
-                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
-                        activeAccountName.getValue().toString());
-
-                commandBus.dispatch(command);
-
-                activeAccountContainer.refreshContent(clientEntry.getIdentifier());
-            }
-        });
+//        addActiveAccount.addListener(new Button.ClickListener() {
+//            @Override
+//            public void buttonClick(Button.ClickEvent clickEvent) {
 //
+//                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
+//                        activeAccountName.getValue().toString());
+//
+//                commandBus.dispatch(command);
+//
+//                activeAccountContainer.refreshContent(clientEntry.getIdentifier());
+//            }
+//        });
+
         addComponent(activeAccountName);
         addComponent(addActiveAccount);
         addComponent(activeAccountsTable);
@@ -96,5 +95,25 @@ public class ClientDetails extends VerticalLayout {
         clientForm.setItemDataSource(item);
 
     }
+
+    @Override
+    public void handleEvent(MediatorEvent event) {
+        if (event instanceof ClientSelectedEvent) {
+            refreshFor(((ClientSelectedEvent) event).getSelectedClient());
+        }
+    }
+
+    @Override
+    public void attach() {
+        super.attach();
+        ((Nijhof2AxonApplication)getApplication()).addCollaborator(this);
+    }
+
+    @Override
+    public void detach() {
+        super.detach();
+        ((Nijhof2AxonApplication)getApplication()).removeCollaborator(this);
+    }
+
 
 }

@@ -16,8 +16,8 @@
 
 package org.axonframework.examples.addressbook.vaadin;
 
+import com.vaadin.Application;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
@@ -37,7 +37,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class Nijhof2AxonApplication extends MediatorApplication implements MediatorListener {
+public class Nijhof2AxonApplication extends Application implements MediatorListener {
+
+    protected MainWindow mainWindow;
 
     @Autowired
     private ContactContainer contactContainer;
@@ -64,7 +66,7 @@ public class Nijhof2AxonApplication extends MediatorApplication implements Media
     @Override
     public void init() {
 
-        Window mainWindow = new Window("Nijhof2Axon Application");
+        mainWindow = new MainWindow();
         setMainWindow(mainWindow);
 
         mainWindow.getContent().setSizeFull();
@@ -76,7 +78,7 @@ public class Nijhof2AxonApplication extends MediatorApplication implements Media
 
         mainWindow.setContent(mainVerticalLayout);
 
-        addCollaborator(this);
+        clientDetails = new ClientDetails(commandBus, activeAccountContainer);
 
     }
 
@@ -117,7 +119,6 @@ public class Nijhof2AxonApplication extends MediatorApplication implements Media
     @Override
     public void handleEvent(MediatorEvent event) {
         if (event instanceof ClientSelectedEvent) {
-            clientDetails = new ClientDetails(((ClientSelectedEvent) event).getSelectedClient(), commandBus, activeAccountContainer);
             mainVerticalLayout.replaceComponent(clientView, clientDetails);
         }
     }
