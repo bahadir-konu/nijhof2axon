@@ -33,6 +33,10 @@ public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry
         addAll(activeAccountEntries);
     }
 
+    public ActiveAccountEntry refresh(ActiveAccountEntry activeAccountEntry) {
+        return activeAccountRepository.findById(activeAccountEntry.getIdentifier());
+    }
+
     @Override
     public void handleEvent(MediatorEvent event) {
         if (event instanceof ActiveAccountCreatedEvent) {

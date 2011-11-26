@@ -41,7 +41,7 @@ public class CashDepositView extends MediatorVerticalLayout {
 
                 ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
 
-                fire(new CashDepositeCompletedEvent());
+                fire(new CashDepositeCompletedEvent(activeAccountEntry));
             }
         });
 

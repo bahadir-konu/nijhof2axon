@@ -8,8 +8,10 @@ import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountDetailsRequestedEvent;
+import org.axonframework.examples.addressbook.vaadin.events.CashDepositeCompletedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.CashDepositeRequestedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalRequestedEvent;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
@@ -25,10 +27,11 @@ public class ActiveAccountDetails extends MediatorVerticalLayout implements Medi
 
     private ActiveAccountEntry activeAccountEntry;
     private LedgerContainer ledgerContainer;
+    private ActiveAccountContainer activeAccountContainer;
     private Form activeAccountForm = new Form();
 
-    public ActiveAccountDetails(final CommandBus commandBus, final LedgerContainer ledgerContainer) {
-
+    public ActiveAccountDetails(ActiveAccountContainer activeAccountContainer, final CommandBus commandBus, final LedgerContainer ledgerContainer) {
+        this.activeAccountContainer = activeAccountContainer;
         this.ledgerContainer = ledgerContainer;
 
         com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
@@ -67,9 +70,10 @@ public class ActiveAccountDetails extends MediatorVerticalLayout implements Medi
     }
 
     public void refreshFor(ActiveAccountEntry activeAccountEntry) {
-        this.activeAccountEntry = activeAccountEntry;
 
-        BeanItem item = new BeanItem(activeAccountEntry);
+        this.activeAccountEntry = activeAccountContainer.refresh(activeAccountEntry);
+
+        BeanItem item = new BeanItem(this.activeAccountEntry);
         item.removeItemProperty("identifier");
 
         activeAccountForm.setItemDataSource(item);
@@ -82,5 +86,12 @@ public class ActiveAccountDetails extends MediatorVerticalLayout implements Medi
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
             refreshFor(((ActiveAccountDetailsRequestedEvent) event).getActiveAccountEntry());
         }
+
+        if (event instanceof CashDepositeCompletedEvent) {
+            refreshFor(((CashDepositeCompletedEvent) event).getActiveAccountEntry());
+        }
+
     }
+
+
 }

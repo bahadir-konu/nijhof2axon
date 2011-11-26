@@ -77,7 +77,7 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         mainWindow.setContent(mainVerticalLayout);
 
         clientDetails = new ClientDetails(commandBus, activeAccountContainer);
-        activeAccountDetails = new ActiveAccountDetails(commandBus, ledgerContainer);
+        activeAccountDetails = new ActiveAccountDetails(activeAccountContainer, commandBus, ledgerContainer);
         cashDepositView = new CashDepositView(commandBus, ledgerContainer);
         cashWithdrawalView = new CashWithdrawalView(commandBus, ledgerContainer);
         changeNameView = new ChangeNameView(commandBus);
