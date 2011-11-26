@@ -1,6 +1,9 @@
 package org.axonframework.examples.addressbook.vaadin.data;
 
 import com.vaadin.data.util.BeanItemContainer;
+import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.MediatorListener;
+import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 import org.axonframework.sample.app.query.ActiveAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ import java.util.List;
  * Time: 8:24:15 PM
  */
 @Component
-public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry> implements Serializable {
+public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry> implements Serializable, MediatorListener {
 
     @Autowired
     private ActiveAccountRepository activeAccountRepository;
@@ -30,7 +33,12 @@ public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry
         addAll(activeAccountEntries);
     }
 
-
+    @Override
+    public void handleEvent(MediatorEvent event) {
+        if (event instanceof ActiveAccountCreatedEvent) {
+            refreshContent(((ActiveAccountCreatedEvent) event).getClientIdentifier());
+        }
+    }
 }
 
 

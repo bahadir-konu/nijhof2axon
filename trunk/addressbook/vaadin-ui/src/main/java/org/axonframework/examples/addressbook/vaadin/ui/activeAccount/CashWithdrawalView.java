@@ -2,10 +2,10 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
+import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
+import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalCompletedEvent;
 import org.axonframework.sample.app.api.fohjin.command.WithdrawCashCommand;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 
@@ -16,9 +16,11 @@ import java.math.BigDecimal;
  * Date: 2011-11-19
  * Time: 11:52:45 AM
  */
-public class CashWithdrawView extends VerticalLayout {
+public class CashWithdrawalView extends MediatorVerticalLayout {
 
-    public CashWithdrawView(final ActiveAccountEntry activeAccountEntry, final CommandBus commandBus, final LedgerContainer ledgerContainer) {
+    private ActiveAccountEntry activeAccountEntry;
+
+    public CashWithdrawalView(final CommandBus commandBus, final LedgerContainer ledgerContainer) {
 
         final TextField withdrawAmount = new TextField("Specify the amount to withdraw");
 
@@ -39,12 +41,16 @@ public class CashWithdrawView extends VerticalLayout {
 
                 ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
 
-                ((Nijhof2AxonApplication) getApplication()).switchBackToAccountDetailsMode(activeAccountEntry);
+                fire(new CashWithdrawalCompletedEvent());                
             }
         });
 
         addComponent(deposit);
 
+    }
+
+    public void refreshFor(ActiveAccountEntry activeAccountEntry) {
+        this.activeAccountEntry = activeAccountEntry;
     }
 }
 

@@ -6,9 +6,10 @@ import com.vaadin.ui.*;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
-import org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication;
+import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
-import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
+import org.axonframework.examples.addressbook.vaadin.events.*;
+import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 import org.axonframework.sample.app.query.ClientEntry;
 
@@ -17,20 +18,24 @@ import java.util.Arrays;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ClientDetails extends VerticalLayout implements MediatorListener {
+public class ClientDetails extends MediatorVerticalLayout implements MediatorListener {
+    private ClientEntry clientEntry;
+    private ActiveAccountContainer activeAccountContainer;
+
     private Form clientForm = new Form();
 
     public ClientDetails(final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
+        this.activeAccountContainer = activeAccountContainer;
         com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
 
-        MenuBar.MenuItem menuItemTransfer = menuBar.addItem("Client", null);
+        MenuBar.MenuItem menuItemClient = menuBar.addItem("Client", null);
 
-//        menuItemTransfer.addItem("Change name", new MenuBar.Command() {
-//            public void menuSelected(MenuBar.MenuItem selectedItem) {
-//                ((Nijhof2AxonApplication) getApplication()).switchToChangeNameMode(clientEntry);
-//            }
-//        });
+        menuItemClient.addItem("Change name", new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                fire(new ChangeClientNameRequestedEvent(clientEntry));
+            }
+        });
 
         addComponent(menuBar);
 
@@ -51,7 +56,9 @@ public class ClientDetails extends VerticalLayout implements MediatorListener {
 
                 ActiveAccountEntry activeAccountEntry = (ActiveAccountEntry) beanItem.getBean();
 
-                ((Nijhof2AxonApplication) getApplication()).switchToActiveAccountDetailsMode(activeAccountEntry);
+                fire(new ActiveAccountDetailsRequestedEvent(activeAccountEntry));
+
+                //((Nijhof2AxonApplication) getApplication()).switchToActiveAccountDetailsMode(activeAccountEntry);
 
             }
         });
@@ -61,18 +68,20 @@ public class ClientDetails extends VerticalLayout implements MediatorListener {
 
         Button addActiveAccount = new Button("Add active account");
 
-//        addActiveAccount.addListener(new Button.ClickListener() {
-//            @Override
-//            public void buttonClick(Button.ClickEvent clickEvent) {
-//
-//                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
-//                        activeAccountName.getValue().toString());
-//
-//                commandBus.dispatch(command);
-//
-//                activeAccountContainer.refreshContent(clientEntry.getIdentifier());
-//            }
-//        });
+        addActiveAccount.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+
+                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
+                        activeAccountName.getValue().toString());
+
+                commandBus.dispatch(command);
+
+                fire(new ActiveAccountCreatedEvent(clientEntry.getIdentifier()));
+
+                activeAccountContainer.refreshContent(clientEntry.getIdentifier());
+            }
+        });
 
         addComponent(activeAccountName);
         addComponent(addActiveAccount);
@@ -83,6 +92,7 @@ public class ClientDetails extends VerticalLayout implements MediatorListener {
 
 
     public void refreshFor(ClientEntry clientEntry) {
+        this.clientEntry = clientEntry;
 
         BeanItem item = new BeanItem(clientEntry);
         item.removeItemProperty("identifier");
@@ -94,6 +104,9 @@ public class ClientDetails extends VerticalLayout implements MediatorListener {
 
         clientForm.setItemDataSource(item);
 
+        activeAccountContainer.refreshContent(clientEntry.getIdentifier());
+
+
     }
 
     @Override
@@ -101,19 +114,17 @@ public class ClientDetails extends VerticalLayout implements MediatorListener {
         if (event instanceof ClientSelectedEvent) {
             refreshFor(((ClientSelectedEvent) event).getSelectedClient());
         }
+
+        if (event instanceof ChangeClientNameCompletedEvent) {
+            refreshFor(((ChangeClientNameCompletedEvent) event).getClientEntry());
+        }
+
     }
 
     @Override
     public void attach() {
         super.attach();
-        ((Nijhof2AxonApplication)getApplication()).addCollaborator(this);
+        getApplication().getMainWindow().addCollaborator(this);
     }
-
-    @Override
-    public void detach() {
-        super.detach();
-        ((Nijhof2AxonApplication)getApplication()).removeCollaborator(this);
-    }
-
 
 }

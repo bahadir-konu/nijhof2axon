@@ -26,6 +26,18 @@ public class ClientRepositoryImpl implements ClientRepository {
                 .getResultList();
     }
 
+    @Override
+    public ClientEntry findByIdentifier(String identifier) {
+        return (ClientEntry) entityManager.createQuery("SELECT e FROM ClientEntry e WHERE e.identifier=:identifier")
+                .setParameter("identifier", identifier)
+                .getSingleResult();
+    }
+
+    @Override
+    public void persist(ClientEntry entry) {
+        entityManager.persist(entry);
+    }
+
 
 }
 

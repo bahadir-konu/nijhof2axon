@@ -21,7 +21,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
     <bean class="org.axonframework.sample.app.query.AddressTableUpdater"/>
-    <bean class="org.axonframework.sample.app.query.ClientTableUpdater"/>
+    <bean class="org.axonframework.sample.app.query.ClientTableUpdater">
+        <property name="clientRepository" ref="queryClientRepository"/>
+    </bean>
+
     <bean class="org.axonframework.sample.app.query.ActiveAccountTableUpdater"/>
     <bean class="org.axonframework.sample.app.query.LedgerTableUpdater"/>
 

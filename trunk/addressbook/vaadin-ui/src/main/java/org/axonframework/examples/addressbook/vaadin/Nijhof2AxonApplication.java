@@ -23,15 +23,13 @@ import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
-import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
+import org.axonframework.examples.addressbook.vaadin.events.*;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawView;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawalView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeNameView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
-import org.axonframework.sample.app.query.ActiveAccountEntry;
-import org.axonframework.sample.app.query.ClientEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -61,13 +59,13 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     private ClientDetails clientDetails;
     private ActiveAccountDetails activeAccountDetails;
     private CashDepositView cashDepositView;
-    private CashWithdrawView cashWithdrawalView;
+    private CashWithdrawalView cashWithdrawalView;
+    private ChangeNameView changeNameView;
 
     @Override
     public void init() {
 
         mainWindow = new MainWindow();
-        setMainWindow(mainWindow);
 
         mainWindow.getContent().setSizeFull();
 
@@ -79,40 +77,17 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         mainWindow.setContent(mainVerticalLayout);
 
         clientDetails = new ClientDetails(commandBus, activeAccountContainer);
+        activeAccountDetails = new ActiveAccountDetails(commandBus, ledgerContainer);
+        cashDepositView = new CashDepositView(commandBus, ledgerContainer);
+        cashWithdrawalView = new CashWithdrawalView(commandBus, ledgerContainer);
+        changeNameView = new ChangeNameView(commandBus);
 
-    }
+        mainWindow.addCollaborator(clientDetails);
+        mainWindow.addCollaborator(activeAccountContainer);
+        mainWindow.addCollaborator(this);
+        mainWindow.addCollaborator(activeAccountDetails);
 
-//    //BKONU: replace with mediator pattern
-//
-//    public void switchToClientDetailsMode(ClientEntry clientEntry) {
-//
-//        clientDetails = new ClientDetails(clientEntry, commandBus, activeAccountContainer);
-//        mainVerticalLayout.replaceComponent(clientView, clientDetails);
-//    }
-
-
-    public void switchToActiveAccountDetailsMode(ActiveAccountEntry activeAccountEntry) {
-        activeAccountDetails = new ActiveAccountDetails(activeAccountEntry, commandBus, ledgerContainer);
-        mainVerticalLayout.replaceComponent(clientDetails, activeAccountDetails);
-    }
-
-    public void switchToCashDepositeMode(ActiveAccountEntry activeAccountEntry) {
-        cashDepositView = new CashDepositView(activeAccountEntry, commandBus, ledgerContainer);
-        mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
-    }
-
-    public void switchBackToAccountDetailsMode(ActiveAccountEntry activeAccountEntry) {
-        mainVerticalLayout.replaceComponent(cashDepositView, activeAccountDetails);
-    }
-
-    public void switchToCashWithdrawalMode(ActiveAccountEntry activeAccountEntry) {
-        cashWithdrawalView = new CashWithdrawView(activeAccountEntry, commandBus, ledgerContainer);
-        mainVerticalLayout.replaceComponent(activeAccountDetails, cashWithdrawalView);
-    }
-
-    public void switchToChangeNameMode(ClientEntry clientEntry) {
-        ChangeNameView changeNameView = new ChangeNameView(clientEntry, commandBus);
-        mainVerticalLayout.replaceComponent(clientDetails, changeNameView);
+        setMainWindow(mainWindow);
 
     }
 
@@ -121,5 +96,41 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         if (event instanceof ClientSelectedEvent) {
             mainVerticalLayout.replaceComponent(clientView, clientDetails);
         }
+
+        if (event instanceof ActiveAccountDetailsRequestedEvent) {
+            mainVerticalLayout.replaceComponent(clientDetails, activeAccountDetails);
+        }
+
+        if (event instanceof CashDepositeRequestedEvent) {
+            cashDepositView.refreshFor(((CashDepositeRequestedEvent) event).getActiveAccountEntry());
+            mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
+        }
+
+        if (event instanceof CashDepositeCompletedEvent) {
+            mainVerticalLayout.replaceComponent(cashDepositView, activeAccountDetails);
+        }
+
+        if (event instanceof CashWithdrawalRequestedEvent) {
+            cashDepositView.refreshFor(((CashWithdrawalRequestedEvent) event).getActiveAccountEntry());
+            mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
+        }
+
+        if (event instanceof CashWithdrawalCompletedEvent) {
+            mainVerticalLayout.replaceComponent(cashWithdrawalView, activeAccountDetails);
+        }
+
+        if (event instanceof ChangeClientNameRequestedEvent) {
+            changeNameView.refreshFor(((ChangeClientNameRequestedEvent) event).getClientEntry());
+            mainVerticalLayout.replaceComponent(clientDetails, changeNameView);
+        }
+
+        if (event instanceof ChangeClientNameCompletedEvent) {
+            mainVerticalLayout.replaceComponent(changeNameView, clientDetails);
+        }
+    }
+
+    @Override
+    public MainWindow getMainWindow() {
+        return mainWindow;
     }
 }

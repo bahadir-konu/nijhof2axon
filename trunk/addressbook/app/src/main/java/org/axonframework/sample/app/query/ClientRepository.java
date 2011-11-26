@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface ClientRepository {
     List<ClientEntry> findAllClients();
+
+    ClientEntry findByIdentifier(String identifier);
+
+    void persist(ClientEntry entry);
 }
