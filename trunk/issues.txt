@@ -7,3 +7,4 @@
 (OK)7) ClientTableUpdater -> handleClientnamechangedevent
 
 8) Adding active account with no name is possible.
+9) What about unit tests? like nijhof's unit tests..
