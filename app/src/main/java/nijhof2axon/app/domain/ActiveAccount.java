@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin;
+package nijhof2axon.app.domain;
 
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.eventhandling.annotation.EventHandler;

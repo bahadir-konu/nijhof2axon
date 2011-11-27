@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin;
+package nijhof2axon.app.domain;
 
 import java.math.BigDecimal;
 

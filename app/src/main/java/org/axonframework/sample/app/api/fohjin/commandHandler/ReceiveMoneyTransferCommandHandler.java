@@ -2,7 +2,7 @@ package org.axonframework.sample.app.api.fohjin.commandHandler;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
-import org.axonframework.sample.app.api.fohjin.ActiveAccount;
+import nijhof2axon.app.domain.ActiveAccount;
 import org.axonframework.sample.app.api.fohjin.command.ReceiveMoneyTransferCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.slf4j.Logger;
