@@ -5,7 +5,7 @@ import com.vaadin.ui.TextField;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameCompletedEvent;
-import org.axonframework.sample.app.api.fohjin.command.ChangeClientNameCommand;
+import nijhof2axon.app.command.ChangeClientNameCommand;
 import org.axonframework.sample.app.query.ClientEntry;
 
 
