@@ -1,9 +1,9 @@
 package org.axonframework.sample.app.api.fohjin.commandHandler;
 
+import nijhof2axon.app.command.ReceiveMoneyTransferCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
 import nijhof2axon.app.domain.ActiveAccount;
-import org.axonframework.sample.app.api.fohjin.command.ReceiveMoneyTransferCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

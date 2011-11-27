@@ -5,7 +5,7 @@ import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
 import nijhof2axon.app.domain.ActiveAccount;
-import org.axonframework.sample.app.api.fohjin.command.DepositCashCommand;
+import nijhof2axon.app.command.DepositCashCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Required;
 

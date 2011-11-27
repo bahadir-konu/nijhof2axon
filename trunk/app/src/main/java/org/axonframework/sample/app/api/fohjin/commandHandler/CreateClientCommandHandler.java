@@ -5,7 +5,7 @@ import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
-import org.axonframework.sample.app.api.fohjin.command.CreateClientCommand;
+import nijhof2axon.app.command.CreateClientCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.util.Assert;
 

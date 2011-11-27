@@ -5,7 +5,7 @@ import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
 import nijhof2axon.app.domain.Client;
-import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
+import nijhof2axon.app.command.OpenNewAccountForClientCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
