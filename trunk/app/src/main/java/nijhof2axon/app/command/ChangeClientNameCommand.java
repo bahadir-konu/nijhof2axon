@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin.command;
+package nijhof2axon.app.command;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)

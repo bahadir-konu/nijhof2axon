@@ -2,11 +2,11 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
+import nijhof2axon.app.command.DepositCashCommand;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.CashDepositeCompletedEvent;
-import org.axonframework.sample.app.api.fohjin.command.DepositCashCommand;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 
 import java.math.BigDecimal;

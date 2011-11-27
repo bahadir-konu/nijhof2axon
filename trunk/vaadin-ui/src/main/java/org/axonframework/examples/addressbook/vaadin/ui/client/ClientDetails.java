@@ -9,7 +9,7 @@ import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
-import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
+import nijhof2axon.app.command.OpenNewAccountForClientCommand;
 import org.axonframework.sample.app.query.ActiveAccountEntry;
 import org.axonframework.sample.app.query.ClientEntry;
 

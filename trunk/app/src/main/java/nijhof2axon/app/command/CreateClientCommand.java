@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin.command;
+package nijhof2axon.app.command;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
