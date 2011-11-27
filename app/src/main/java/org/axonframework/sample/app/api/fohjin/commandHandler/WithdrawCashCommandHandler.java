@@ -1,11 +1,11 @@
 package org.axonframework.sample.app.api.fohjin.commandHandler;
 
+import nijhof2axon.app.command.WithdrawCashCommand;
 import nijhof2axon.app.domain.ActiveAccount;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
-import org.axonframework.sample.app.api.fohjin.command.WithdrawCashCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Required;
 
