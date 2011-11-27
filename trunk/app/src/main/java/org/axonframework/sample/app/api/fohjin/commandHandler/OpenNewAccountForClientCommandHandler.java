@@ -1,10 +1,10 @@
 package org.axonframework.sample.app.api.fohjin.commandHandler;
 
+import nijhof2axon.app.domain.ActiveAccount;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
-import org.axonframework.sample.app.api.fohjin.ActiveAccount;
-import org.axonframework.sample.app.api.fohjin.Client;
+import nijhof2axon.app.domain.Client;
 import org.axonframework.sample.app.api.fohjin.command.OpenNewAccountForClientCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Required;
