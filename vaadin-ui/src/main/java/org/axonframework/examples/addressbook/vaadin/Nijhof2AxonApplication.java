@@ -21,7 +21,6 @@ import com.vaadin.ui.VerticalLayout;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
-import org.axonframework.examples.addressbook.vaadin.data.ContactContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
@@ -38,9 +37,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Nijhof2AxonApplication extends Application implements MediatorListener {
 
     protected MainWindow mainWindow;
-
-    @Autowired
-    private ContactContainer contactContainer;
 
     @Autowired
     private ClientContainer clientContainer;

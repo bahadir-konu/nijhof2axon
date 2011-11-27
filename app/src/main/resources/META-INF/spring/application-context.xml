@@ -99,10 +99,6 @@
             </property>
         </bean>
     -->
-    <axon:event-sourcing-repository id="contactRepository" aggregate-type="org.axonframework.sample.app.command.Contact"
-                                    event-bus="eventBus" event-store="eventStore">
-        <axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>
-    </axon:event-sourcing-repository>
 
     <axon:event-sourcing-repository id="activeAccountRepository"
                                     aggregate-type="org.axonframework.sample.app.api.fohjin.ActiveAccount"
@@ -128,13 +124,6 @@
 
     <!--	<bean id="eventStore" class="org.axonframework.eventstore.jpa.JpaEventStore" />-->
     <axon:jpa-event-store id="eventStore"/>
-
-    <bean id="contactCommandHandler"
-          class="org.axonframework.sample.app.command.ContactCommandHandler">
-        <property name="repository" ref="contactRepository"/>
-        <property name="contactRepository" ref="queryContactRepository"/>
-        <property name="contactNameRepository" ref="contactNameRepository"/>
-    </bean>
 
     <bean id="receiveMoneyTransferCommandHandler"
           class="org.axonframework.sample.app.api.fohjin.commandHandler.ReceiveMoneyTransferCommandHandler">
@@ -167,6 +156,4 @@
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
     </bean>
 
-
-    <bean id="contactNameRepository" class="org.axonframework.sample.app.command.JpaContactNameRepository"/>
 </beans>

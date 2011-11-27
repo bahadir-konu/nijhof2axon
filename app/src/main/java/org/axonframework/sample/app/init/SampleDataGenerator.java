@@ -12,7 +12,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class SampleDataGenerator implements ApplicationListener {
+public class
+        SampleDataGenerator implements ApplicationListener {
 
     private CommandBus commandBus;
     private AtomicBoolean initialized = new AtomicBoolean();
