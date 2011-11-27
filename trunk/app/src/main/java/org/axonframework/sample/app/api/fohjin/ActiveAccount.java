@@ -3,8 +3,6 @@ package org.axonframework.sample.app.api.fohjin;
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
-import org.axonframework.sample.app.api.Address;
-import org.axonframework.sample.app.api.AddressType;
 import org.axonframework.sample.app.api.fohjin.event.ActiveAccountOpenedEvent;
 import org.axonframework.sample.app.api.fohjin.event.CashDepositedEvent;
 import org.axonframework.sample.app.api.fohjin.event.CashWithdrawnEvent;
@@ -12,9 +10,7 @@ import org.axonframework.sample.app.api.fohjin.event.MoneyTransferReceivedEvent;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
@@ -29,8 +25,6 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
     BigDecimal balance = new BigDecimal(0);
 
     private List<Ledger> ledgers = new ArrayList<Ledger>();
-
-    private Map<AddressType, Address> addresses = new HashMap<AddressType, Address>();
 
     public ActiveAccount(AggregateIdentifier identifier, AggregateIdentifier clientId, String accountName) {
         super(identifier);

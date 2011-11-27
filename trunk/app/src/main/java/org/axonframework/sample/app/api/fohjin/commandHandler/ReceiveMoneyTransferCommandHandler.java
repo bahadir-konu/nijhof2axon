@@ -4,7 +4,6 @@ import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
 import org.axonframework.sample.app.api.fohjin.ActiveAccount;
 import org.axonframework.sample.app.api.fohjin.command.ReceiveMoneyTransferCommand;
-import org.axonframework.sample.app.command.ContactCommandHandler;
 import org.axonframework.unitofwork.UnitOfWork;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,7 @@ import org.springframework.util.Assert;
  */
 public class ReceiveMoneyTransferCommandHandler {
 
-    private final static Logger logger = LoggerFactory.getLogger(ContactCommandHandler.class);
+    private final static Logger logger = LoggerFactory.getLogger(ReceiveMoneyTransferCommandHandler.class);
     private Repository<ActiveAccount> repository;
 
     /**
