@@ -126,33 +126,33 @@
     <axon:jpa-event-store id="eventStore"/>
 
     <bean id="receiveMoneyTransferCommandHandler"
-          class="org.axonframework.sample.app.api.fohjin.commandHandler.ReceiveMoneyTransferCommandHandler">
+          class="nijhof2axon.app.commandHandler.ReceiveMoneyTransferCommandHandler">
         <property name="repository" ref="activeAccountRepository"/>
     </bean>
 
     <bean id="openNewAccountForClientCommandHandler"
-          class="org.axonframework.sample.app.api.fohjin.commandHandler.OpenNewAccountForClientCommandHandler">
+          class="nijhof2axon.app.commandHandler.OpenNewAccountForClientCommandHandler">
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
         <property name="clientRepository" ref="clientRepository"/>
     </bean>
 
     <bean id="createClientCommandHandler"
-          class="org.axonframework.sample.app.api.fohjin.commandHandler.CreateClientCommandHandler">
+          class="nijhof2axon.app.commandHandler.CreateClientCommandHandler">
         <property name="clientRepository" ref="clientRepository"/>
     </bean>
 
     <bean id="changeClientNameCommandHandler"
-          class="org.axonframework.sample.app.api.fohjin.commandHandler.ChangeClientNameCommandHandler">
+          class="nijhof2axon.app.commandHandler.ChangeClientNameCommandHandler">
         <property name="clientRepository" ref="clientRepository"/>
     </bean>
 
     <bean id="depositCashCommandHandler"
-          class="org.axonframework.sample.app.api.fohjin.commandHandler.DepositCashCommandHandler">
+          class="nijhof2axon.app.commandHandler.DepositCashCommandHandler">
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
     </bean>
 
     <bean id="withdrawCashCommandHandler"
-          class="org.axonframework.sample.app.api.fohjin.commandHandler.WithdrawCashCommandHandler">
+          class="nijhof2axon.app.commandHandler.WithdrawCashCommandHandler">
         <property name="activeAccountRepository" ref="activeAccountRepository"/>
     </bean>
 
