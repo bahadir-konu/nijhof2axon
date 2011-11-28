@@ -1,11 +1,11 @@
 package org.axonframework.examples.addressbook.vaadin.data;
 
 import com.vaadin.data.util.BeanItemContainer;
+import nijhof2axon.app.query.ActiveAccountEntry;
+import nijhof2axon.app.query.ActiveAccountRepository;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
-import org.axonframework.sample.app.query.ActiveAccountEntry;
-import org.axonframework.sample.app.query.ActiveAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

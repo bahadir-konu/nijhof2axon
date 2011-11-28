@@ -4,6 +4,7 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Form;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Table;
+import nijhof2axon.app.query.ActiveAccountEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
@@ -14,7 +15,6 @@ import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountDetails
 import org.axonframework.examples.addressbook.vaadin.events.CashDepositeCompletedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.CashDepositeRequestedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalRequestedEvent;
-import org.axonframework.sample.app.query.ActiveAccountEntry;
 
 import java.util.Arrays;
 

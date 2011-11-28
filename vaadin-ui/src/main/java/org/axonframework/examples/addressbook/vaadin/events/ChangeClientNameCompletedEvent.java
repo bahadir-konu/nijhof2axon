@@ -1,7 +1,7 @@
 package org.axonframework.examples.addressbook.vaadin.events;
 
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
-import org.axonframework.sample.app.query.ClientEntry;
+import nijhof2axon.app.query.ClientEntry;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)

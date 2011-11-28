@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.query;
+package nijhof2axon.app.query;
 
 import java.util.List;
 

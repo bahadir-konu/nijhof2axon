@@ -3,6 +3,8 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.*;
+import nijhof2axon.app.query.ActiveAccountEntry;
+import nijhof2axon.app.query.ClientEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
@@ -10,8 +12,6 @@ import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 import nijhof2axon.app.command.OpenNewAccountForClientCommand;
-import org.axonframework.sample.app.query.ActiveAccountEntry;
-import org.axonframework.sample.app.query.ClientEntry;
 
 import java.util.Arrays;
 

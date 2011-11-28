@@ -7,7 +7,7 @@ import com.vaadin.ui.VerticalLayout;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import nijhof2axon.app.command.CreateClientCommand;
-import org.axonframework.sample.app.query.ClientEntry;
+import nijhof2axon.app.query.ClientEntry;
 
 import java.util.Arrays;
 
