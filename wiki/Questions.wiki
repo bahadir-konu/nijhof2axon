@@ -1,13 +1,8 @@
-#summary One-sentence summary of this page.
+#summary Questions emerged.
 
-= Introduction =
-
-Add your content here.
+= Question: =
 
 
-= Details =
-
-Question:
 Events are serialized and saved to DB. 
 After I change the package of an event class, I get
 xstream.mapper.CannotResolveClassException
