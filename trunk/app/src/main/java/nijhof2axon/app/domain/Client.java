@@ -1,10 +1,10 @@
 package nijhof2axon.app.domain;
 
+import nijhof2axon.app.event.ClientCreatedEvent;
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
-import org.axonframework.sample.app.api.fohjin.event.ClientCreatedEvent;
-import org.axonframework.sample.app.api.fohjin.event.ClientNameChangedEvent;
+import nijhof2axon.app.event.ClientNameChangedEvent;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
