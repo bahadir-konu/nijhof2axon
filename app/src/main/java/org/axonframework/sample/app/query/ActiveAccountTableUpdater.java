@@ -1,8 +1,8 @@
 package org.axonframework.sample.app.query;
 
+import nijhof2axon.app.event.ActiveAccountOpenedEvent;
+import nijhof2axon.app.event.CashDepositedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
-import org.axonframework.sample.app.api.fohjin.event.ActiveAccountOpenedEvent;
-import org.axonframework.sample.app.api.fohjin.event.CashDepositedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;

@@ -1,12 +1,12 @@
 package nijhof2axon.app.domain;
 
+import nijhof2axon.app.event.CashDepositedEvent;
+import nijhof2axon.app.event.CashWithdrawnEvent;
+import nijhof2axon.app.event.MoneyTransferReceivedEvent;
 import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
-import org.axonframework.sample.app.api.fohjin.event.ActiveAccountOpenedEvent;
-import org.axonframework.sample.app.api.fohjin.event.CashDepositedEvent;
-import org.axonframework.sample.app.api.fohjin.event.CashWithdrawnEvent;
-import org.axonframework.sample.app.api.fohjin.event.MoneyTransferReceivedEvent;
+import nijhof2axon.app.event.ActiveAccountOpenedEvent;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

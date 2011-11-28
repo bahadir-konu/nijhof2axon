@@ -1,9 +1,9 @@
 package org.axonframework.sample.app.query;
 
+import nijhof2axon.app.event.CashWithdrawnEvent;
+import nijhof2axon.app.event.MoneyTransferReceivedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
-import org.axonframework.sample.app.api.fohjin.event.CashDepositedEvent;
-import org.axonframework.sample.app.api.fohjin.event.CashWithdrawnEvent;
-import org.axonframework.sample.app.api.fohjin.event.MoneyTransferReceivedEvent;
+import nijhof2axon.app.event.CashDepositedEvent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

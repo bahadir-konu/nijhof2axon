@@ -1,8 +1,8 @@
 package org.axonframework.sample.app.query;
 
+import nijhof2axon.app.event.ClientCreatedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
-import org.axonframework.sample.app.api.fohjin.event.ClientCreatedEvent;
-import org.axonframework.sample.app.api.fohjin.event.ClientNameChangedEvent;
+import nijhof2axon.app.event.ClientNameChangedEvent;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
