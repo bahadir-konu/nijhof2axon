@@ -1,8 +1,8 @@
 package org.axonframework.examples.addressbook.vaadin.data;
 
 import com.vaadin.data.util.BeanItemContainer;
-import org.axonframework.sample.app.query.LedgerEntry;
-import org.axonframework.sample.app.query.LedgerRepository;
+import nijhof2axon.app.query.LedgerEntry;
+import nijhof2axon.app.query.LedgerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

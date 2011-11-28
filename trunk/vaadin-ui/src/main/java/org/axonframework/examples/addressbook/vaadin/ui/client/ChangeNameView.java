@@ -2,11 +2,11 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
+import nijhof2axon.app.query.ClientEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameCompletedEvent;
 import nijhof2axon.app.command.ChangeClientNameCommand;
-import org.axonframework.sample.app.query.ClientEntry;
 
 
 /**

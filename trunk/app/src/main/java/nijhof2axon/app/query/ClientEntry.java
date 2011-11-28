@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.query;
+package nijhof2axon.app.query;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;

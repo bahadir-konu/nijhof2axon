@@ -3,12 +3,12 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
+import nijhof2axon.app.query.ClientEntry;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
-import org.axonframework.sample.app.query.ClientEntry;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
