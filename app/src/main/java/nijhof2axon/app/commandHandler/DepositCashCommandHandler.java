@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin.commandHandler;
+package nijhof2axon.app.commandHandler;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.domain.AggregateIdentifier;

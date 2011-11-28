@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin.commandHandler;
+package nijhof2axon.app.commandHandler;
 
 import nijhof2axon.app.command.ReceiveMoneyTransferCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
