@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.init;
+package nijhof2axon.app.init;
 
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.domain.AggregateIdentifier;
