@@ -1,4 +1,4 @@
-package org.axonframework.sample.app.api.fohjin.event;
+package nijhof2axon.app.event;
 
 import org.axonframework.domain.DomainEvent;
 
