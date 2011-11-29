@@ -24,6 +24,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.AddActiveAccountWindow;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawalView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeNameView;
@@ -122,6 +123,16 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         if (event instanceof ChangeClientNameCompletedEvent) {
             mainVerticalLayout.replaceComponent(changeNameView, clientDetails);
+        }
+
+        if (event instanceof ClientListViewRequestedEvent) {
+            mainVerticalLayout.replaceComponent(clientDetails, clientView);
+        }
+
+        if (event instanceof AddActiveAccountRequestedEvent) {
+
+            mainWindow.addWindow(new AddActiveAccountWindow(commandBus, ((AddActiveAccountRequestedEvent) event).getClientEntry(),
+                    activeAccountContainer));
         }
     }
 

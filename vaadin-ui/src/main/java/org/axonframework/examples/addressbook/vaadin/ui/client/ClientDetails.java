@@ -11,7 +11,6 @@ import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
-import nijhof2axon.app.command.OpenNewAccountForClientCommand;
 
 import java.util.Arrays;
 
@@ -27,23 +26,27 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
     public ClientDetails(final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
         this.activeAccountContainer = activeAccountContainer;
-        com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
 
-        MenuBar.MenuItem menuItemClient = menuBar.addItem("Client", null);
+        addMenuItems();
 
-        menuItemClient.addItem("Change name", new MenuBar.Command() {
-            public void menuSelected(MenuBar.MenuItem selectedItem) {
-                fire(new ChangeClientNameRequestedEvent(clientEntry));
+        addClientForm();
+
+        addActiveAccountsTable(activeAccountContainer);
+
+
+        Button backButton = new Button("Back");
+        backButton.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                fire(new ClientListViewRequestedEvent());
             }
         });
 
-        addComponent(menuBar);
+        addComponent(backButton);
 
-        clientForm.setCaption("Client Details");
-        clientForm.setSizeFull();
+    }
 
-        addComponent(clientForm);
-
+    private void addActiveAccountsTable(ActiveAccountContainer activeAccountContainer) {
         final Table activeAccountsTable = new Table("Active Accounts");
         //activeAccountContainer.refreshContent(clientEntry.getIdentifier());
         activeAccountsTable.setContainerDataSource(activeAccountContainer);
@@ -63,31 +66,35 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
             }
         });
 
+        addComponent(activeAccountsTable);
 
-        final TextField activeAccountName = new TextField("Account Name");
+    }
 
-        Button addActiveAccount = new Button("Add active account");
+    private void addClientForm() {
+        clientForm.setCaption("Client Details");
+        clientForm.setSizeFull();
 
-        addActiveAccount.addListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
+        addComponent(clientForm);
+    }
 
-                OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
-                        activeAccountName.getValue().toString());
+    private void addMenuItems() {
+        MenuBar menuBar = new MenuBar();
 
-                commandBus.dispatch(command);
+        MenuBar.MenuItem menuItemClient = menuBar.addItem("Client", null);
 
-                fire(new ActiveAccountCreatedEvent(clientEntry.getIdentifier()));
-
-                activeAccountContainer.refreshContent(clientEntry.getIdentifier());
+        menuItemClient.addItem("Change name", new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                fire(new ChangeClientNameRequestedEvent(clientEntry));
             }
         });
 
-        addComponent(activeAccountName);
-        addComponent(addActiveAccount);
-        addComponent(activeAccountsTable);
+        menuItemClient.addItem("Add Active Account", new MenuBar.Command() {
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                fire(new AddActiveAccountRequestedEvent(clientEntry));
+            }
+        });
 
-
+        addComponent(menuBar);
     }
 
 
@@ -117,6 +124,10 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
 
         if (event instanceof ChangeClientNameCompletedEvent) {
             refreshFor(((ChangeClientNameCompletedEvent) event).getClientEntry());
+        }
+
+        if (event instanceof ActiveAccountCreatedEvent) {
+            getApplication().getMainWindow().showNotification("Account Opened Successfully", Window.Notification.TYPE_HUMANIZED_MESSAGE);
         }
 
     }
