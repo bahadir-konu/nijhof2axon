@@ -23,6 +23,8 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
 
         clientsTable.setVisibleColumns(new String[]{"name"});
 
+        clientsTable.setColumnHeader("name", "Name");
+
         clientsTable.addListener(new ItemClickEvent.ItemClickListener() {
             @Override
             public void itemClick(ItemClickEvent event) {

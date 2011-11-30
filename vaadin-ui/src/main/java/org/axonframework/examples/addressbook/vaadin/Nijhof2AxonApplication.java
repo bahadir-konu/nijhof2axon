@@ -62,6 +62,8 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     @Override
     public void init() {
 
+        setTheme("runo");
+
         mainWindow = new MainWindow();
 
         mainWindow.getContent().setSizeFull();

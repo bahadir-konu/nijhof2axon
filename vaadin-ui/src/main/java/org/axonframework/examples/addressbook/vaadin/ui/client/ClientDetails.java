@@ -12,16 +12,13 @@ import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 
-import java.util.Arrays;
-
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ClientDetails extends MediatorVerticalLayout implements MediatorListener {
     private ClientEntry clientEntry;
     private ActiveAccountContainer activeAccountContainer;
-
-    private Form clientForm = new Form();
+    private Label clientLabel;
 
     public ClientDetails(final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
@@ -29,10 +26,24 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
 
         addMenuItems();
 
-        addClientForm();
+        VerticalLayout mainVerticalLayout = new VerticalLayout();
+        mainVerticalLayout.setSpacing(true);
 
-        addActiveAccountsTable(activeAccountContainer);
+        HorizontalLayout space = new HorizontalLayout();
+        space.setHeight("40%");
+        mainVerticalLayout.addComponent(space);
 
+        HorizontalLayout clientNameLayout = new HorizontalLayout();
+        clientNameLayout.setSpacing(true);
+
+        Label labelCaption = new Label("Name: ");
+        clientLabel = new Label();
+        clientNameLayout.addComponent(labelCaption);
+        clientNameLayout.addComponent(clientLabel);
+
+        mainVerticalLayout.addComponent(clientNameLayout);
+
+        mainVerticalLayout.addComponent(getActiveAccountsTable(activeAccountContainer));
 
         Button backButton = new Button("Back");
         backButton.addListener(new Button.ClickListener() {
@@ -42,13 +53,14 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
             }
         });
 
-        addComponent(backButton);
+        mainVerticalLayout.addComponent(backButton);
+
+        addComponent(mainVerticalLayout);
 
     }
 
-    private void addActiveAccountsTable(ActiveAccountContainer activeAccountContainer) {
+    private Table getActiveAccountsTable(ActiveAccountContainer activeAccountContainer) {
         final Table activeAccountsTable = new Table("Active Accounts");
-        //activeAccountContainer.refreshContent(clientEntry.getIdentifier());
         activeAccountsTable.setContainerDataSource(activeAccountContainer);
 
         activeAccountsTable.addListener(new ItemClickEvent.ItemClickListener() {
@@ -61,21 +73,13 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
 
                 fire(new ActiveAccountDetailsRequestedEvent(activeAccountEntry));
 
-                //((Nijhof2AxonApplication) getApplication()).switchToActiveAccountDetailsMode(activeAccountEntry);
-
             }
         });
 
-        addComponent(activeAccountsTable);
+        return activeAccountsTable;
 
     }
 
-    private void addClientForm() {
-        clientForm.setCaption("Client Details");
-        clientForm.setSizeFull();
-
-        addComponent(clientForm);
-    }
 
     private void addMenuItems() {
         MenuBar menuBar = new MenuBar();
@@ -88,7 +92,7 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
             }
         });
 
-        menuItemClient.addItem("Add Active Account", new MenuBar.Command() {
+        menuItemClient.addItem("Open Active Account", new MenuBar.Command() {
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 fire(new AddActiveAccountRequestedEvent(clientEntry));
             }
@@ -104,12 +108,7 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
         BeanItem item = new BeanItem(clientEntry);
         item.removeItemProperty("identifier");
 
-        clientForm.setVisibleItemProperties(Arrays.asList(new String[]{
-                "name"}));
-
-        clientForm.setReadOnly(true);
-
-        clientForm.setItemDataSource(item);
+        clientLabel.setValue(clientEntry.getName());
 
         activeAccountContainer.refreshContent(clientEntry.getIdentifier());
 
