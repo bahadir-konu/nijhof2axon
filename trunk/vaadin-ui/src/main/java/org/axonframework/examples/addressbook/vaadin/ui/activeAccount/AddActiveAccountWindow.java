@@ -1,8 +1,6 @@
 package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
-import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.IntegerValidator;
 import com.vaadin.ui.*;
 import nijhof2axon.app.command.OpenNewAccountForClientCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
@@ -51,7 +49,7 @@ public class AddActiveAccountWindow extends Window {
         item.removeItemProperty("clientIdentifier");
         item.removeItemProperty("balance");
 
-        activeAccountForm.setFormFieldFactory(new ActiveAccountFieldFactory());
+        activeAccountForm.setFormFieldFactory(new ActiveAccountEditModeFieldFactory());
         activeAccountForm.setItemDataSource(item);
 
 
@@ -88,7 +86,6 @@ public class AddActiveAccountWindow extends Window {
 
         buttonsLayout.addComponent(openActiveAccountButton);
 
-
         mainVerticalLayout.addComponent(buttonsLayout);
 
         addComponent(mainVerticalLayout);
@@ -97,27 +94,5 @@ public class AddActiveAccountWindow extends Window {
     }
 
 
-    private class ActiveAccountFieldFactory extends DefaultFieldFactory {
-
-        @Override
-        public Field createField(Item item, Object propertyId, Component uiContext) {
-            Field f = super.createField(item, propertyId, uiContext);
-
-            if ("accountName".equals(propertyId)) {
-                TextField tf = (TextField) f;
-                tf.setNullRepresentation("");
-                tf.setRequired(true);
-                tf.setRequiredError("Please enter an account name");
-            } else if ("accountNumber".equals(propertyId)) {
-                TextField tf = (TextField) f;
-                tf.setNullRepresentation("");
-                tf.setRequired(true);
-                tf.setRequiredError("Please enter an account number");
-                tf.addValidator(new IntegerValidator(
-                        "Account number must be a number"));
-            }
-
-            return f;
-        }
-    }
+    
 }
