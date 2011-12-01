@@ -1,5 +1,6 @@
 package nijhof2axon.app.event;
 
+import nijhof2axon.app.domain.Address;
 import org.axonframework.domain.DomainEvent;
 
 /**
@@ -9,10 +10,14 @@ import org.axonframework.domain.DomainEvent;
  */
 public class ClientCreatedEvent extends DomainEvent {
 
-    private final String name;
+    private String name;
+    private Address address;
+    private String phoneNumber;
 
-    public ClientCreatedEvent(String name) {
+    public ClientCreatedEvent(String name, Address address, String phoneNumber) {
         this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
@@ -23,5 +28,11 @@ public class ClientCreatedEvent extends DomainEvent {
         return getAggregateIdentifier().asString();
     }
 
+    public Address getAddress() {
+        return address;
+    }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 }

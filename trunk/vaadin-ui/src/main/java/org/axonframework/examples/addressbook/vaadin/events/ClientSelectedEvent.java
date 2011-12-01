@@ -1,6 +1,6 @@
 package org.axonframework.examples.addressbook.vaadin.events;
 
-import nijhof2axon.app.query.ClientEntry;
+import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 
 /**
@@ -9,17 +9,17 @@ import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
  * Time: 5:04:14 PM
  */
 public class ClientSelectedEvent implements MediatorEvent {
-    private ClientEntry selectedClient;
+    private ClientDetailsEntry selectedClient;
 
-    public ClientSelectedEvent(ClientEntry clientEntry) {
+    public ClientSelectedEvent(ClientDetailsEntry clientEntry) {
         this.selectedClient = clientEntry;
     }
 
-    public ClientEntry getSelectedClient() {
+    public ClientDetailsEntry getSelectedClient() {
         return selectedClient;
     }
 
-    public void setSelectedClient(ClientEntry selectedClient) {
+    public void setSelectedClient(ClientDetailsEntry selectedClient) {
         this.selectedClient = selectedClient;
     }
 }

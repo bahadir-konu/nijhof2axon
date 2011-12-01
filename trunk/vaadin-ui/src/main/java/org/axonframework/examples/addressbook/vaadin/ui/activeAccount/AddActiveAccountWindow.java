@@ -1,10 +1,13 @@
 package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Form;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import nijhof2axon.app.command.OpenNewAccountForClientCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
-import nijhof2axon.app.query.ClientEntry;
+import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MainWindow;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
@@ -19,7 +22,7 @@ public class AddActiveAccountWindow extends Window {
 
     private ActiveAccountEntry activeAccountEntry;
 
-    public AddActiveAccountWindow(final CommandBus commandBus, final ClientEntry clientEntry,
+    public AddActiveAccountWindow(final CommandBus commandBus, final ClientDetailsEntry clientEntry,
                                   final ActiveAccountContainer activeAccountContainer) {
         setCaption("Open Active Account");
 
@@ -94,5 +97,4 @@ public class AddActiveAccountWindow extends Window {
     }
 
 
-    
 }

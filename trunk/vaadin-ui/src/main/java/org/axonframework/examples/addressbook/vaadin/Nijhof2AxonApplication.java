@@ -133,7 +133,7 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         if (event instanceof AddActiveAccountRequestedEvent) {
 
-            mainWindow.addWindow(new AddActiveAccountWindow(commandBus, ((AddActiveAccountRequestedEvent) event).getClientEntry(),
+            mainWindow.addWindow(new AddActiveAccountWindow(commandBus, ((AddActiveAccountRequestedEvent) event).getClientDetailsEntry(),
                     activeAccountContainer));
         }
     }

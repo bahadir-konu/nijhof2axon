@@ -3,7 +3,7 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
-import nijhof2axon.app.query.ClientEntry;
+import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
@@ -21,9 +21,9 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
         final Table clientsTable = new Table("Clients");
         clientsTable.setContainerDataSource(clientContainer);
 
-        clientsTable.setVisibleColumns(new String[]{"name"});
+        clientsTable.setVisibleColumns(new String[]{"clientName"});
 
-        clientsTable.setColumnHeader("name", "Name");
+        clientsTable.setColumnHeader("clientName", "Name");
 
         clientsTable.addListener(new ItemClickEvent.ItemClickListener() {
             @Override
@@ -31,7 +31,7 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
 
                 BeanItem beanItem = (BeanItem) event.getItem();
 
-                ClientEntry clientEntry = (ClientEntry) beanItem.getBean();
+                ClientDetailsEntry clientEntry = (ClientDetailsEntry) beanItem.getBean();
 
                 fire(new ClientSelectedEvent(clientEntry));
 

@@ -15,16 +15,16 @@ public class ClientTableUpdater {
 
     @EventHandler
     public void handleClientCreatedEvent(ClientCreatedEvent event) {
-        ClientEntry entry = new ClientEntry();
+        ClientDetailsEntry entry = new ClientDetailsEntry();
         entry.setIdentifier(event.getClientIdentifier());
-        entry.setName(event.getName());
+        entry.setClientName(event.getName());
         clientRepository.persist(entry);
     }
 
     @EventHandler
     public void handleClientNameChangedEvent(ClientNameChangedEvent event) {          
-        ClientEntry clientEntry = clientRepository.findByIdentifier(event.getClientIdentifier());
-        clientEntry.setName(event.getNewName());
+        ClientDetailsEntry clientEntry = clientRepository.findByIdentifier(event.getClientIdentifier());
+        clientEntry.setClientName(event.getNewName());
 
         clientRepository.persist(clientEntry);
     }

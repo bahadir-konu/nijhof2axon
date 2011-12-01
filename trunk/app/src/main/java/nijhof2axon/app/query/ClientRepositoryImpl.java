@@ -20,21 +20,21 @@ public class ClientRepositoryImpl implements ClientRepository {
     private EntityManager entityManager;
 
     @SuppressWarnings({"unchecked"})
-    public List<ClientEntry> findAllClients() {
-        return entityManager.createQuery("SELECT e FROM ClientEntry e")
+    public List<ClientDetailsEntry> findAllClients() {
+        return entityManager.createQuery("SELECT e FROM ClientDetailsEntry e")
                 .setMaxResults(250)
                 .getResultList();
     }
 
     @Override
-    public ClientEntry findByIdentifier(String identifier) {
-        return (ClientEntry) entityManager.createQuery("SELECT e FROM ClientEntry e WHERE e.identifier=:identifier")
+    public ClientDetailsEntry findByIdentifier(String identifier) {
+        return (ClientDetailsEntry) entityManager.createQuery("SELECT e FROM ClientEntry e WHERE e.identifier=:identifier")
                 .setParameter("identifier", identifier)
                 .getSingleResult();
     }
 
     @Override
-    public void persist(ClientEntry entry) {
+    public void persist(ClientDetailsEntry entry) {
         entityManager.persist(entry);
     }
 
