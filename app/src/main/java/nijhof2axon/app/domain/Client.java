@@ -7,21 +7,25 @@ import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot
 import nijhof2axon.app.event.ClientNameChangedEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-17
- * Time: 3:15:28 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class Client extends AbstractAnnotatedAggregateRoot {
 
     private String name;
-
-    public Client(AggregateIdentifier identifier, String name) {
-        super(identifier);
-        apply(new ClientCreatedEvent(name));
-    }
+    private Address address;
+    private String phoneNumber;
 
     public Client(AggregateIdentifier identifier) {
         super(identifier);
+    }
+
+    public Client(AggregateIdentifier identifier, String name) {
+        this(identifier, name, null, null);
+    }
+
+    public Client(AggregateIdentifier identifier, String name, Address address, String phoneNumber) {
+        super(identifier);
+        apply(new ClientCreatedEvent(name, address, phoneNumber));
     }
 
     @EventHandler
@@ -46,7 +50,7 @@ public class Client extends AbstractAnnotatedAggregateRoot {
     @EventHandler
     private void handleClientNameChangedEvent(ClientNameChangedEvent event) {
         name = event.getNewName();
-    } 
+    }
 }
 
 

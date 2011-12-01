@@ -2,11 +2,11 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
-import nijhof2axon.app.query.ClientEntry;
+import nijhof2axon.app.command.ChangeClientNameCommand;
+import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameCompletedEvent;
-import nijhof2axon.app.command.ChangeClientNameCommand;
 
 
 /**
@@ -15,7 +15,7 @@ import nijhof2axon.app.command.ChangeClientNameCommand;
  * Time: 10:02:43 AM
  */
 public class ChangeNameView extends MediatorVerticalLayout {
-    private ClientEntry clientEntry;
+    private ClientDetailsEntry clientEntry;
 
     public ChangeNameView(final CommandBus commandBus) {
 
@@ -29,19 +29,19 @@ public class ChangeNameView extends MediatorVerticalLayout {
                 String newName = textField.getValue().toString();
 
                 ChangeClientNameCommand command = new ChangeClientNameCommand(clientEntry.getIdentifier(),
-                      newName);
+                        newName);
 
                 commandBus.dispatch(command);
 
-                clientEntry.setName(newName);
+                clientEntry.setClientName(newName);
                 fire(new ChangeClientNameCompletedEvent(clientEntry));
             }
         });
 
         addComponent(button);
     }
-    
-    public void refreshFor(ClientEntry clientEntry) {
+
+    public void refreshFor(ClientDetailsEntry clientEntry) {
         this.clientEntry = clientEntry;
     }
 

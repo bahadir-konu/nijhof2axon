@@ -8,9 +8,9 @@ import java.util.List;
  * Time: 3:32:59 PM
  */
 public interface ClientRepository {
-    List<ClientEntry> findAllClients();
+    List<ClientDetailsEntry> findAllClients();
 
-    ClientEntry findByIdentifier(String identifier);
+    ClientDetailsEntry findByIdentifier(String identifier);
 
-    void persist(ClientEntry entry);
+    void persist(ClientDetailsEntry entry);
 }
