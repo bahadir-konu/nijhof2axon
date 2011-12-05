@@ -3,6 +3,7 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.commandhandling.CommandBus;
@@ -20,6 +21,10 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
     private ActiveAccountContainer activeAccountContainer;
     private Label clientLabel;
     private Label streetLabel;
+    private Label streetNumber;
+    private Label postalCode;
+    private Label city;
+    private Label phoneNumber;
 
     public ClientDetails(final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
 
@@ -36,6 +41,10 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
 
         clientLabel = addLabel(mainVerticalLayout, "Name: ");
         streetLabel = addLabel(mainVerticalLayout, "Street: ");
+        streetNumber = addLabel(mainVerticalLayout, "Street Number: ");
+        postalCode = addLabel(mainVerticalLayout, "Postal Code: ");
+        city = addLabel(mainVerticalLayout, "City: ");
+        phoneNumber = addLabel(mainVerticalLayout, "Phone Number: ");
 
         mainVerticalLayout.addComponent(getActiveAccountsTable(activeAccountContainer));
 
@@ -59,6 +68,8 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
         layout.setSpacing(true);
 
         Label captionLabel = new Label(caption);
+        captionLabel.setWidth("80px");
+        captionLabel.addStyleName(Runo.LAYOUT_DARKER);
         Label valueLabel = new Label();
         layout.addComponent(captionLabel);
         layout.addComponent(valueLabel);
@@ -120,6 +131,10 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
 
         clientLabel.setValue(clientEntry.getClientName());
         streetLabel.setValue(clientEntry.getStreet());
+        streetNumber.setValue(clientEntry.getStreetNumber());
+        postalCode.setValue(clientEntry.getPostalCode());
+        city.setValue(clientEntry.getCity());
+        phoneNumber.setValue(clientEntry.getPhoneNumber());
 
         activeAccountContainer.refreshContent(clientEntry.getIdentifier());
 

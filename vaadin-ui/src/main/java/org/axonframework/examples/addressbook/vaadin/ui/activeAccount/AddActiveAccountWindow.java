@@ -71,7 +71,7 @@ public class AddActiveAccountWindow extends Window {
 
 
                     OpenNewAccountForClientCommand command = new OpenNewAccountForClientCommand(clientEntry.getIdentifier(),
-                            activeAccountEntry.getAccountName().toString());
+                            activeAccountEntry.getAccountName(), activeAccountEntry.getAccountNumber());
 
                     commandBus.dispatch(command);
 

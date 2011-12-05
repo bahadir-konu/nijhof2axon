@@ -22,9 +22,7 @@ public class ClientView extends MediatorVerticalLayout {
         VerticalSplitPanel verticalSplitPanel = new VerticalSplitPanel();
         verticalSplitPanel.setHeight("900px");
         verticalSplitPanel.setWidth("100%");
-        verticalSplitPanel.setSplitPosition(150, Sizeable.UNITS_PIXELS);
-
-        //verticalSplitPanel.setSplitPosition(50);
+        verticalSplitPanel.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
         verticalSplitPanel.setFirstComponent(new ClientForm(commandBus, clientContainer));
         verticalSplitPanel.setSecondComponent(new ClientList(clientContainer));

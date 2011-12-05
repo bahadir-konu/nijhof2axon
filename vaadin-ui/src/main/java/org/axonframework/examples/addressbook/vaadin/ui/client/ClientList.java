@@ -21,9 +21,14 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
         final Table clientsTable = new Table("Clients");
         clientsTable.setContainerDataSource(clientContainer);
 
-        clientsTable.setVisibleColumns(new String[]{"clientName"});
+        clientsTable.setVisibleColumns(new String[]{"clientName", "city", "street", "streetNumber", "postalCode", "phoneNumber"});
 
         clientsTable.setColumnHeader("clientName", "Name");
+        clientsTable.setColumnHeader("city", "City");
+        clientsTable.setColumnHeader("street", "Street");
+        clientsTable.setColumnHeader("streetNumber", "Street Number");
+        clientsTable.setColumnHeader("postalCode", "Postal Code");
+        clientsTable.setColumnHeader("phoneNumber", "Phone Number");
 
         clientsTable.addListener(new ItemClickEvent.ItemClickListener() {
             @Override
@@ -46,6 +51,6 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
 
     @Override
     public void handleEvent(MediatorEvent event) {
-        
+
     }
 }

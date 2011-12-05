@@ -23,8 +23,8 @@ public class CreateClientCommandHandler {
         Assert.notNull(command.getName(), "Client name may not be null");
 
         AggregateIdentifier id = new StringAggregateIdentifier(UUID.randomUUID().toString());
-
-        Client client = new Client(id, command.getName());
+                                                     
+        Client client = new Client(id, command.getName(), command.getAddress(), command.getPhoneNumber());
 
         clientRepository.add(client);
     }

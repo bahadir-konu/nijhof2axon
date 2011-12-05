@@ -44,7 +44,7 @@ public class OpenNewAccountForClientCommandHandler {
             accountId = UUID.randomUUID().toString();
         }
 
-        ActiveAccount activeAccount = client.createNewActiveAccount(new StringAggregateIdentifier(accountId), command.getAccountName());
+        ActiveAccount activeAccount = client.createNewActiveAccount(new StringAggregateIdentifier(accountId), command.getAccountName(), command.getAccountNumber());
 
         activeAccountRepository.add(activeAccount);
     }

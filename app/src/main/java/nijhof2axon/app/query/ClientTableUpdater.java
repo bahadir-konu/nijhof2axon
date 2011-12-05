@@ -18,11 +18,17 @@ public class ClientTableUpdater {
         ClientDetailsEntry entry = new ClientDetailsEntry();
         entry.setIdentifier(event.getClientIdentifier());
         entry.setClientName(event.getName());
+        entry.setCity(event.getAddress().getCity());
+        entry.setPhoneNumber(event.getPhoneNumber());
+        entry.setPostalCode(event.getAddress().getPostalCode());
+        entry.setStreet(event.getAddress().getStreet());
+        entry.setStreetNumber(event.getAddress().getStreetNumber());
+        
         clientRepository.persist(entry);
     }
 
     @EventHandler
-    public void handleClientNameChangedEvent(ClientNameChangedEvent event) {          
+    public void handleClientNameChangedEvent(ClientNameChangedEvent event) {
         ClientDetailsEntry clientEntry = clientRepository.findByIdentifier(event.getClientIdentifier());
         clientEntry.setClientName(event.getNewName());
 
