@@ -23,10 +23,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountDetails;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.AddActiveAccountWindow;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawalView;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.*;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeNameView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetails;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
@@ -54,7 +51,7 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     private VerticalLayout mainVerticalLayout;
     private ClientView clientView;
     private ClientDetails clientDetails;
-    private ActiveAccountDetails activeAccountDetails;
+    private ActiveAccountView activeAccountView;
     private CashDepositView cashDepositView;
     private CashWithdrawalView cashWithdrawalView;
     private ChangeNameView changeNameView;
@@ -76,7 +73,7 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         mainWindow.setContent(mainVerticalLayout);
 
         clientDetails = new ClientDetails(commandBus, activeAccountContainer);
-        activeAccountDetails = new ActiveAccountDetails(activeAccountContainer, commandBus, ledgerContainer);
+        activeAccountView = new ActiveAccountView(activeAccountContainer, ledgerContainer, commandBus);
         cashDepositView = new CashDepositView(commandBus, ledgerContainer);
         cashWithdrawalView = new CashWithdrawalView(commandBus, ledgerContainer);
         changeNameView = new ChangeNameView(commandBus);
@@ -84,7 +81,7 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         mainWindow.addCollaborator(clientDetails);
         mainWindow.addCollaborator(activeAccountContainer);
         mainWindow.addCollaborator(this);
-        mainWindow.addCollaborator(activeAccountDetails);
+        mainWindow.addCollaborator(activeAccountView);
 
         setMainWindow(mainWindow);
 
@@ -97,25 +94,25 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         }
 
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
-            mainVerticalLayout.replaceComponent(clientDetails, activeAccountDetails);
+            mainVerticalLayout.replaceComponent(clientDetails, activeAccountView);
         }
 
         if (event instanceof CashDepositeRequestedEvent) {
             cashDepositView.refreshFor(((CashDepositeRequestedEvent) event).getActiveAccountEntry());
-            mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
+            mainVerticalLayout.replaceComponent(activeAccountView, cashDepositView);
         }
 
         if (event instanceof CashDepositeCompletedEvent) {
-            mainVerticalLayout.replaceComponent(cashDepositView, activeAccountDetails);
+            mainVerticalLayout.replaceComponent(cashDepositView, activeAccountView);
         }
 
         if (event instanceof CashWithdrawalRequestedEvent) {
             cashDepositView.refreshFor(((CashWithdrawalRequestedEvent) event).getActiveAccountEntry());
-            mainVerticalLayout.replaceComponent(activeAccountDetails, cashDepositView);
+            mainVerticalLayout.replaceComponent(activeAccountView, cashDepositView);
         }
 
         if (event instanceof CashWithdrawalCompletedEvent) {
-            mainVerticalLayout.replaceComponent(cashWithdrawalView, activeAccountDetails);
+            mainVerticalLayout.replaceComponent(cashWithdrawalView, activeAccountView);
         }
 
         if (event instanceof ChangeClientNameRequestedEvent) {
