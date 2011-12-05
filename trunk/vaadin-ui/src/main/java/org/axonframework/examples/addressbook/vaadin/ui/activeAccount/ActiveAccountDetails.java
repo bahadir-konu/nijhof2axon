@@ -1,9 +1,7 @@
 package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.Form;
-import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.Table;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
@@ -16,19 +14,22 @@ import org.axonframework.examples.addressbook.vaadin.events.CashDepositeComplete
 import org.axonframework.examples.addressbook.vaadin.events.CashDepositeRequestedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalRequestedEvent;
 
-import java.util.Arrays;
-
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
  * Date: 2011-11-04
  * Time: 11:13:27 AM
  */
+//BKONU: split and make similar to ClientView
 public class ActiveAccountDetails extends MediatorVerticalLayout implements MediatorListener {
 
     private ActiveAccountEntry activeAccountEntry;
     private LedgerContainer ledgerContainer;
     private ActiveAccountContainer activeAccountContainer;
-    private Form activeAccountForm = new Form();
+
+    //BKONU: use these similar to ClientDetails
+    private Label accountNameLabel;
+    private Label accountNumberLabel;
+    private Label balanceLabel;
 
     public ActiveAccountDetails(ActiveAccountContainer activeAccountContainer, final CommandBus commandBus, final LedgerContainer ledgerContainer) {
         this.activeAccountContainer = activeAccountContainer;
@@ -52,31 +53,55 @@ public class ActiveAccountDetails extends MediatorVerticalLayout implements Medi
 
         addComponent(menuBar);
 
-        activeAccountForm.setCaption("Active Account Details");
-        activeAccountForm.setSizeFull();
 
-        activeAccountForm.setVisibleItemProperties(Arrays.asList(new String[]{
-                "name"}));
+        VerticalLayout mainVerticalLayout = new VerticalLayout();
+        mainVerticalLayout.setSpacing(true);
 
-        activeAccountForm.setReadOnly(true);
+        HorizontalLayout space = new HorizontalLayout();
+        space.setHeight("40%");
+        mainVerticalLayout.addComponent(space);
 
-        addComponent(activeAccountForm);
+        accountNameLabel = addLabel(mainVerticalLayout, "Account Name: ");
+        accountNumberLabel = addLabel(mainVerticalLayout, "Account Number: ");
+        balanceLabel = addLabel(mainVerticalLayout, "Balance: ");
+
+
+        addComponent(mainVerticalLayout);
+
 
         final Table ledgersTable = new Table("Ledgers");
-//        ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
         ledgersTable.setContainerDataSource(ledgerContainer);
 
         addComponent(ledgersTable);
     }
 
+    //BKONU: duplicated at ActiveAccountDetails
+
+    private Label addLabel(VerticalLayout verticalLayout, String caption) {
+
+        HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(true);
+
+        Label captionLabel = new Label(caption);
+        captionLabel.setWidth("80px");
+        captionLabel.addStyleName(Runo.LAYOUT_DARKER);
+        Label valueLabel = new Label();
+        layout.addComponent(captionLabel);
+        layout.addComponent(valueLabel);
+
+        verticalLayout.addComponent(layout);
+
+        return valueLabel;
+    }
+
+
     public void refreshFor(ActiveAccountEntry activeAccountEntry) {
 
         this.activeAccountEntry = activeAccountContainer.refresh(activeAccountEntry);
 
-        BeanItem item = new BeanItem(this.activeAccountEntry);
-        item.removeItemProperty("identifier");
-
-        activeAccountForm.setItemDataSource(item);
+        accountNameLabel.setValue(this.activeAccountEntry.getAccountName());
+        accountNumberLabel.setValue(this.activeAccountEntry.getAccountNumber());
+        balanceLabel.setValue(this.activeAccountEntry.getBalance());
 
         ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
     }
