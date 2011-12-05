@@ -1,9 +1,6 @@
 package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import org.axonframework.commandhandling.CommandBus;
@@ -53,10 +50,15 @@ public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements 
 
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setSpacing(true);
+        mainVerticalLayout.setWidth("50%");
 
         HorizontalLayout space = new HorizontalLayout();
         space.setHeight("40%");
         mainVerticalLayout.addComponent(space);
+
+        Form captionForm = new Form();
+        captionForm.setCaption("Active Account Details");
+        mainVerticalLayout.addComponent(captionForm);
 
         accountNameLabel = addLabel(mainVerticalLayout, "Account Name: ");
         accountNumberLabel = addLabel(mainVerticalLayout, "Account Number: ");
