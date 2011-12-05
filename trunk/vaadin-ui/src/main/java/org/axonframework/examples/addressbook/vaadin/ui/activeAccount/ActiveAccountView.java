@@ -20,6 +20,7 @@ public class ActiveAccountView extends MediatorVerticalLayout implements Mediato
 
     public ActiveAccountView(ActiveAccountContainer activeAccountContainer, LedgerContainer ledgerContainer, CommandBus commandBus) {
         VerticalLayout mainVerticalLayout = new VerticalLayout();
+        mainVerticalLayout.setWidth("50%");
         mainVerticalLayout.setSizeFull();
 
         VerticalSplitPanel verticalSplitPanel = new VerticalSplitPanel();
