@@ -5,15 +5,17 @@ public class OpenNewAccountForClientCommand {
     private String accountId;
     private String clientId;
     private String accountName;
+    private String accountNumber;
 
-    public OpenNewAccountForClientCommand(String clientId, String accountName) {
-        this(null, clientId, accountName);
+    public OpenNewAccountForClientCommand(String clientId, String accountName, String accountNumber) {
+        this(null, clientId, accountName, accountNumber);
     }
 
-    public OpenNewAccountForClientCommand(String accountId, String clientId, String accountName) {
+    public OpenNewAccountForClientCommand(String accountId, String clientId, String accountName, String accountNumber) {
         this.accountId = accountId;
         this.clientId = clientId;
         this.accountName = accountName;
+        this.accountNumber = accountNumber;
     }
 
     public String getAccountId() {
@@ -26,5 +28,9 @@ public class OpenNewAccountForClientCommand {
 
     public String getAccountName() {
         return accountName;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 }

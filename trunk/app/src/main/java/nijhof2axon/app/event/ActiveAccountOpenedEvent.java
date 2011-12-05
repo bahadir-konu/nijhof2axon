@@ -11,10 +11,12 @@ import org.axonframework.domain.DomainEvent;
 public class ActiveAccountOpenedEvent extends DomainEvent {
     private AggregateIdentifier clientId;
     private String accountName;
+    private String accountNumber;
 
-    public ActiveAccountOpenedEvent(AggregateIdentifier clientId, String accountName) {
+    public ActiveAccountOpenedEvent(AggregateIdentifier clientId, String accountName, String accountNumber) {
         this.clientId = clientId;
         this.accountName = accountName;
+        this.accountNumber = accountNumber;
     }
 
     public AggregateIdentifier getClientId() {
@@ -31,5 +33,13 @@ public class ActiveAccountOpenedEvent extends DomainEvent {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }

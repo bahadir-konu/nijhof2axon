@@ -1,17 +1,31 @@
 package nijhof2axon.app.command;
 
+import nijhof2axon.app.domain.Address;
+
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class CreateClientCommand {
 
-    public CreateClientCommand(String name) {
+    public CreateClientCommand(String name, Address address, String phoneNumber) {
         this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     private String name;
+    private Address address;
+    private String phoneNumber;
 
     public String getName() {
         return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

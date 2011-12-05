@@ -1,8 +1,9 @@
 package nijhof2axon.app.init;
 
+import nijhof2axon.app.command.CreateClientCommand;
+import nijhof2axon.app.domain.Address;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.domain.AggregateIdentifier;
-import nijhof2axon.app.command.CreateClientCommand;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -30,10 +31,14 @@ public class
 
     public void initializeData() {
         if (initialized.compareAndSet(false, true)) {
-            commandBus.dispatch(new CreateClientCommand("Sample Client 1"));
-            commandBus.dispatch(new CreateClientCommand("Sample Client 2"));
+            commandBus.dispatch(new CreateClientCommand("Sample Client 1",
+                    new Address("a street", "123", "123", "123"), "12345678"));
 
             //BKONU: How to create this kind of sample data?
+            // Answer: Ask repository
+            //  for the client you created. then use it!
+            // bus.dispatch(cmd, callback) should be used to be sure command is handled!!
+
             // (We dont have client id yet..)
             AggregateIdentifier clientId = null;
 //            OpenNewAccountForClientCommand accountForClientCommand = new OpenNewAccountForClientCommand

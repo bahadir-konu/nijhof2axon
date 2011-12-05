@@ -23,6 +23,7 @@ public class ActiveAccountTableUpdater {
         activeAccountEntry.setAccountName(event.getAccountName());
         activeAccountEntry.setBalance(new BigDecimal(0));
         activeAccountEntry.setIdentifier(event.getAggregateIdentifier().asString());
+        activeAccountEntry.setAccountNumber(event.getAccountNumber());
 
         activeAccountRepository.save(activeAccountEntry);
     }

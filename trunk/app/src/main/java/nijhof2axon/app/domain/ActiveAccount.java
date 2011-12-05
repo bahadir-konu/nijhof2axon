@@ -26,9 +26,9 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
     private List<Ledger> ledgers = new ArrayList<Ledger>();
 
-    public ActiveAccount(AggregateIdentifier identifier, AggregateIdentifier clientId, String accountName) {
+    public ActiveAccount(AggregateIdentifier identifier, AggregateIdentifier clientId, String accountName, String accountNumber) {
         super(identifier);
-        apply(new ActiveAccountOpenedEvent(clientId, accountName));
+        apply(new ActiveAccountOpenedEvent(clientId, accountName, accountNumber));
     }
 
     public ActiveAccount(AggregateIdentifier identifier) {
@@ -56,6 +56,11 @@ public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
         ledgers.add(new DebitMutation(event.getAmount(), null));
     }
 
+    protected void handleActiveAccountOpenedEvent(ActiveAccountOpenedEvent event) {
+        clientId = event.getClientId();
+        accountName = event.getAccountName();
+        accountNumber = event.getAccountNumber();
+    }
 
     public void receiveTransferFrom(String sourceAccountNumber, BigDecimal amount) {
 
