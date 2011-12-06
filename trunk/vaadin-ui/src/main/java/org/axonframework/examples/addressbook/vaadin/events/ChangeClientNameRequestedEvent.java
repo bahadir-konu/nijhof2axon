@@ -7,13 +7,13 @@ import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ChangeClientNameRequestedEvent implements MediatorEvent {
-    private ClientDetailsEntry clientEntry;
+    private ClientDetailsEntry clientDetailsEntry;
 
-    public ChangeClientNameRequestedEvent(ClientDetailsEntry clientEntry) {
-        this.clientEntry = clientEntry;
+    public ChangeClientNameRequestedEvent(ClientDetailsEntry clientDetailsEntry) {
+        this.clientDetailsEntry = clientDetailsEntry;
     }
 
-    public ClientDetailsEntry getClientEntry() {
-        return clientEntry;
+    public ClientDetailsEntry getClientDetailsEntry() {
+        return clientDetailsEntry;
     }
 }

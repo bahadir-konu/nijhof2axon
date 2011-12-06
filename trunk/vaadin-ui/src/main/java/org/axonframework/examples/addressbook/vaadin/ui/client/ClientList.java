@@ -8,13 +8,17 @@ import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
+import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameCompletedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
 
 /**
- * Author: Bahadir Konu (bah.konu@gmail.com) 
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ClientList extends MediatorVerticalLayout implements MediatorListener {
+    private ClientContainer clientContainer;
+
     public ClientList(ClientContainer clientContainer) {
+        this.clientContainer = clientContainer;
 
         final Table clientsTable = new Table("Clients");
         clientsTable.setContainerDataSource(clientContainer);
@@ -49,6 +53,9 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
 
     @Override
     public void handleEvent(MediatorEvent event) {
+        if (event instanceof ChangeClientNameCompletedEvent) {
+            clientContainer.refreshContent();
+        }
 
     }
 }

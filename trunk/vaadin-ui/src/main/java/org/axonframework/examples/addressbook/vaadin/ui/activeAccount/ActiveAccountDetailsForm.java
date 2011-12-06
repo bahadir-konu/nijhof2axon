@@ -3,7 +3,6 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
-import nijhof2axon.app.query.ClientEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
@@ -67,7 +66,7 @@ public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements 
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 //BKONU: how to handle this?
-                fire(new ClientDetailsViewRequestedEvent(new ClientEntry()));
+                fire(new ClientDetailsViewRequestedEvent(null));
             }
         });
 

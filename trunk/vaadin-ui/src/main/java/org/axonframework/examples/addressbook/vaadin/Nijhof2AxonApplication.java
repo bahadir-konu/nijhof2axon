@@ -27,7 +27,7 @@ import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAcco
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.AddActiveAccountWindow;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawalView;
-import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeNameView;
+import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeClientNameWindow;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetailsView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +57,6 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     private ActiveAccountView activeAccountView;
     private CashDepositView cashDepositView;
     private CashWithdrawalView cashWithdrawalView;
-    private ChangeNameView changeNameView;
 
     @Override
     public void init() {
@@ -75,12 +74,12 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         mainWindow.setContent(mainVerticalLayout);
 
-        clientDetailsView = new ClientDetailsView(activeAccountContainer);
+        clientDetailsView = new ClientDetailsView(activeAccountContainer, null);
         activeAccountView = new ActiveAccountView(activeAccountContainer, ledgerContainer, commandBus);
         cashDepositView = new CashDepositView(commandBus, ledgerContainer);
         cashWithdrawalView = new CashWithdrawalView(commandBus, ledgerContainer);
-        changeNameView = new ChangeNameView(commandBus);
 
+        mainWindow.addCollaborator(clientView);
         mainWindow.addCollaborator(clientDetailsView);
         mainWindow.addCollaborator(activeAccountContainer);
         mainWindow.addCollaborator(this);
@@ -119,12 +118,8 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         }
 
         if (event instanceof ChangeClientNameRequestedEvent) {
-            changeNameView.refreshFor(((ChangeClientNameRequestedEvent) event).getClientEntry());
-            mainVerticalLayout.replaceComponent(clientDetailsView, changeNameView);
-        }
-
-        if (event instanceof ChangeClientNameCompletedEvent) {
-            mainVerticalLayout.replaceComponent(changeNameView, clientDetailsView);
+            mainWindow.addWindow(new ChangeClientNameWindow(commandBus, ((ChangeClientNameRequestedEvent) event).getClientDetailsEntry()
+            ));
         }
 
         if (event instanceof ClientListViewRequestedEvent) {
