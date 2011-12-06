@@ -7,9 +7,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-04
- * Time: 11:28:37 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 @Entity
 public class LedgerEntry {

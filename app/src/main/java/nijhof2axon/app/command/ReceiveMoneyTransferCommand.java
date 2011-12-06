@@ -5,9 +5,7 @@ import org.axonframework.domain.AggregateIdentifier;
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-10
- * Time: 3:09:53 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ReceiveMoneyTransferCommand {
 

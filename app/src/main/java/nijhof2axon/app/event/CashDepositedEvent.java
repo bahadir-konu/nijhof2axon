@@ -5,9 +5,7 @@ import org.axonframework.domain.DomainEvent;
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-05
- * Time: 11:17:50 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class CashDepositedEvent extends DomainEvent {
 

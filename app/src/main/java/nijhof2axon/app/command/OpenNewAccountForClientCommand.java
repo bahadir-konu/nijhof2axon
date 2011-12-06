@@ -1,5 +1,8 @@
 package nijhof2axon.app.command;
 
+/**
+ * Author: Bahadir Konu (bah.konu@gmail.com)
+ */
 public class OpenNewAccountForClientCommand {
 
     private String accountId;

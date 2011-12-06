@@ -4,9 +4,7 @@ import org.axonframework.domain.AggregateIdentifier;
 import org.axonframework.domain.DomainEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-17
- * Time: 3:34:48 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class ActiveAccountOpenedEvent extends DomainEvent {
     private AggregateIdentifier clientId;

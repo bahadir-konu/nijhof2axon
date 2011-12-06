@@ -3,14 +3,11 @@ package nijhof2axon.app.command;
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-19
- * Time: 11:50:28 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class WithdrawCashCommand {
 
     private String activeAccountId;
-
     private BigDecimal amount;
 
     public WithdrawCashCommand(String activeAccountId, BigDecimal amount) {

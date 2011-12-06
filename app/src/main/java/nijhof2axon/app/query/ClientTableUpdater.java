@@ -6,9 +6,7 @@ import nijhof2axon.app.event.ClientNameChangedEvent;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-02
- * Time: 2:59:29 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ClientTableUpdater {
     private ClientRepository clientRepository;
