@@ -24,7 +24,7 @@ public class ClientDetailsView extends MediatorVerticalLayout implements Mediato
         VerticalSplitPanel verticalSplitPanel = new VerticalSplitPanel();
         verticalSplitPanel.setHeight("900px");
         verticalSplitPanel.setWidth("100%");
-        verticalSplitPanel.setSplitPosition(20, Sizeable.UNITS_PERCENTAGE);
+        verticalSplitPanel.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
         clientDetailsForm = new ClientDetailsForm();
         activeAccountList = new ActiveAccountList(activeAccountContainer);

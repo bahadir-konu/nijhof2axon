@@ -3,15 +3,13 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
+import nijhof2axon.app.query.ClientEntry;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
-import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountDetailsRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.CashDepositeCompletedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.CashDepositeRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalRequestedEvent;
+import org.axonframework.examples.addressbook.vaadin.events.*;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
@@ -64,6 +62,18 @@ public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements 
         accountNumberLabel = addLabel(mainVerticalLayout, "Account Number: ");
         balanceLabel = addLabel(mainVerticalLayout, "Balance: ");
 
+        Button backButton = new Button("Back");
+        backButton.addListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                //BKONU: how to handle this?
+                fire(new ClientDetailsViewRequestedEvent(new ClientEntry()));
+            }
+        });
+
+        mainVerticalLayout.addComponent(backButton);
+
+        mainVerticalLayout.setComponentAlignment(backButton, Alignment.BOTTOM_LEFT);
 
         addComponent(mainVerticalLayout);
 
