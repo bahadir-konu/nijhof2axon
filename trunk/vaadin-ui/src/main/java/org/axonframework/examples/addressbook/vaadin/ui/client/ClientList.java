@@ -4,7 +4,7 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
 import nijhof2axon.app.query.ClientDetailsEntry;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
@@ -52,7 +52,7 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
 
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         if (event instanceof ChangeClientNameCompletedEvent) {
             clientContainer.refreshContent();
         }

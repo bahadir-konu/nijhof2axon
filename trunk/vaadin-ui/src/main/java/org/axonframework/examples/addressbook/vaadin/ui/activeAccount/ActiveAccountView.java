@@ -4,7 +4,7 @@ import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
@@ -40,7 +40,7 @@ public class ActiveAccountView extends MediatorVerticalLayout implements Mediato
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         activeAccountDetailsForm.handleEvent(event);
         ledgerList.handleEvent(event);
     }

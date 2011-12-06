@@ -3,7 +3,7 @@ package org.axonframework.examples.addressbook.vaadin.data;
 import com.vaadin.data.util.BeanItemContainer;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.app.query.ActiveAccountRepository;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         if (event instanceof ActiveAccountCreatedEvent) {
             refreshContent(((ActiveAccountCreatedEvent) event).getClientIdentifier());
         }

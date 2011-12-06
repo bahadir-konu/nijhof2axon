@@ -4,7 +4,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
@@ -99,13 +99,13 @@ public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements 
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
             refreshFor(((ActiveAccountDetailsRequestedEvent) event).getActiveAccountEntry());
         }
 
-        if (event instanceof CashDepositeCompletedEvent) {
-            refreshFor(((CashDepositeCompletedEvent) event).getActiveAccountEntry());
+        if (event instanceof LedgerModificationCompletedEvent) {
+            refreshFor(((LedgerModificationCompletedEvent) event).getActiveAccountEntry());
         }
 
     }

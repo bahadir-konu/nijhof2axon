@@ -21,7 +21,7 @@ public class MainWindow extends Window {
         collaborators.remove(collaborator);
     }
 
-    public void fireEvent(MediatorEvent event) {
+    public void fireEvent(UIEvent event) {
         for (MediatorListener ml : collaborators) {
             ml.handleEvent(event);
         }

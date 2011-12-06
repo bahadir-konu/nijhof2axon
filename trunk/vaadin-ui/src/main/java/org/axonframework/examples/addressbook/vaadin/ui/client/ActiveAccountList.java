@@ -5,7 +5,7 @@ import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import nijhof2axon.app.query.ActiveAccountEntry;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
@@ -33,7 +33,7 @@ public class ActiveAccountList extends MediatorVerticalLayout implements Mediato
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
 
         if (event instanceof ClientSelectedEvent) {
             activeAccountContainer.refreshContent(((ClientSelectedEvent) event).getSelectedClient().getIdentifier());

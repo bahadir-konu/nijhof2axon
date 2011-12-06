@@ -23,10 +23,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountView;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.AddActiveAccountWindow;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawalView;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.*;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeClientNameWindow;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetailsView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
@@ -55,7 +52,6 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     private ClientView clientView;
     private ClientDetailsView clientDetailsView;
     private ActiveAccountView activeAccountView;
-    private CashDepositView cashDepositView;
     private CashWithdrawalView cashWithdrawalView;
 
     @Override
@@ -76,7 +72,6 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         clientDetailsView = new ClientDetailsView(activeAccountContainer, null);
         activeAccountView = new ActiveAccountView(activeAccountContainer, ledgerContainer, commandBus);
-        cashDepositView = new CashDepositView(commandBus, ledgerContainer);
         cashWithdrawalView = new CashWithdrawalView(commandBus, ledgerContainer);
 
         mainWindow.addCollaborator(clientView);
@@ -90,27 +85,13 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         if (event instanceof ClientSelectedEvent) {
             mainVerticalLayout.replaceComponent(clientView, clientDetailsView);
         }
 
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
             mainVerticalLayout.replaceComponent(clientDetailsView, activeAccountView);
-        }
-
-        if (event instanceof CashDepositeRequestedEvent) {
-            cashDepositView.refreshFor(((CashDepositeRequestedEvent) event).getActiveAccountEntry());
-            mainVerticalLayout.replaceComponent(activeAccountView, cashDepositView);
-        }
-
-        if (event instanceof CashDepositeCompletedEvent) {
-            mainVerticalLayout.replaceComponent(cashDepositView, activeAccountView);
-        }
-
-        if (event instanceof CashWithdrawalRequestedEvent) {
-            cashDepositView.refreshFor(((CashWithdrawalRequestedEvent) event).getActiveAccountEntry());
-            mainVerticalLayout.replaceComponent(activeAccountView, cashDepositView);
         }
 
         if (event instanceof CashWithdrawalCompletedEvent) {
@@ -133,6 +114,16 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         if (event instanceof ClientDetailsViewRequestedEvent) {
             mainVerticalLayout.replaceComponent(activeAccountView, clientDetailsView);
+        }
+
+        if (event instanceof CashDepositeRequestedEvent) {
+            mainWindow.addWindow(new CashDepositWindow(((CashDepositeRequestedEvent) event).getActiveAccountEntry(),
+                    commandBus));
+        }
+
+        if (event instanceof CashWithdrawalRequestedEvent) {
+            mainWindow.addWindow(new CashWithdrawalWindow(((CashWithdrawalRequestedEvent) event).getActiveAccountEntry(),
+                    commandBus));
         }
 
 

@@ -7,7 +7,7 @@ import nijhof2axon.app.command.CreateClientCommand;
 import nijhof2axon.app.domain.Address;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 
@@ -63,7 +63,7 @@ public class ClientForm extends VerticalLayout implements MediatorListener {
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         //do nothing
     }
 

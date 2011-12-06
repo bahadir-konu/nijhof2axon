@@ -1,12 +1,12 @@
 package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
 import com.vaadin.ui.Table;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountDetailsRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.CashDepositeCompletedEvent;
+import org.axonframework.examples.addressbook.vaadin.events.LedgerModificationCompletedEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
@@ -30,13 +30,13 @@ public class LedgerList extends MediatorVerticalLayout implements MediatorListen
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
             ledgerContainer.refreshContent(((ActiveAccountDetailsRequestedEvent) event).getActiveAccountEntry().getIdentifier());
         }
 
-        if (event instanceof CashDepositeCompletedEvent) {
-            ledgerContainer.refreshContent(((CashDepositeCompletedEvent) event).getActiveAccountEntry().getIdentifier());
+        if (event instanceof LedgerModificationCompletedEvent) {
+            ledgerContainer.refreshContent(((LedgerModificationCompletedEvent) event).getActiveAccountEntry().getIdentifier());
         }
 
     }
