@@ -1,9 +1,9 @@
 package org.axonframework.examples.addressbook.vaadin.events;
 
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ClientListViewRequestedEvent implements MediatorEvent {
+public class ClientListViewRequestedEvent implements UIEvent {
 }

@@ -1,11 +1,11 @@
 package org.axonframework.examples.addressbook.vaadin.events;
 
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ActiveAccountCreatedEvent implements MediatorEvent {
+public class ActiveAccountCreatedEvent implements UIEvent {
 
     private String clientIdentifier;
 

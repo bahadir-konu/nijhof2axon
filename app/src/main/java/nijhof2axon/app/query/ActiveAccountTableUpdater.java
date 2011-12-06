@@ -2,6 +2,7 @@ package nijhof2axon.app.query;
 
 import nijhof2axon.app.event.ActiveAccountOpenedEvent;
 import nijhof2axon.app.event.CashDepositedEvent;
+import nijhof2axon.app.event.CashWithdrawnEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,7 +35,17 @@ public class ActiveAccountTableUpdater {
         activeAccountEntry.setBalance(event.getNewBalance());
 
         activeAccountRepository.save(activeAccountEntry);
-
     }
+
+    @EventHandler
+    public void handleCashWithdrawnEvent(CashWithdrawnEvent event) {
+
+        ActiveAccountEntry activeAccountEntry = activeAccountRepository.findById(event.getActiveAccountId());
+
+        activeAccountEntry.setBalance(event.getNewBalance());
+
+        activeAccountRepository.save(activeAccountEntry);
+    }
+
 }
 

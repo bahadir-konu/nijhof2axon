@@ -12,7 +12,7 @@ public class MediatorVerticalLayout extends VerticalLayout {
         return (Nijhof2AxonApplication) super.getApplication();
     }
 
-    public void fire(MediatorEvent event) {
+    public void fire(UIEvent event) {
         getApplication().getMainWindow().fireEvent(event);
     }
 

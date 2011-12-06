@@ -4,7 +4,7 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ClientDetailsEntry;
-import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.events.*;
@@ -109,7 +109,7 @@ public class ClientDetailsForm extends MediatorVerticalLayout implements Mediato
     }
 
     @Override
-    public void handleEvent(MediatorEvent event) {
+    public void handleEvent(UIEvent event) {
         if (event instanceof ClientSelectedEvent) {
             refreshFor(((ClientSelectedEvent) event).getSelectedClient());
         }
