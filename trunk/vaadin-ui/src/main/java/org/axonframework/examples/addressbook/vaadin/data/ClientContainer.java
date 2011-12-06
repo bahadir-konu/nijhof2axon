@@ -10,9 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-01
- * Time: 3:28:40 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 @Component
 public class ClientContainer extends BeanItemContainer<ClientDetailsEntry> implements Serializable {

@@ -8,11 +8,9 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.TextField;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-29
- * Time: 11:09:34 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ActiveAccountEditModeFieldFactory extends DefaultFieldFactory {
+public class ActiveAccountFormFieldFactory extends DefaultFieldFactory {
 
     @Override
     public Field createField(Item item, Object propertyId, Component uiContext) {

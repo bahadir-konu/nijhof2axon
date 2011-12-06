@@ -4,9 +4,7 @@ import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-26
- * Time: 6:32:28 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ChangeClientNameCompletedEvent implements MediatorEvent {
     private ClientDetailsEntry clientEntry;

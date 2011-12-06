@@ -1,9 +1,7 @@
 package org.axonframework.examples.addressbook.vaadin;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-23
- * Time: 10:02:43 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public interface MediatorListener {
     void handleEvent(MediatorEvent event);

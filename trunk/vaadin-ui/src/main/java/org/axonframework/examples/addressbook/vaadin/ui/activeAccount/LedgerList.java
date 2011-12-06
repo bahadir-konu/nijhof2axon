@@ -9,7 +9,7 @@ import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountDetails
 import org.axonframework.examples.addressbook.vaadin.events.CashDepositeCompletedEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class LedgerList extends MediatorVerticalLayout implements MediatorListener {
     LedgerContainer ledgerContainer;
