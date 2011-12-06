@@ -18,7 +18,7 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
     <persistence-unit name="addresses" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>nijhof2axon.app.query.ClientEntry</class>
+        <class>nijhof2axon.app.query.ClientDetailsEntry</class>
         <class>nijhof2axon.app.query.ActiveAccountEntry</class>
         <class>nijhof2axon.app.query.LedgerEntry</class>
 

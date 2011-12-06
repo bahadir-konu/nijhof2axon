@@ -26,7 +26,7 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public ClientDetailsEntry findByIdentifier(String identifier) {
-        return (ClientDetailsEntry) entityManager.createQuery("SELECT e FROM ClientEntry e WHERE e.identifier=:identifier")
+        return (ClientDetailsEntry) entityManager.createQuery("SELECT e FROM ClientDetailsEntry e WHERE e.identifier=:identifier")
                 .setParameter("identifier", identifier)
                 .getSingleResult();
     }

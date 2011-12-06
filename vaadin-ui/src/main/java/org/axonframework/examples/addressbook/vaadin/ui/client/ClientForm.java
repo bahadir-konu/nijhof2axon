@@ -7,14 +7,16 @@ import nijhof2axon.app.command.CreateClientCommand;
 import nijhof2axon.app.domain.Address;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
+import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 
 import java.util.Arrays;
 
 /**
- * Author: Bahadir Konu (bah.konu@gmail.com) 
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ClientForm extends VerticalLayout {
+public class ClientForm extends VerticalLayout implements MediatorListener {
 
     public ClientForm(final CommandBus commandBus, final ClientContainer clientContainer) {
         final Form clientForm = new Form();
@@ -58,6 +60,11 @@ public class ClientForm extends VerticalLayout {
 
         addComponent(saveButton);
 
+    }
+
+    @Override
+    public void handleEvent(MediatorEvent event) {
+        //do nothing
     }
 
     private class ClientFormFieldFactory extends DefaultFieldFactory {

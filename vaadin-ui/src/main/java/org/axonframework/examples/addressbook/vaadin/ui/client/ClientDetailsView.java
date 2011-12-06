@@ -3,6 +3,7 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
+import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
@@ -15,7 +16,7 @@ public class ClientDetailsView extends MediatorVerticalLayout implements Mediato
     private ClientDetailsForm clientDetailsForm;
     private ActiveAccountList activeAccountList;
 
-    public ClientDetailsView(ActiveAccountContainer activeAccountContainer) {
+    public ClientDetailsView(ActiveAccountContainer activeAccountContainer, ClientDetailsEntry clientDetailsEntry) {
 
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setWidth("50%");
@@ -26,7 +27,7 @@ public class ClientDetailsView extends MediatorVerticalLayout implements Mediato
         verticalSplitPanel.setWidth("100%");
         verticalSplitPanel.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
-        clientDetailsForm = new ClientDetailsForm();
+        clientDetailsForm = new ClientDetailsForm(clientDetailsEntry);
         activeAccountList = new ActiveAccountList(activeAccountContainer);
 
         verticalSplitPanel.setFirstComponent(clientDetailsForm);
