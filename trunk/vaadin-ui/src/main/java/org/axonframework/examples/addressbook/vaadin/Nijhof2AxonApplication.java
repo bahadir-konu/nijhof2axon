@@ -23,9 +23,12 @@ import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
-import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.*;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.ActiveAccountView;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.AddActiveAccountWindow;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashDepositView;
+import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.CashWithdrawalView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeNameView;
-import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetails;
+import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetailsView;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -50,7 +53,7 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
     private VerticalLayout mainVerticalLayout;
     private ClientView clientView;
-    private ClientDetails clientDetails;
+    private ClientDetailsView clientDetailsView;
     private ActiveAccountView activeAccountView;
     private CashDepositView cashDepositView;
     private CashWithdrawalView cashWithdrawalView;
@@ -72,13 +75,13 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         mainWindow.setContent(mainVerticalLayout);
 
-        clientDetails = new ClientDetails(commandBus, activeAccountContainer);
+        clientDetailsView = new ClientDetailsView(activeAccountContainer);
         activeAccountView = new ActiveAccountView(activeAccountContainer, ledgerContainer, commandBus);
         cashDepositView = new CashDepositView(commandBus, ledgerContainer);
         cashWithdrawalView = new CashWithdrawalView(commandBus, ledgerContainer);
         changeNameView = new ChangeNameView(commandBus);
 
-        mainWindow.addCollaborator(clientDetails);
+        mainWindow.addCollaborator(clientDetailsView);
         mainWindow.addCollaborator(activeAccountContainer);
         mainWindow.addCollaborator(this);
         mainWindow.addCollaborator(activeAccountView);
@@ -90,11 +93,11 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
     @Override
     public void handleEvent(MediatorEvent event) {
         if (event instanceof ClientSelectedEvent) {
-            mainVerticalLayout.replaceComponent(clientView, clientDetails);
+            mainVerticalLayout.replaceComponent(clientView, clientDetailsView);
         }
 
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
-            mainVerticalLayout.replaceComponent(clientDetails, activeAccountView);
+            mainVerticalLayout.replaceComponent(clientDetailsView, activeAccountView);
         }
 
         if (event instanceof CashDepositeRequestedEvent) {
@@ -117,19 +120,18 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         if (event instanceof ChangeClientNameRequestedEvent) {
             changeNameView.refreshFor(((ChangeClientNameRequestedEvent) event).getClientEntry());
-            mainVerticalLayout.replaceComponent(clientDetails, changeNameView);
+            mainVerticalLayout.replaceComponent(clientDetailsView, changeNameView);
         }
 
         if (event instanceof ChangeClientNameCompletedEvent) {
-            mainVerticalLayout.replaceComponent(changeNameView, clientDetails);
+            mainVerticalLayout.replaceComponent(changeNameView, clientDetailsView);
         }
 
         if (event instanceof ClientListViewRequestedEvent) {
-            mainVerticalLayout.replaceComponent(clientDetails, clientView);
+            mainVerticalLayout.replaceComponent(clientDetailsView, clientView);
         }
 
         if (event instanceof AddActiveAccountRequestedEvent) {
-
             mainWindow.addWindow(new AddActiveAccountWindow(commandBus, ((AddActiveAccountRequestedEvent) event).getClientDetailsEntry(),
                     activeAccountContainer));
         }
