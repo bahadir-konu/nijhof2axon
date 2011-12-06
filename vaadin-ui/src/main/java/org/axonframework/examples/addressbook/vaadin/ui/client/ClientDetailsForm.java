@@ -1,24 +1,20 @@
 package org.axonframework.examples.addressbook.vaadin.ui.client;
 
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
-import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.app.query.ClientDetailsEntry;
-import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
-import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ClientDetails extends MediatorVerticalLayout implements MediatorListener {
+public class ClientDetailsForm extends MediatorVerticalLayout implements MediatorListener {
+
     private ClientDetailsEntry clientDetailsEntry;
-    private ActiveAccountContainer activeAccountContainer;
     private Label clientLabel;
     private Label streetLabel;
     private Label streetNumber;
@@ -26,9 +22,7 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
     private Label city;
     private Label phoneNumber;
 
-    public ClientDetails(final CommandBus commandBus, final ActiveAccountContainer activeAccountContainer) {
-
-        this.activeAccountContainer = activeAccountContainer;
+    public ClientDetailsForm() {
 
         addMenuItems();
 
@@ -46,8 +40,6 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
         city = addLabel(mainVerticalLayout, "City: ");
         phoneNumber = addLabel(mainVerticalLayout, "Phone Number: ");
 
-        mainVerticalLayout.addComponent(getActiveAccountsTable(activeAccountContainer));
-
         Button backButton = new Button("Back");
         backButton.addListener(new Button.ClickListener() {
             @Override
@@ -61,46 +53,6 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
         addComponent(mainVerticalLayout);
 
     }
-
-    private Label addLabel(VerticalLayout verticalLayout, String caption) {
-
-        HorizontalLayout layout = new HorizontalLayout();
-        layout.setSpacing(true);
-
-        Label captionLabel = new Label(caption);
-        captionLabel.setWidth("80px");
-        captionLabel.addStyleName(Runo.LAYOUT_DARKER);
-        Label valueLabel = new Label();
-        layout.addComponent(captionLabel);
-        layout.addComponent(valueLabel);
-
-        verticalLayout.addComponent(layout);
-
-        return valueLabel;
-    }
-
-
-    private Table getActiveAccountsTable(ActiveAccountContainer activeAccountContainer) {
-        final Table activeAccountsTable = new Table("Active Accounts");
-        activeAccountsTable.setContainerDataSource(activeAccountContainer);
-
-        activeAccountsTable.addListener(new ItemClickEvent.ItemClickListener() {
-            @Override
-            public void itemClick(ItemClickEvent event) {
-
-                BeanItem beanItem = (BeanItem) event.getItem();
-
-                ActiveAccountEntry activeAccountEntry = (ActiveAccountEntry) beanItem.getBean();
-
-                fire(new ActiveAccountDetailsRequestedEvent(activeAccountEntry));
-
-            }
-        });
-
-        return activeAccountsTable;
-
-    }
-
 
     private void addMenuItems() {
         MenuBar menuBar = new MenuBar();
@@ -122,6 +74,22 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
         addComponent(menuBar);
     }
 
+    private Label addLabel(VerticalLayout verticalLayout, String caption) {
+
+        HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(true);
+
+        Label captionLabel = new Label(caption);
+        captionLabel.setWidth("80px");
+        captionLabel.addStyleName(Runo.LAYOUT_DARKER);
+        Label valueLabel = new Label();
+        layout.addComponent(captionLabel);
+        layout.addComponent(valueLabel);
+
+        verticalLayout.addComponent(layout);
+
+        return valueLabel;
+    }
 
     public void refreshFor(ClientDetailsEntry clientEntry) {
         this.clientDetailsEntry = clientEntry;
@@ -136,8 +104,7 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
         city.setValue(clientEntry.getCity());
         phoneNumber.setValue(clientEntry.getPhoneNumber());
 
-        activeAccountContainer.refreshContent(clientEntry.getIdentifier());
-
+        
 
     }
 
@@ -157,10 +124,5 @@ public class ClientDetails extends MediatorVerticalLayout implements MediatorLis
 
     }
 
-    @Override
-    public void attach() {
-        super.attach();
-        getApplication().getMainWindow().addCollaborator(this);
-    }
 
 }
