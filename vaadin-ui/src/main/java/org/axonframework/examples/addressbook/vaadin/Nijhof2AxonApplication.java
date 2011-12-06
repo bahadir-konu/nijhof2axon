@@ -135,6 +135,12 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
             mainWindow.addWindow(new AddActiveAccountWindow(commandBus, ((AddActiveAccountRequestedEvent) event).getClientDetailsEntry(),
                     activeAccountContainer));
         }
+
+        if (event instanceof ClientDetailsViewRequestedEvent) {
+            mainVerticalLayout.replaceComponent(activeAccountView, clientDetailsView);
+        }
+
+
     }
 
     @Override
