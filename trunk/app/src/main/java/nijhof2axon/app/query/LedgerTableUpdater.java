@@ -9,9 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-05
- * Time: 12:49:17 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class LedgerTableUpdater {
     @PersistenceContext

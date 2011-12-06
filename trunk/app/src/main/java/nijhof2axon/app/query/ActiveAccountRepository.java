@@ -3,9 +3,7 @@ package nijhof2axon.app.query;
 import java.util.List;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-10
- * Time: 4:27:00 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public interface ActiveAccountRepository {
 

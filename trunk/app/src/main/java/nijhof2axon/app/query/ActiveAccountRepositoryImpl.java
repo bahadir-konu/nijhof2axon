@@ -8,9 +8,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-10
- * Time: 4:32:56 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 @Repository
 @Transactional(readOnly = true)

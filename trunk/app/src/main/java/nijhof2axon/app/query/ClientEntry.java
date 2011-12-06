@@ -8,9 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-01
- * Time: 3:45:24 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 @Entity
 public class ClientEntry {

@@ -3,9 +3,7 @@ package nijhof2axon.app.event;
 import org.axonframework.domain.DomainEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-22
- * Time: 10:17:11 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ClientNameChangedEvent extends DomainEvent {
     private String clientIdentifier;

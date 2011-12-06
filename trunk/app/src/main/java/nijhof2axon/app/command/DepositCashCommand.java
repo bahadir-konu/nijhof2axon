@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 public class DepositCashCommand {
 
     private String activeAccountId;
-
     private BigDecimal amount;
 
     public DepositCashCommand(String activeAccountId, BigDecimal amount) {

@@ -8,9 +8,7 @@ import nijhof2axon.app.command.ChangeClientNameCommand;
 import org.axonframework.unitofwork.UnitOfWork;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-22
- * Time: 10:12:59 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ChangeClientNameCommandHandler {
     private Repository<Client> clientRepository;

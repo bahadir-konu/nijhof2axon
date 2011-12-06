@@ -1,9 +1,7 @@
 package nijhof2axon.app.command;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-22
- * Time: 10:08:38 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ChangeClientNameCommand {
     private String clientIdentifier;

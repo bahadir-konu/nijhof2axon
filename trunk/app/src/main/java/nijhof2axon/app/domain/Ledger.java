@@ -3,9 +3,7 @@ package nijhof2axon.app.domain;
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-10
- * Time: 11:27:11 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class Ledger {
 

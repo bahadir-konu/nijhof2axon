@@ -10,9 +10,7 @@ import org.axonframework.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-19
- * Time: 11:56:08 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class WithdrawCashCommandHandler {
 

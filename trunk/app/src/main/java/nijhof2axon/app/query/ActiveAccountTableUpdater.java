@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-01
- * Time: 5:46:22 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ActiveAccountTableUpdater {
     @Autowired

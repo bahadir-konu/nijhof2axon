@@ -13,8 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class
-        SampleDataGenerator implements ApplicationListener {
+public class SampleDataGenerator implements ApplicationListener {
 
     private CommandBus commandBus;
     private AtomicBoolean initialized = new AtomicBoolean();
@@ -34,8 +33,8 @@ public class
             commandBus.dispatch(new CreateClientCommand("Sample Client 1",
                     new Address("a street", "123", "123", "123"), "12345678"));
 
-            //BKONU: How to create this kind of sample data?
-            // Answer: Ask repository
+            //BKONU:
+            // Ask repository
             //  for the client you created. then use it!
             // bus.dispatch(cmd, callback) should be used to be sure command is handled!!
 

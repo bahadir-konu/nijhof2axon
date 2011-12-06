@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-09-10
- * Time: 10:44:13 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ActiveAccount extends AbstractAnnotatedAggregateRoot {
 
