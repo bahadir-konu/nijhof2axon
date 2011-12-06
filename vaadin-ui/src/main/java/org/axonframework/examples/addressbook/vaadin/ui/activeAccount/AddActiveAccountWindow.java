@@ -14,9 +14,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-28
- * Time: 9:52:09 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class AddActiveAccountWindow extends Window {
 
@@ -52,7 +50,7 @@ public class AddActiveAccountWindow extends Window {
         item.removeItemProperty("clientIdentifier");
         item.removeItemProperty("balance");
 
-        activeAccountForm.setFormFieldFactory(new ActiveAccountEditModeFieldFactory());
+        activeAccountForm.setFormFieldFactory(new ActiveAccountFormFieldFactory());
         activeAccountForm.setItemDataSource(item);
 
 

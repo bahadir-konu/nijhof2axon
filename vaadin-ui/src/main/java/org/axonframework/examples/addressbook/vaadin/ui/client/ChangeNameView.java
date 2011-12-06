@@ -10,9 +10,7 @@ import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameComp
 
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-22
- * Time: 10:02:43 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ChangeNameView extends MediatorVerticalLayout {
     private ClientDetailsEntry clientEntry;

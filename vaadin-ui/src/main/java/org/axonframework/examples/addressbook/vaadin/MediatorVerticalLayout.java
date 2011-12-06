@@ -3,9 +3,7 @@ package org.axonframework.examples.addressbook.vaadin;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-25
- * Time: 12:09:06 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class MediatorVerticalLayout extends VerticalLayout {
 

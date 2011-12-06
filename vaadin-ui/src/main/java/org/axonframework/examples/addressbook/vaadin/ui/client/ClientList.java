@@ -11,9 +11,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-24
- * Time: 7:53:01 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class ClientList extends MediatorVerticalLayout implements MediatorListener {
     public ClientList(ClientContainer clientContainer) {

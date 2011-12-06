@@ -12,9 +12,7 @@ import org.axonframework.examples.addressbook.vaadin.events.CashDepositeComplete
 import java.math.BigDecimal;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-05
- * Time: 9:34:51 AM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class CashDepositView extends MediatorVerticalLayout {
 

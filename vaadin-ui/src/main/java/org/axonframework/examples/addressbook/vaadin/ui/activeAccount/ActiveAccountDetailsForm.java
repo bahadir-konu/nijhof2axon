@@ -14,7 +14,7 @@ import org.axonframework.examples.addressbook.vaadin.events.CashDepositeRequeste
 import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalRequestedEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements MediatorListener {
 

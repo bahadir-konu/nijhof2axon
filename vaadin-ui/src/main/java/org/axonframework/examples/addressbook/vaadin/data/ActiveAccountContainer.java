@@ -13,9 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-26
- * Time: 8:24:15 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 @Component
 public class ActiveAccountContainer extends BeanItemContainer<ActiveAccountEntry> implements Serializable, MediatorListener {

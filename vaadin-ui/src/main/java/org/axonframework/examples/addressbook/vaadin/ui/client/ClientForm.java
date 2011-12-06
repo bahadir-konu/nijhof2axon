@@ -12,9 +12,7 @@ import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 import java.util.Arrays;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-24
- * Time: 7:47:36 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class ClientForm extends VerticalLayout {
 

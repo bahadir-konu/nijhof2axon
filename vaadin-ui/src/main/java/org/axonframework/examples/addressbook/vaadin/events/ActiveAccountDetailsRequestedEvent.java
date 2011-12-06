@@ -4,9 +4,7 @@ import nijhof2axon.app.query.ActiveAccountEntry;
 import org.axonframework.examples.addressbook.vaadin.MediatorEvent;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-25
- * Time: 12:56:26 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ActiveAccountDetailsRequestedEvent implements MediatorEvent {
 

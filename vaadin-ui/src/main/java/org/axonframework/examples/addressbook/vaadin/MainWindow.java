@@ -6,9 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-11-23
- * Time: 5:54:22 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class MainWindow extends Window {
 

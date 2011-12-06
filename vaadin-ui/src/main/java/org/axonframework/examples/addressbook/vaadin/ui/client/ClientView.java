@@ -8,9 +8,7 @@ import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 
 /**
- * User: Bahadir Konu (bah.konu@gmail.com)
- * Date: 2011-10-24
- * Time: 8:43:19 PM
+ * Author: Bahadir Konu (bah.konu@gmail.com) 
  */
 public class ClientView extends MediatorVerticalLayout {
 
