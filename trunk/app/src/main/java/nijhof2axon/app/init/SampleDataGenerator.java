@@ -30,6 +30,10 @@ public class SampleDataGenerator implements ApplicationListener {
 
     public void initializeData() {
         if (initialized.compareAndSet(false, true)) {
+
+            //BKONU: Issue 6
+            // query db, if no client found, add sample data
+
             commandBus.dispatch(new CreateClientCommand("Sample Client 1",
                     new Address("a street", "123", "123", "123"), "12345678"));
 
