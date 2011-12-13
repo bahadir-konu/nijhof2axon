@@ -5,7 +5,7 @@ import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.app.query.ActiveAccountRepository;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.MediatorListener;
-import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
+import nijhof2axon.ui.events.ActiveAccountCreatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
