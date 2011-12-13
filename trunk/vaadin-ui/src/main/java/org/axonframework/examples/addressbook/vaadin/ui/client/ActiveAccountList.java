@@ -10,8 +10,8 @@ import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.data.ActiveAccountContainer;
 import nijhof2axon.ui.events.ActiveAccountDetailsRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameCompletedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.ClientSelectedEvent;
+import nijhof2axon.ui.events.ChangeClientNameCompletedEvent;
+import nijhof2axon.ui.events.ClientSelectedEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)

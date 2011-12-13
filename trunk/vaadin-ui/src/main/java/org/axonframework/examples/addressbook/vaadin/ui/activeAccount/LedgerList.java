@@ -6,7 +6,7 @@ import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.data.LedgerContainer;
 import nijhof2axon.ui.events.ActiveAccountDetailsRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.LedgerModificationCompletedEvent;
+import nijhof2axon.ui.events.LedgerModificationCompletedEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
