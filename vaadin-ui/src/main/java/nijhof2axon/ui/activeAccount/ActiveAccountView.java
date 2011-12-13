@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
+package nijhof2axon.ui.activeAccount;
 
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.VerticalLayout;

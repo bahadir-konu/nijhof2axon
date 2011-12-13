@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
+package nijhof2axon.ui.activeAccount;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
