@@ -1,10 +1,10 @@
-package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
+package nijhof2axon.ui.activeAccount;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import nijhof2axon.app.command.DepositCashCommand;
+import nijhof2axon.app.command.WithdrawCashCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.ui.MainWindow;
 import nijhof2axon.ui.events.LedgerModificationCompletedEvent;
@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
  */
-public class CashDepositWindow extends Window {
+public class CashWithdrawalWindow extends Window {
 
-    public CashDepositWindow(final ActiveAccountEntry activeAccountEntry, final CommandBus commandBus) {
-        setCaption("Deposit Cash");
+    public CashWithdrawalWindow(final ActiveAccountEntry activeAccountEntry, final CommandBus commandBus) {
+        setCaption("Withdraw Cash");
 
         setModal(true);
 
@@ -32,11 +32,11 @@ public class CashDepositWindow extends Window {
 
         VerticalLayout buttonsLayout = new VerticalLayout();
 
-        final TextField depositAmount = new TextField("Specify the amount to be deposit");
+        final TextField depositAmount = new TextField("Specify the amount to be withdrawn");
 
         mainVerticalLayout.addComponent(depositAmount);
 
-        Button depositButton = new Button("Deposit");
+        Button depositButton = new Button("Withdraw");
 
         depositButton.addListener(new Button.ClickListener() {
             @Override
@@ -44,8 +44,8 @@ public class CashDepositWindow extends Window {
 
                 BigDecimal amount = BigDecimal.valueOf(new Double(depositAmount.getValue().toString()));
 
-                DepositCashCommand depositCashCommand =
-                        new DepositCashCommand(activeAccountEntry.getIdentifier(), amount);
+                WithdrawCashCommand depositCashCommand =
+                        new WithdrawCashCommand(activeAccountEntry.getIdentifier(), amount);
 
                 commandBus.dispatch(depositCashCommand);
 
@@ -66,4 +66,5 @@ public class CashDepositWindow extends Window {
 
 
 }
+
 

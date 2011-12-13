@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
+package nijhof2axon.ui.activeAccount;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.validator.IntegerValidator;

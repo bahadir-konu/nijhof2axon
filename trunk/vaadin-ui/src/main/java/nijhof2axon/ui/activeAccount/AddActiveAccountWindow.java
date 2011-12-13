@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
+package nijhof2axon.ui.activeAccount;
 
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
