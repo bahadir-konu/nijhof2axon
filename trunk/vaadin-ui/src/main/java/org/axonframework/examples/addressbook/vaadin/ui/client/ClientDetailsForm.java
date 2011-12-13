@@ -7,9 +7,7 @@ import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.MediatorVerticalLayout;
-import nijhof2axon.ui.events.ActiveAccountCreatedEvent;
-import nijhof2axon.ui.events.AddActiveAccountRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.*;
+import nijhof2axon.ui.events.*;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
