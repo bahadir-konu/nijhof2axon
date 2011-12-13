@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin.ui.client;
+package nijhof2axon.ui.client;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
