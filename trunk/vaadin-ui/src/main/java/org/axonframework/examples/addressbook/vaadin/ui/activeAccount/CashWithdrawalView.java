@@ -6,7 +6,7 @@ import nijhof2axon.app.command.WithdrawCashCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.data.LedgerContainer;
-import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalCompletedEvent;
+import nijhof2axon.ui.events.CashWithdrawalCompletedEvent;
 
 import java.math.BigDecimal;
 

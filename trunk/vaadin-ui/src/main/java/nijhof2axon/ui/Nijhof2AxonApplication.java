@@ -4,6 +4,7 @@ import com.vaadin.Application;
 import com.vaadin.ui.VerticalLayout;
 import nijhof2axon.ui.data.ActiveAccountContainer;
 import nijhof2axon.ui.data.LedgerContainer;
+import nijhof2axon.ui.events.*;
 import org.axonframework.commandhandling.CommandBus;
 import nijhof2axon.ui.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
