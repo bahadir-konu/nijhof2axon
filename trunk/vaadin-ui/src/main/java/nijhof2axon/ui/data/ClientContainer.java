@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin.data;
+package nijhof2axon.ui.data;
 
 import com.vaadin.data.util.BeanItemContainer;
 import nijhof2axon.app.query.ClientDetailsEntry;

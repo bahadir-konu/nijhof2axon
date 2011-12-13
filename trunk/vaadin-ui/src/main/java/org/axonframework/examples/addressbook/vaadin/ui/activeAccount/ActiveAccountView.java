@@ -6,8 +6,8 @@ import com.vaadin.ui.VerticalSplitPanel;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.UIEvent;
-import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
-import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
+import nijhof2axon.ui.data.ActiveAccountContainer;
+import nijhof2axon.ui.data.LedgerContainer;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)

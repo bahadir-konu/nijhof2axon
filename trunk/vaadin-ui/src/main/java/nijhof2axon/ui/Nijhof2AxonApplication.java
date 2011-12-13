@@ -2,10 +2,10 @@ package nijhof2axon.ui;
 
 import com.vaadin.Application;
 import com.vaadin.ui.VerticalLayout;
+import nijhof2axon.ui.data.ActiveAccountContainer;
+import nijhof2axon.ui.data.LedgerContainer;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
-import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
-import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
+import nijhof2axon.ui.data.ClientContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.*;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeClientNameWindow;
