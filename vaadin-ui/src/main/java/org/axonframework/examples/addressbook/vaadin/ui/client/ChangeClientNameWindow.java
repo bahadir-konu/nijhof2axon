@@ -8,7 +8,7 @@ import nijhof2axon.app.command.ChangeClientNameCommand;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import org.axonframework.commandhandling.CommandBus;
 import nijhof2axon.ui.MainWindow;
-import org.axonframework.examples.addressbook.vaadin.events.ChangeClientNameCompletedEvent;
+import nijhof2axon.ui.events.ChangeClientNameCompletedEvent;
 
 /**
  * User: Bahadir Konu (bah.konu@gmail.com)
