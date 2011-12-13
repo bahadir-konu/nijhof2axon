@@ -9,7 +9,7 @@ import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.UIEvent;
-import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
+import nijhof2axon.ui.data.ClientContainer;
 
 import java.util.Arrays;
 
