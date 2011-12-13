@@ -1,6 +1,7 @@
 package org.axonframework.examples.addressbook.vaadin;
 
 import com.vaadin.ui.VerticalLayout;
+import org.axonframework.commandhandling.CommandBus;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com) 
@@ -14,6 +15,10 @@ public class MediatorVerticalLayout extends VerticalLayout {
 
     public void fire(UIEvent event) {
         getApplication().getMainWindow().fireEvent(event);
+    }
+
+    public CommandBus commandBus() {
+        return getApplication().getCommandBus();
     }
 
 
