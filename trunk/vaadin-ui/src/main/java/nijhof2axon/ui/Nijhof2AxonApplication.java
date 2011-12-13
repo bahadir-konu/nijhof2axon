@@ -3,14 +3,14 @@ package nijhof2axon.ui;
 import com.vaadin.Application;
 import com.vaadin.ui.VerticalLayout;
 import nijhof2axon.ui.activeAccount.*;
+import nijhof2axon.ui.client.ChangeClientNameWindow;
+import nijhof2axon.ui.client.ClientView;
 import nijhof2axon.ui.data.ActiveAccountContainer;
 import nijhof2axon.ui.data.LedgerContainer;
 import nijhof2axon.ui.events.*;
 import org.axonframework.commandhandling.CommandBus;
 import nijhof2axon.ui.data.ClientContainer;
-import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeClientNameWindow;
-import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetailsView;
-import org.axonframework.examples.addressbook.vaadin.ui.client.ClientView;
+import nijhof2axon.ui.client.ClientDetailsView;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
