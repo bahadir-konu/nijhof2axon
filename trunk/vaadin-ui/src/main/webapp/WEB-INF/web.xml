@@ -60,7 +60,7 @@
         <init-param>
             <description>Vaadin application class to start</description>
             <param-name>application</param-name>
-            <param-value>org.axonframework.examples.addressbook.vaadin.Nijhof2AxonApplication</param-value>
+            <param-value>nijhof2axon.ui.Nijhof2AxonApplication</param-value>
         </init-param>
         <init-param>
             <description>Vaadin production mode</description>
