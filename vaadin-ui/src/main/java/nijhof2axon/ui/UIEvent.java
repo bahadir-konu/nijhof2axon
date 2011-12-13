@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin;
+package nijhof2axon.ui;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com) 

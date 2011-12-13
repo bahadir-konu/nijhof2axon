@@ -1,4 +1,4 @@
-package org.axonframework.examples.addressbook.vaadin;
+package nijhof2axon.ui;
 
 import com.vaadin.ui.VerticalLayout;
 import org.axonframework.commandhandling.CommandBus;

@@ -5,8 +5,8 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MediatorListener;
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
-import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import nijhof2axon.ui.UIEvent;
+import nijhof2axon.ui.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 
 /**

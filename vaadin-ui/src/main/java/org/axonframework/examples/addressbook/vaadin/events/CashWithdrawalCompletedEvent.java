@@ -1,6 +1,6 @@
 package org.axonframework.examples.addressbook.vaadin.events;
 
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
+import nijhof2axon.ui.UIEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
