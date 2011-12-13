@@ -1,6 +1,6 @@
 package org.axonframework.examples.addressbook.vaadin.events;
 
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
+import nijhof2axon.ui.UIEvent;
 import nijhof2axon.app.query.ActiveAccountEntry;
 
 /**

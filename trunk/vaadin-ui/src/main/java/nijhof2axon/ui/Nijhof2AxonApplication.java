@@ -1,9 +1,7 @@
-package org.axonframework.examples.addressbook.vaadin;
+package nijhof2axon.ui;
 
 import com.vaadin.Application;
 import com.vaadin.ui.VerticalLayout;
-import nijhof2axon.ui.MainWindow;
-import nijhof2axon.ui.MediatorListener;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;

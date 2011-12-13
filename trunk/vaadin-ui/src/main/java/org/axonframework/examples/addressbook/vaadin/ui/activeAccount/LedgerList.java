@@ -2,8 +2,8 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 
 import com.vaadin.ui.Table;
 import nijhof2axon.ui.MediatorListener;
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
-import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import nijhof2axon.ui.UIEvent;
+import nijhof2axon.ui.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountDetailsRequestedEvent;
 import org.axonframework.examples.addressbook.vaadin.events.LedgerModificationCompletedEvent;

@@ -4,7 +4,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import nijhof2axon.app.command.WithdrawCashCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
-import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import nijhof2axon.ui.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalCompletedEvent;
 
