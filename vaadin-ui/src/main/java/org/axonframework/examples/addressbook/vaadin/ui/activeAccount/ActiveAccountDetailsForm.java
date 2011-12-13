@@ -3,10 +3,9 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.*;
 
@@ -22,7 +21,7 @@ public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements 
     private Label accountNumberLabel;
     private Label balanceLabel;
 
-    public ActiveAccountDetailsForm(ActiveAccountContainer activeAccountContainer, final CommandBus commandBus) {
+    public ActiveAccountDetailsForm(ActiveAccountContainer activeAccountContainer) {
 
         this.activeAccountContainer = activeAccountContainer;
 

@@ -3,10 +3,9 @@ package org.axonframework.examples.addressbook.vaadin.ui.client;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 
 /**
@@ -16,7 +15,7 @@ public class ClientView extends MediatorVerticalLayout implements MediatorListen
     private ClientForm clientForm;
     private ClientList clientList;
 
-    public ClientView(CommandBus commandBus, ClientContainer clientContainer) {
+    public ClientView(ClientContainer clientContainer) {
 
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setSizeFull();
@@ -26,7 +25,7 @@ public class ClientView extends MediatorVerticalLayout implements MediatorListen
         verticalSplitPanel.setWidth("100%");
         verticalSplitPanel.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
-        clientForm = new ClientForm(commandBus, clientContainer);
+        clientForm = new ClientForm(clientContainer);
         verticalSplitPanel.setFirstComponent(clientForm);
         clientList = new ClientList(clientContainer);
         verticalSplitPanel.setSecondComponent(clientList);

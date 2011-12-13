@@ -3,10 +3,9 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 
@@ -18,7 +17,7 @@ public class ActiveAccountView extends MediatorVerticalLayout implements Mediato
     private LedgerList ledgerList;
 
 
-    public ActiveAccountView(ActiveAccountContainer activeAccountContainer, LedgerContainer ledgerContainer, CommandBus commandBus) {
+    public ActiveAccountView(ActiveAccountContainer activeAccountContainer, LedgerContainer ledgerContainer) {
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setWidth("50%");
         mainVerticalLayout.setSizeFull();
@@ -28,7 +27,7 @@ public class ActiveAccountView extends MediatorVerticalLayout implements Mediato
         verticalSplitPanel.setWidth("100%");
         verticalSplitPanel.setSplitPosition(25, Sizeable.UNITS_PERCENTAGE);
 
-        activeAccountDetailsForm = new ActiveAccountDetailsForm(activeAccountContainer, commandBus);
+        activeAccountDetailsForm = new ActiveAccountDetailsForm(activeAccountContainer);
         ledgerList = new LedgerList(ledgerContainer);
 
         verticalSplitPanel.setFirstComponent(activeAccountDetailsForm);

@@ -6,9 +6,9 @@ import com.vaadin.ui.*;
 import nijhof2axon.app.command.CreateClientCommand;
 import nijhof2axon.app.domain.Address;
 import nijhof2axon.app.query.ClientDetailsEntry;
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.MediatorListener;
+import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;
 
 import java.util.Arrays;
@@ -16,9 +16,9 @@ import java.util.Arrays;
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
-public class ClientForm extends VerticalLayout implements MediatorListener {
+public class ClientForm extends MediatorVerticalLayout implements MediatorListener {
 
-    public ClientForm(final CommandBus commandBus, final ClientContainer clientContainer) {
+    public ClientForm(final ClientContainer clientContainer) {
         final Form clientForm = new Form();
         clientForm.setCaption("Create Client");
         clientForm.setSizeFull();
@@ -51,7 +51,7 @@ public class ClientForm extends VerticalLayout implements MediatorListener {
                         new Address(street, streetNumber, postalCode, city), phoneNumber
                 );
 
-                commandBus.dispatch(createClientCommand);
+                commandBus().dispatch(createClientCommand);
 
                 clientContainer.refreshContent();
 

@@ -4,7 +4,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import nijhof2axon.app.command.WithdrawCashCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
-import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.data.LedgerContainer;
 import org.axonframework.examples.addressbook.vaadin.events.CashWithdrawalCompletedEvent;
@@ -18,7 +17,7 @@ public class CashWithdrawalView extends MediatorVerticalLayout {
 
     private ActiveAccountEntry activeAccountEntry;
 
-    public CashWithdrawalView(final CommandBus commandBus, final LedgerContainer ledgerContainer) {
+    public CashWithdrawalView(final LedgerContainer ledgerContainer) {
 
         final TextField withdrawAmount = new TextField("Specify the amount to withdraw");
 
@@ -35,7 +34,7 @@ public class CashWithdrawalView extends MediatorVerticalLayout {
                 WithdrawCashCommand withdrawCashCommand =
                         new WithdrawCashCommand(activeAccountEntry.getIdentifier(), amount);
 
-                commandBus.dispatch(withdrawCashCommand);
+                commandBus().dispatch(withdrawCashCommand);
 
                 ledgerContainer.refreshContent(activeAccountEntry.getIdentifier());
 
