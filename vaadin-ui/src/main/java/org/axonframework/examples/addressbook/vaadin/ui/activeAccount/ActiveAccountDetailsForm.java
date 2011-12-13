@@ -7,10 +7,7 @@ import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.data.ActiveAccountContainer;
-import nijhof2axon.ui.events.ActiveAccountDetailsRequestedEvent;
-import nijhof2axon.ui.events.CashDepositeRequestedEvent;
-import nijhof2axon.ui.events.CashWithdrawalRequestedEvent;
-import org.axonframework.examples.addressbook.vaadin.events.*;
+import nijhof2axon.ui.events.*;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)

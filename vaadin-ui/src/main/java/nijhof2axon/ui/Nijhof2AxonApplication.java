@@ -7,7 +7,6 @@ import nijhof2axon.ui.data.LedgerContainer;
 import nijhof2axon.ui.events.*;
 import org.axonframework.commandhandling.CommandBus;
 import nijhof2axon.ui.data.ClientContainer;
-import org.axonframework.examples.addressbook.vaadin.events.*;
 import org.axonframework.examples.addressbook.vaadin.ui.activeAccount.*;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ChangeClientNameWindow;
 import org.axonframework.examples.addressbook.vaadin.ui.client.ClientDetailsView;
