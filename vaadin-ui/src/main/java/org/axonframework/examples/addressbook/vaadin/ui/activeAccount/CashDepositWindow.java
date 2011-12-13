@@ -6,8 +6,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import nijhof2axon.app.command.DepositCashCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
+import nijhof2axon.ui.MainWindow;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.MainWindow;
 import org.axonframework.examples.addressbook.vaadin.events.LedgerModificationCompletedEvent;
 
 import java.math.BigDecimal;

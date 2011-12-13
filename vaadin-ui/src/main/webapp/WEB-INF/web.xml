@@ -56,7 +56,7 @@
     <!-- ====================================================================== -->
     <servlet>
         <servlet-name>Vaadin Application Servlet</servlet-name>
-        <servlet-class>org.axonframework.examples.addressbook.vaadin.AutowiringApplicationServlet</servlet-class>
+        <servlet-class>nijhof2axon.ui.AutowiringApplicationServlet</servlet-class>
         <init-param>
             <description>Vaadin application class to start</description>
             <param-name>application</param-name>
