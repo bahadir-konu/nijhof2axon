@@ -10,8 +10,8 @@ import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MainWindow;
 import nijhof2axon.ui.data.ActiveAccountContainer;
+import nijhof2axon.ui.events.ActiveAccountCreatedEvent;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
