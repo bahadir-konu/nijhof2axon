@@ -6,7 +6,7 @@ import com.vaadin.ui.*;
 import nijhof2axon.app.command.CreateClientCommand;
 import nijhof2axon.app.domain.Address;
 import nijhof2axon.app.query.ClientDetailsEntry;
-import org.axonframework.examples.addressbook.vaadin.MediatorListener;
+import nijhof2axon.ui.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.data.ClientContainer;

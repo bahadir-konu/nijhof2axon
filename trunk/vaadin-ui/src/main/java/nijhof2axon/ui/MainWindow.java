@@ -1,6 +1,7 @@
-package org.axonframework.examples.addressbook.vaadin;
+package nijhof2axon.ui;
 
 import com.vaadin.ui.Window;
+import org.axonframework.examples.addressbook.vaadin.UIEvent;
 
 import java.util.Collection;
 import java.util.HashSet;

@@ -8,8 +8,8 @@ import com.vaadin.ui.Window;
 import nijhof2axon.app.command.OpenNewAccountForClientCommand;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.app.query.ClientDetailsEntry;
+import nijhof2axon.ui.MainWindow;
 import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.examples.addressbook.vaadin.MainWindow;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;
 import org.axonframework.examples.addressbook.vaadin.events.ActiveAccountCreatedEvent;
 

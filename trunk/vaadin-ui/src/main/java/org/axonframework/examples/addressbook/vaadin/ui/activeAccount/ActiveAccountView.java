@@ -3,7 +3,7 @@ package org.axonframework.examples.addressbook.vaadin.ui.activeAccount;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
-import org.axonframework.examples.addressbook.vaadin.MediatorListener;
+import nijhof2axon.ui.MediatorListener;
 import org.axonframework.examples.addressbook.vaadin.MediatorVerticalLayout;
 import org.axonframework.examples.addressbook.vaadin.UIEvent;
 import org.axonframework.examples.addressbook.vaadin.data.ActiveAccountContainer;

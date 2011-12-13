@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.axonframework.examples.addressbook.vaadin;
+package nijhof2axon.ui;
 
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.ApplicationServlet;
