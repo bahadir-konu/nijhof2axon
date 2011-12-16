@@ -15,7 +15,7 @@ public class ClientView extends MediatorVerticalLayout implements MediatorListen
     private ClientForm clientForm;
     private ClientList clientList;
 
-    public ClientView(ClientContainer clientContainer) {
+    public ClientView() {
 
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setSizeFull();
@@ -25,9 +25,9 @@ public class ClientView extends MediatorVerticalLayout implements MediatorListen
         verticalSplitPanel.setWidth("100%");
         verticalSplitPanel.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
-        clientForm = new ClientForm(clientContainer);
+        clientForm = new ClientForm();
         verticalSplitPanel.setFirstComponent(clientForm);
-        clientList = new ClientList(clientContainer);
+        clientList = new ClientList();
         verticalSplitPanel.setSecondComponent(clientList);
 
         mainVerticalLayout.addComponent(verticalSplitPanel);

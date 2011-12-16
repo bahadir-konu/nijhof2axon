@@ -7,7 +7,6 @@ import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.UIEvent;
-import nijhof2axon.ui.data.ActiveAccountContainer;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
@@ -16,8 +15,8 @@ public class ClientDetailsView extends MediatorVerticalLayout implements Mediato
     private ClientDetailsForm clientDetailsForm;
     private ActiveAccountList activeAccountList;
 
-    public ClientDetailsView(ActiveAccountContainer activeAccountContainer, ClientDetailsEntry clientDetailsEntry) {
-
+    public ClientDetailsView() {
+                
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setWidth("50%");
         mainVerticalLayout.setSizeFull();
@@ -27,8 +26,8 @@ public class ClientDetailsView extends MediatorVerticalLayout implements Mediato
         verticalSplitPanel.setWidth("100%");
         verticalSplitPanel.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
-        clientDetailsForm = new ClientDetailsForm(clientDetailsEntry);
-        activeAccountList = new ActiveAccountList(activeAccountContainer);
+        clientDetailsForm = new ClientDetailsForm();
+        activeAccountList = new ActiveAccountList();
 
         verticalSplitPanel.setFirstComponent(clientDetailsForm);
         verticalSplitPanel.setSecondComponent(activeAccountList);

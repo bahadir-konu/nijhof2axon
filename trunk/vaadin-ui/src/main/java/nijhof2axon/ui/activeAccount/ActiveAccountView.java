@@ -6,7 +6,6 @@ import com.vaadin.ui.VerticalSplitPanel;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.UIEvent;
-import nijhof2axon.ui.data.ActiveAccountContainer;
 import nijhof2axon.ui.data.LedgerContainer;
 
 /**
@@ -17,7 +16,7 @@ public class ActiveAccountView extends MediatorVerticalLayout implements Mediato
     private LedgerList ledgerList;
 
 
-    public ActiveAccountView(ActiveAccountContainer activeAccountContainer, LedgerContainer ledgerContainer) {
+    public ActiveAccountView() {
         VerticalLayout mainVerticalLayout = new VerticalLayout();
         mainVerticalLayout.setWidth("50%");
         mainVerticalLayout.setSizeFull();
@@ -27,8 +26,8 @@ public class ActiveAccountView extends MediatorVerticalLayout implements Mediato
         verticalSplitPanel.setWidth("100%");
         verticalSplitPanel.setSplitPosition(25, Sizeable.UNITS_PERCENTAGE);
 
-        activeAccountDetailsForm = new ActiveAccountDetailsForm(activeAccountContainer);
-        ledgerList = new LedgerList(ledgerContainer);
+        activeAccountDetailsForm = new ActiveAccountDetailsForm();
+        ledgerList = new LedgerList();
 
         verticalSplitPanel.setFirstComponent(activeAccountDetailsForm);
         verticalSplitPanel.setSecondComponent(ledgerList);

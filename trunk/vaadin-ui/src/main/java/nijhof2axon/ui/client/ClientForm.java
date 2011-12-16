@@ -8,6 +8,7 @@ import nijhof2axon.app.domain.Address;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.MediatorVerticalLayout;
+import nijhof2axon.ui.Nijhof2AxonApplication;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.data.ClientContainer;
 
@@ -18,7 +19,7 @@ import java.util.Arrays;
  */
 public class ClientForm extends MediatorVerticalLayout implements MediatorListener {
 
-    public ClientForm(final ClientContainer clientContainer) {
+    public ClientForm() {
         final Form clientForm = new Form();
         clientForm.setCaption("Create Client");
         clientForm.setSizeFull();
@@ -51,9 +52,9 @@ public class ClientForm extends MediatorVerticalLayout implements MediatorListen
                         new Address(street, streetNumber, postalCode, city), phoneNumber
                 );
 
-                commandBus().dispatch(createClientCommand);
+                Nijhof2AxonApplication.commandBus.dispatch(createClientCommand);
 
-                clientContainer.refreshContent();
+                Nijhof2AxonApplication.clientContainer.refreshContent();
 
             }
         });
