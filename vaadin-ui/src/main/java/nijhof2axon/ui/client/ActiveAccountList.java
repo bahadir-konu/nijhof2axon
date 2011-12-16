@@ -7,47 +7,44 @@ import com.vaadin.ui.VerticalLayout;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.ui.MediatorListener;
 import nijhof2axon.ui.MediatorVerticalLayout;
+import nijhof2axon.ui.Nijhof2AxonApplication;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.data.ActiveAccountContainer;
 import nijhof2axon.ui.events.ActiveAccountDetailsRequestedEvent;
 import nijhof2axon.ui.events.ChangeClientNameCompletedEvent;
 import nijhof2axon.ui.events.ClientSelectedEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ActiveAccountList extends MediatorVerticalLayout implements MediatorListener {
 
-    private ActiveAccountContainer activeAccountContainer;
-
-    public ActiveAccountList(ActiveAccountContainer activeAccountContainer) {
-
-        this.activeAccountContainer = activeAccountContainer;
+    public ActiveAccountList() {
 
         VerticalLayout mainVerticalLayout = new VerticalLayout();
 
-        mainVerticalLayout.addComponent(getActiveAccountsTable(activeAccountContainer));
+        mainVerticalLayout.addComponent(getActiveAccountsTable());
 
         addComponent(mainVerticalLayout);
-
     }
 
     @Override
     public void handleEvent(UIEvent event) {
 
         if (event instanceof ClientSelectedEvent) {
-            activeAccountContainer.refreshContent(((ClientSelectedEvent) event).getSelectedClient().getIdentifier());
+            Nijhof2AxonApplication.activeAccountContainer.refreshContent(((ClientSelectedEvent) event).getSelectedClient().getIdentifier());
         }
 
         if (event instanceof ChangeClientNameCompletedEvent) {
-            activeAccountContainer.refreshContent(((ChangeClientNameCompletedEvent) event).getClientEntry().getIdentifier());
+            Nijhof2AxonApplication.activeAccountContainer.refreshContent(((ChangeClientNameCompletedEvent) event).getClientEntry().getIdentifier());
         }
 
     }
 
-    private Table getActiveAccountsTable(ActiveAccountContainer activeAccountContainer) {
+    private Table getActiveAccountsTable() {
         final Table activeAccountsTable = new Table("Active Accounts");
-        activeAccountsTable.setContainerDataSource(activeAccountContainer);
+        activeAccountsTable.setContainerDataSource(Nijhof2AxonApplication.activeAccountContainer);
 
         activeAccountsTable.setVisibleColumns(new String[]{"accountName", "accountNumber", "balance"});
 

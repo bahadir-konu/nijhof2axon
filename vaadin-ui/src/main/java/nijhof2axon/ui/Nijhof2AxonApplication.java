@@ -20,23 +20,16 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
     protected MainWindow mainWindow;
 
-    @Autowired
-    private ClientContainer clientContainer;
-
-    @Autowired
-    private ActiveAccountContainer activeAccountContainer;
-
-    @Autowired
-    private LedgerContainer ledgerContainer;
-
-    @Autowired
-    private CommandBus commandBus;
+    // Autowired beans
+    public static ClientContainer clientContainer;
+    public static ActiveAccountContainer activeAccountContainer;
+    public static LedgerContainer ledgerContainer;
+    public static CommandBus commandBus;
 
     private VerticalLayout mainVerticalLayout;
     private ClientView clientView;
     private ClientDetailsView clientDetailsView;
     private ActiveAccountView activeAccountView;
-    private CashWithdrawalView cashWithdrawalView;
 
     @Override
     public void init() {
@@ -49,14 +42,13 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         mainVerticalLayout = new VerticalLayout();
 
-        clientView = new ClientView(clientContainer);
+        clientView = new ClientView();
         mainVerticalLayout.addComponent(clientView);
 
         mainWindow.setContent(mainVerticalLayout);
 
-        clientDetailsView = new ClientDetailsView(activeAccountContainer, null);
-        activeAccountView = new ActiveAccountView(activeAccountContainer, ledgerContainer);
-        cashWithdrawalView = new CashWithdrawalView(ledgerContainer);
+        clientDetailsView = new ClientDetailsView();
+        activeAccountView = new ActiveAccountView();
 
         mainWindow.addCollaborator(clientView);
         mainWindow.addCollaborator(clientDetailsView);
@@ -76,10 +68,6 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
 
         if (event instanceof ActiveAccountDetailsRequestedEvent) {
             mainVerticalLayout.replaceComponent(clientDetailsView, activeAccountView);
-        }
-
-        if (event instanceof CashWithdrawalCompletedEvent) {
-            mainVerticalLayout.replaceComponent(cashWithdrawalView, activeAccountView);
         }
 
         if (event instanceof ChangeClientNameRequestedEvent) {
@@ -118,7 +106,23 @@ public class Nijhof2AxonApplication extends Application implements MediatorListe
         return mainWindow;
     }
 
-    public CommandBus getCommandBus() {
-        return commandBus;
+    @Autowired
+    public void setClientContainer(ClientContainer clientContainer) {
+        Nijhof2AxonApplication.clientContainer = clientContainer;
+    }
+
+    @Autowired
+    public void setActiveAccountContainer(ActiveAccountContainer activeAccountContainer) {
+        Nijhof2AxonApplication.activeAccountContainer = activeAccountContainer;
+    }
+
+    @Autowired
+    public void setLedgerContainer(LedgerContainer ledgerContainer) {
+        Nijhof2AxonApplication.ledgerContainer = ledgerContainer;
+    }
+
+    @Autowired
+    public void setCommandBus(CommandBus commandBus) {
+        Nijhof2AxonApplication.commandBus = commandBus;
     }
 }

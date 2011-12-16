@@ -17,9 +17,4 @@ public class MediatorVerticalLayout extends VerticalLayout {
         getApplication().getMainWindow().fireEvent(event);
     }
 
-    public CommandBus commandBus() {
-        return getApplication().getCommandBus();
-    }
-
-
 }

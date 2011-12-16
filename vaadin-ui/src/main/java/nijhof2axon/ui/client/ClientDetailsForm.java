@@ -22,8 +22,7 @@ public class ClientDetailsForm extends MediatorVerticalLayout implements Mediato
     private Label city;
     private Label phoneNumber;
 
-    public ClientDetailsForm(ClientDetailsEntry clientDetailsEntry) {
-        this.clientDetailsEntry = clientDetailsEntry;
+    public ClientDetailsForm() {
 
         addMenuItems();
 

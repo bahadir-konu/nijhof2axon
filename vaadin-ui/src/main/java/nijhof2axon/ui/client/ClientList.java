@@ -5,6 +5,7 @@ import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Table;
 import nijhof2axon.app.query.ClientDetailsEntry;
 import nijhof2axon.ui.MediatorListener;
+import nijhof2axon.ui.Nijhof2AxonApplication;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.data.ClientContainer;
@@ -15,13 +16,11 @@ import nijhof2axon.ui.events.ClientSelectedEvent;
  * Author: Bahadir Konu (bah.konu@gmail.com)
  */
 public class ClientList extends MediatorVerticalLayout implements MediatorListener {
-    private ClientContainer clientContainer;
 
-    public ClientList(ClientContainer clientContainer) {
-        this.clientContainer = clientContainer;
+    public ClientList() {
 
         final Table clientsTable = new Table("Clients");
-        clientsTable.setContainerDataSource(clientContainer);
+        clientsTable.setContainerDataSource(Nijhof2AxonApplication.clientContainer);
 
         clientsTable.setVisibleColumns(new String[]{"clientName", "city", "street", "streetNumber", "postalCode", "phoneNumber"});
 
@@ -45,7 +44,7 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
             }
         });
 
-        clientContainer.refreshContent();
+        Nijhof2AxonApplication.clientContainer.refreshContent();
 
         addComponent(clientsTable);
     }
@@ -54,7 +53,7 @@ public class ClientList extends MediatorVerticalLayout implements MediatorListen
     @Override
     public void handleEvent(UIEvent event) {
         if (event instanceof ChangeClientNameCompletedEvent) {
-            clientContainer.refreshContent();
+            Nijhof2AxonApplication.clientContainer.refreshContent();
         }
 
     }

@@ -4,6 +4,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 import nijhof2axon.app.query.ActiveAccountEntry;
 import nijhof2axon.ui.MediatorListener;
+import nijhof2axon.ui.Nijhof2AxonApplication;
 import nijhof2axon.ui.UIEvent;
 import nijhof2axon.ui.MediatorVerticalLayout;
 import nijhof2axon.ui.data.ActiveAccountContainer;
@@ -15,15 +16,12 @@ import nijhof2axon.ui.events.*;
 public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements MediatorListener {
 
     private ActiveAccountEntry activeAccountEntry;
-    private ActiveAccountContainer activeAccountContainer;
 
     private Label accountNameLabel;
     private Label accountNumberLabel;
     private Label balanceLabel;
 
-    public ActiveAccountDetailsForm(ActiveAccountContainer activeAccountContainer) {
-
-        this.activeAccountContainer = activeAccountContainer;
+    public ActiveAccountDetailsForm() {
 
         com.vaadin.ui.MenuBar menuBar = new com.vaadin.ui.MenuBar();
 
@@ -110,13 +108,11 @@ public class ActiveAccountDetailsForm extends MediatorVerticalLayout implements 
     }
 
     public void refreshFor(ActiveAccountEntry activeAccountEntry) {
-
-        this.activeAccountEntry = activeAccountContainer.refresh(activeAccountEntry);
+        this.activeAccountEntry = Nijhof2AxonApplication.activeAccountContainer.refresh(activeAccountEntry);
 
         accountNameLabel.setValue(this.activeAccountEntry.getAccountName());
         accountNumberLabel.setValue(this.activeAccountEntry.getAccountNumber());
         balanceLabel.setValue(this.activeAccountEntry.getBalance());
-
     }
 
 
