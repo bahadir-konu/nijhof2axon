@@ -108,9 +108,8 @@
 
     <axon:event-sourcing-repository id="clientRepository"
                                     aggregate-type="nijhof2axon.app.domain.Client"
-                                    event-bus="eventBus" event-store="eventStore">
-        <!--<axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>-->
-        <axon:snapshotter-trigger event-count-threshold="1" snapshotter-ref="snapshotter"/>
+                                    event-bus="eventBus" event-store="eventStore">        
+        <axon:snapshotter-trigger event-count-threshold="5" snapshotter-ref="snapshotter"/>
     </axon:event-sourcing-repository>
 
 
