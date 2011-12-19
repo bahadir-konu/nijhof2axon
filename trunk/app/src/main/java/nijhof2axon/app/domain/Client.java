@@ -28,10 +28,6 @@ public class Client extends AbstractAnnotatedAggregateRoot {
         apply(new ClientCreatedEvent(name, address, phoneNumber));
     }
 
-    @EventHandler
-    protected void handleClientCreatedEvent(ClientCreatedEvent event) {
-    }
-
     public String getName() {
         return name;
     }
