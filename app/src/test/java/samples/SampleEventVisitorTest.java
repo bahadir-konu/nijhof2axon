@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Author: Bahadýr Konu (bah.konu@gmail.com)
+ * Author: Bahadir Konu (bah.konu@gmail.com)
  * <p/>
  * An example on replaying events from an event store.
  */
